@@ -1,0 +1,6 @@
+CUSTOM AXI DDR3 CONTROLLER OOC SYNTHESIS
+Part: xc7vx485tffg1761-2
+Constraint: 3.000 ns
+Worst slack: -0.196 ns
+Estimated post-synthesis Fmax: 312.891 MHz
+DSP cells: 0

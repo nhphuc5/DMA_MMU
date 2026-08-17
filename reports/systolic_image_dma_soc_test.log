@@ -1,0 +1,4 @@
+SYSTOLIC IMAGE DMA SOC TEST PASSED
+Input: 64x64 GRAY8 tiled INT8 in 256-KiB BRAM
+Path: BRAM -> DMA/AXI4 -> AXI-Stream -> Systolic -> AXI-Stream -> DMA/AXI4 -> BRAM -> DMA -> UART
+Verified UART payload bytes: 4096

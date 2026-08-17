@@ -1,0 +1,367 @@
+Time resolution is 1 ps
+Addressing configuration for axi_crossbar_addr instance tb_dma_iommu_picorv32_unified.axi_verification.dut.crossbar_inst.axi_crossbar_wr_inst.s_ifaces[0].addr_inst
+ 0 ( 0): 0000 / 16 -- 0000-ffff
+Addressing configuration for axi_crossbar_addr instance tb_dma_iommu_picorv32_unified.axi_verification.dut.crossbar_inst.axi_crossbar_wr_inst.s_ifaces[1].addr_inst
+ 0 ( 0): 0000 / 16 -- 0000-ffff
+Addressing configuration for axi_crossbar_addr instance tb_dma_iommu_picorv32_unified.axi_verification.dut.crossbar_inst.axi_crossbar_rd_inst.s_ifaces[0].addr_inst
+ 0 ( 0): 0000 / 16 -- 0000-ffff
+Addressing configuration for axi_crossbar_addr instance tb_dma_iommu_picorv32_unified.axi_verification.dut.crossbar_inst.axi_crossbar_rd_inst.s_ifaces[1].addr_inst
+ 0 ( 0): 0000 / 16 -- 0000-ffff
+Addressing configuration for axi_crossbar_addr instance tb_dma_iommu_picorv32_unified.soc_verification.dut.dma_iommu_inst.crossbar_inst.axi_crossbar_wr_inst.s_ifaces[0].addr_inst
+ 0 ( 0): 0000 / 16 -- 0000-ffff
+Addressing configuration for axi_crossbar_addr instance tb_dma_iommu_picorv32_unified.soc_verification.dut.dma_iommu_inst.crossbar_inst.axi_crossbar_wr_inst.s_ifaces[1].addr_inst
+ 0 ( 0): 0000 / 16 -- 0000-ffff
+Addressing configuration for axi_crossbar_addr instance tb_dma_iommu_picorv32_unified.soc_verification.dut.dma_iommu_inst.crossbar_inst.axi_crossbar_rd_inst.s_ifaces[0].addr_inst
+ 0 ( 0): 0000 / 16 -- 0000-ffff
+Addressing configuration for axi_crossbar_addr instance tb_dma_iommu_picorv32_unified.soc_verification.dut.dma_iommu_inst.crossbar_inst.axi_crossbar_rd_inst.s_ifaces[1].addr_inst
+ 0 ( 0): 0000 / 16 -- 0000-ffff
+Addressing configuration for axi_crossbar_addr instance tb_dma_iommu_picorv32_unified.soc_verification.dut.system_axi_crossbar.axi_crossbar_wr_inst.s_ifaces[0].addr_inst
+ 0 ( 0): 0000 / 16 -- 0000-ffff
+Addressing configuration for axi_crossbar_addr instance tb_dma_iommu_picorv32_unified.soc_verification.dut.system_axi_crossbar.axi_crossbar_wr_inst.s_ifaces[1].addr_inst
+ 0 ( 0): 0000 / 16 -- 0000-ffff
+Addressing configuration for axi_crossbar_addr instance tb_dma_iommu_picorv32_unified.soc_verification.dut.system_axi_crossbar.axi_crossbar_rd_inst.s_ifaces[0].addr_inst
+ 0 ( 0): 0000 / 16 -- 0000-ffff
+Addressing configuration for axi_crossbar_addr instance tb_dma_iommu_picorv32_unified.soc_verification.dut.system_axi_crossbar.axi_crossbar_rd_inst.s_ifaces[1].addr_inst
+ 0 ( 0): 0000 / 16 -- 0000-ffff
+[0] CPU-SIDE MMU SELF-CHECK START
+[0] UNIFIED CPU + DMA + IOMMU + AXI VERIFICATION START
+[0] Running CPU MMU, PicoRV32 SoC, and DMA/IOMMU AXI tests in parallel
+DMA/MMU AXI SELF-CHECKING TEST START
+Programming 4 KiB software page table
+[110000] PASS: write response at 0x00001000
+[110000] PASS: disabled MMU bypasses RAM address
+[150000] PASS: read response at 0x00001000
+[150000] PASS: disabled MMU direct physical read preserves data
+[190000] PASS: write response at 0x30000000
+[230000] PASS: write response at 0x30000004
+[270000] PASS: write response at 0x30000008
+[310000] PASS: write response at 0x3000000c
+[350000] PASS: write response at 0x30000014
+[350000] PASS: MMU enable register
+[430000] PASS: write response at 0x00008004
+[430000] PASS: write VA 0x8004 reaches physical RAM 0x3004
+[500000] PASS: write response at 0x00008008
+[500000] PASS: TLB-hit write reaches the same translated page
+[560000] PASS: read response at 0x00008004
+[560000] PASS: read translation and TLB hit preserve data
+[560000] PASS: TLB hit/miss counters advance
+[600000] PASS: write response at 0x30000000
+D01: memory -> memory, BURST mode
+[640000] PASS: write response at 0x30000004
+[680000] PASS: write response at 0x30000008
+[720000] PASS: write response at 0x3000000c
+[790000] PASS: read response at 0x0000a000
+[790000] PASS: CPU MMU TLB-miss read translates through the page table
+[850000] PASS: read response at 0x0000a000
+[850000] PASS: CPU MMU TLB-hit read preserves translated data
+[910000] PASS: read response at 0x00008004
+[910000] PASS: execute permission fault blocks RAM and raises IRQ
+[950000] PASS: write response at 0x30000010
+[950000] PASS: fault clear releases IRQ
+[1020000] PASS: write response at 0x00009000
+[1020000] PASS: unmapped write is blocked before physical AXI
+[1050000] PASS: read response at 0x30000018
+[1050000] PASS: page-fault status is sticky
+[1090000] PASS: write response at 0x30000010
+[1130000] PASS: write response at 0x30000000
+M2M DATA: memory input -> memory output
+  WORD[0] IN  VA=0x1000 DATA=0xa5000000 | OUT VA=0x2000 DATA=0xa5000000 | MATCH
+  WORD[1] IN  VA=0x1004 DATA=0xa5000001 | OUT VA=0x2004 DATA=0xa5000001 | MATCH
+  WORD[2] IN  VA=0x1008 DATA=0xa5000002 | OUT VA=0x2008 DATA=0xa5000002 | MATCH
+  WORD[3] IN  VA=0x100c DATA=0xa5000003 | OUT VA=0x200c DATA=0xa5000003 | MATCH
+  WORD[4] IN  VA=0x1010 DATA=0xa5000004 | OUT VA=0x2010 DATA=0xa5000004 | MATCH
+  WORD[5] IN  VA=0x1014 DATA=0xa5000005 | OUT VA=0x2014 DATA=0xa5000005 | MATCH
+  WORD[6] IN  VA=0x1018 DATA=0xa5000006 | OUT VA=0x2018 DATA=0xa5000006 | MATCH
+  WORD[7] IN  VA=0x101c DATA=0xa5000007 | OUT VA=0x201c DATA=0xa5000007 | MATCH
+PASS M2M: AR transactions=1 AW transactions=1 max ARLEN=7 max AWLEN=7
+PASS D01: Burst is continuous: one AR/AW burst, LEN=7
+D05: peripheral -> memory, CYCLE-STEALING mode
+[1170000] PASS: write response at 0x30000004
+[1210000] PASS: write response at 0x30000008
+[1250000] PASS: write response at 0x3000000c
+[1320000] PASS: write response at 0x0000a000
+[1320000] PASS: write-permission fault blocks physical AXI write
+[1360000] PASS: write response at 0x30000010
+[1420000] PASS: read response at 0x0000a000
+[1420000] PASS: read-only mapping still permits read
+[1470000] PASS: write response at 0x10000040
+[1470000] PASS: physical MMIO bypass reaches downstream router
+[1470000] ALL CPU MMU TESTS PASSED
+S2M DATA: AXI-Stream peripheral input -> memory output
+  WORD[0] IN  S_AXIS DATA=0xd1000000 | OUT VA=0x3000 DATA=0xd1000000 | MATCH
+  WORD[1] IN  S_AXIS DATA=0xd1000001 | OUT VA=0x3004 DATA=0xd1000001 | MATCH
+  WORD[2] IN  S_AXIS DATA=0xd1000002 | OUT VA=0x3008 DATA=0xd1000002 | MATCH
+  WORD[3] IN  S_AXIS DATA=0xd1000003 | OUT VA=0x300c DATA=0xd1000003 | MATCH
+  WORD[4] IN  S_AXIS DATA=0xd1000004 | OUT VA=0x3010 DATA=0xd1000004 | MATCH
+  WORD[5] IN  S_AXIS DATA=0xd1000005 | OUT VA=0x3014 DATA=0xd1000005 | MATCH
+  WORD[6] IN  S_AXIS DATA=0xd1000006 | OUT VA=0x3018 DATA=0xd1000006 | MATCH
+  WORD[7] IN  S_AXIS DATA=0xd1000007 | OUT VA=0x301c DATA=0xd1000007 | MATCH
+PASS S2M: 8 independent one-beat writes with release gaps
+PASS D05: Cycle-Stealing issued one-beat writes and released the bus
+D09: memory -> peripheral, TRANSPARENT mode
+M2S DATA: memory input -> AXI-Stream peripheral output
+  WORD[0] IN  VA=0x1000 DATA=0xa5000000 | OUT M_AXIS DATA=0xa5000000 TLAST=0 | MATCH
+  WORD[1] IN  VA=0x1004 DATA=0xa5000001 | OUT M_AXIS DATA=0xa5000001 TLAST=0 | MATCH
+  WORD[2] IN  VA=0x1008 DATA=0xa5000002 | OUT M_AXIS DATA=0xa5000002 TLAST=0 | MATCH
+  WORD[3] IN  VA=0x100c DATA=0xa5000003 | OUT M_AXIS DATA=0xa5000003 TLAST=0 | MATCH
+  WORD[4] IN  VA=0x1010 DATA=0xa5000004 | OUT M_AXIS DATA=0xa5000004 TLAST=0 | MATCH
+  WORD[5] IN  VA=0x1014 DATA=0xa5000005 | OUT M_AXIS DATA=0xa5000005 TLAST=0 | MATCH
+  WORD[6] IN  VA=0x1018 DATA=0xa5000006 | OUT M_AXIS DATA=0xa5000006 TLAST=0 | MATCH
+  WORD[7] IN  VA=0x101c DATA=0xa5000007 | OUT M_AXIS DATA=0xa5000007 TLAST=1 | MATCH
+PASS M2S: beats=8 TLAST=1 CPU-busy wait cycles=29 AR transactions=8
+PASS D09: Transparent transfer waited for CPU idle and used one-beat reads
+D02: memory -> memory, CYCLE-STEALING mode
+[3377000] UART TX observed byte: 0x53
+[3377000] FIRMWARE START: PicoRV32 is executing the D01-D09 matrix
+PASS D02: M2M Cycle-Stealing used 8 one-beat read/write transactions plus gaps
+D03: memory -> memory, TRANSPARENT mode
+PASS D03: M2M Transparent progressed only during CPU-idle opportunities
+D04: peripheral -> memory, BURST mode
+PASS D04: S2M Burst accepted the stream and issued one 8-beat AXI write
+D06: peripheral -> memory, TRANSPARENT mode
+PASS D06: S2M Transparent waited for CPU idle and issued one-beat writes
+D07: memory -> peripheral, BURST mode
+PASS D07: M2S Burst produced 8 stream beats/TLAST from one AXI read burst
+D08: memory -> peripheral, CYCLE-STEALING mode
+PASS D08: M2S Cycle-Stealing used one-beat reads and released the bus
+E01: IOMMU denies write to read-only page
+IOMMU I/O: IN request=S2M WRITE dst_VA=0x4000 length=4 | OUT allow=0 fault=0x32
+PASS IOMMU: write permission fault code 0x32
+PASS E01: write to read-only page rejected with destination permission fault 0x32
+E02-E05: unmapped, read permission, and 4 KiB boundary checks
+PASS E02: unmapped source page rejected with source page fault 0x21
+PASS E03: unmapped destination page rejected with destination page fault 0x31
+PASS E04: read from write-only page rejected with source permission fault 0x22
+PASS E05: single IOMMU request crossing a 4 KiB page returned RANGE fault 3
+PASS E06: cross-page command was split into two authorized AXI chunks and data matched
+E07: TLB miss/hit/invalidate/pseudo-LRU replacement
+PASS E07: TLB observed hits=2 misses=6; fifth page replaced one of four entries; invalidate forced a new miss
+E08-E10: AXI READY delay and stream backpressure
+[12533000] UART TX observed byte: 0x4d
+[12533000] PASS CPU MMU: VA 0x00008000 -> PA 0x00003000, RAM=0xc0dec0de, TLB hits=20 misses=2
+PASS E08: ARREADY delayed; request held for 8 cycles and data remained correct
+PASS E09: AW/W READY delayed; AW stalls=7 W stalls=8 and memory data matched
+PASS E10: AXI-Stream backpressure held VALID/data for 8 cycles; count=1 data=e8300001
+E11-E12: injected AXI SLVERR/DECERR propagation
+PASS E11: AXI read SLVERR propagated as DMA source fault 0x54
+PASS E12: AXI write DECERR propagated as DMA destination fault 0x67
+E13-E18: special lengths, alignment, and multiple bursts
+PASS E13: zero-byte command rejected as bad command
+PASS E14: one-word command completed and copied exact data
+PASS E15: non-word-multiple length rejected as bad command
+PASS E16: unaligned memory source rejected as bad command
+PASS E17: unaligned memory destination rejected as bad command
+PASS E18: 80-byte transfer split into 8+8+4 beat bursts and all 20 words matched
+E19: a new start command is ignored while DMA is busy
+PASS E19: register block suppressed cfg_start while dma_busy=1
+PASS E19-DATA: original in-flight command completed without corruption
+Q01: eight-entry descriptor FIFO and queued scatter-gather
+PASS Q01-FULL: all eight descriptor slots were occupied while dispatch was paused
+PASS Q01-OVF: ninth push was rejected without corrupting FIFO contents
+PASS Q01-RUN: eight queued descriptors executed in sequence and generated eight completions
+PASS Q01-DATA0: non-contiguous word copied to destination: d5000000
+PASS Q01-COMP0: completion ID=0x10 DONE=1 bytes=4
+PASS Q01-DATA1: non-contiguous word copied to destination: d5000001
+PASS Q01-COMP1: completion ID=0x11 DONE=1 bytes=4
+PASS Q01-DATA2: non-contiguous word copied to destination: d5000002
+PASS Q01-COMP2: completion ID=0x12 DONE=1 bytes=4
+PASS Q01-DATA3: non-contiguous word copied to destination: d5000003
+PASS Q01-COMP3: completion ID=0x13 DONE=1 bytes=4
+PASS Q01-DATA4: non-contiguous word copied to destination: d5000004
+PASS Q01-COMP4: completion ID=0x14 DONE=1 bytes=4
+PASS Q01-DATA5: non-contiguous word copied to destination: d5000005
+PASS Q01-COMP5: completion ID=0x15 DONE=1 bytes=4
+PASS Q01-DATA6: non-contiguous word copied to destination: d5000006
+PASS Q01-COMP6: completion ID=0x16 DONE=1 bytes=4
+PASS Q01-DATA7: non-contiguous word copied to destination: d5000007
+PASS Q01-COMP7: completion ID=0x17 DONE=1 bytes=4
+PASS Q01-POP: CPU consumed all completion records
+PASS Q01-IRQ: only the final descriptor's IRQ flag raised the interrupt
+PASS Q01-TOTAL: hardware completion counter recorded eight queued commands
+Q02: stop-on-error preserves descriptors after a fault
+PASS Q02-HALT: permission fault halted the queue and retained the following descriptor
+PASS Q02-DATA: descriptor before fault completed; descriptor after fault did not execute
+PASS Q02-COMP0: first descriptor reported successful completion
+PASS Q02-COMP1: faulting descriptor reported IOMMU write-permission fault 0x32
+PASS Q02-FLUSH: software flushed the retained descriptor and cleared halt state
+PASS Q02-TOTAL: completion counter includes eight successes, one later success, and one fault
+A01-A04: hybrid CPU-authorized and peripheral-autonomous DMA access
+PASS A01-CPU: CPU START executed immediately without a redundant request/grant handshake
+PASS A02-QUEUE: CPU-pushed descriptor executed immediately and preserved completion ID/data
+A03 request snapshot: status=0x0001ff11 irq=1 AR=55/55 AW=55/55 RAM=0x00000000
+PASS A03-REQ: autonomous UART request raised IRQ and remained outside IOMMU/AXI before grant
+PASS A03-GRANT: CPU grant released the autonomous UART word through IOMMU into RAM
+PASS A04-DENY: CPU denial returned fault 0x70 with no AXI write or RAM change
+E20: reset while DMA is actively waiting for peripheral data
+PASS E20: mid-transfer reset returned scheduler/registers/AXI outputs to idle with no stale DONE/FAULT
+PASS E20-TLB: reset also cleared TLB hit/miss counters
+ALL DMA/MMU AXI TESTS PASSED
+[42105000] UART TX observed byte: 0x31
+[42105000]   D01 CONTROL: scheduler latched direction=0 mode=0
+[42105000]   D01 WORD[0]: RAM input[0x4000]=0x11111111 -> RAM output[0x5000]=0x11111111
+[42105000]   D01 WORD[1]: RAM input[0x4004]=0x22222222 -> RAM output[0x5004]=0x22222222
+[42105000]   D01 WORD[2]: RAM input[0x4008]=0x33333333 -> RAM output[0x5008]=0x33333333
+[42105000]   D01 WORD[3]: RAM input[0x400c]=0x44444444 -> RAM output[0x500c]=0x44444444
+[42105000] PASS D01: Memory -> Memory /             BURST; actual RAM data matches
+[47693000] UART TX observed byte: 0x32
+[47693000]   D02 CONTROL: scheduler latched direction=0 mode=1
+[47693000]   D02 WORD[0]: RAM input[0x4020]=0x12121212 -> RAM output[0x5020]=0x12121212
+[47693000]   D02 WORD[1]: RAM input[0x4024]=0x23232323 -> RAM output[0x5024]=0x23232323
+[47693000] PASS D02: Memory -> Memory /    CYCLE-STEALING; actual RAM data matches
+[52967000] UART TX observed byte: 0x33
+[52967000]   D03 CONTROL: scheduler latched direction=0 mode=2
+[52967000]   D03 WORD[0]: RAM input[0x4040]=0x34343434 -> RAM output[0x5040]=0x34343434
+[52967000]   D03 WORD[1]: RAM input[0x4044]=0x45454545 -> RAM output[0x5044]=0x45454545
+[52967000] PASS D03: Memory -> Memory /       TRANSPARENT; actual RAM data matches
+[54414000] UART TX observed byte: 0x41
+[54414000] D04 ACTIVE: Peripheral -> Memory / Burst
+[54414000] D04 INPUT: sending eight physical 8N1 UART bytes 0xa0..0xa7
+[54818000]   D04 UART RX input byte[0]=0xa0
+[55224000]   D04 UART RX input byte[1]=0xa1
+[55631000]   D04 UART RX input byte[2]=0xa2
+[56038000]   D04 UART RX input byte[3]=0xa3
+[56445000]   D04 UART RX input byte[4]=0xa4
+[56851000]   D04 UART RX input byte[5]=0xa5
+[57258000]   D04 UART RX input byte[6]=0xa6
+[57665000]   D04 UART RX input byte[7]=0xa7
+[57665000] D04 INPUT COMPLETE: all eight UART frames reached uart_rx_i
+[60969000] UART TX observed byte: 0x34
+[60969000]   D04 CONTROL: scheduler latched direction=1 mode=0
+[60969000]   D04 WORD[0]: UART input bytes -> RAM output[0x6000]=0xa3a2a1a0 (expected 0xa3a2a1a0)
+[60969000]   D04 WORD[1]: UART input bytes -> RAM output[0x6004]=0xa7a6a5a4 (expected 0xa7a6a5a4)
+[60969000] PASS D04: Peripheral -> Memory /             BURST; physical UART input matches RAM
+[62516000] UART TX observed byte: 0x42
+[62516000] D05 ACTIVE: Peripheral -> Memory / Cycle-Stealing
+[62516000] D05 INPUT: sending eight physical 8N1 UART bytes 0xb0..0xb7
+[62919000]   D05 UART RX input byte[0]=0xb0
+[63326000]   D05 UART RX input byte[1]=0xb1
+[63733000]   D05 UART RX input byte[2]=0xb2
+[64139000]   D05 UART RX input byte[3]=0xb3
+[64546000]   D05 UART RX input byte[4]=0xb4
+[64953000]   D05 UART RX input byte[5]=0xb5
+[65360000]   D05 UART RX input byte[6]=0xb6
+[65766000]   D05 UART RX input byte[7]=0xb7
+[65766000] D05 INPUT COMPLETE: all eight UART frames reached uart_rx_i
+[69157000] UART TX observed byte: 0x35
+[69157000]   D05 CONTROL: scheduler latched direction=1 mode=1
+[69157000]   D05 WORD[0]: UART input bytes -> RAM output[0x6020]=0xb3b2b1b0 (expected 0xb3b2b1b0)
+[69157000]   D05 WORD[1]: UART input bytes -> RAM output[0x6024]=0xb7b6b5b4 (expected 0xb7b6b5b4)
+[69157000] PASS D05: Peripheral -> Memory /    CYCLE-STEALING; physical UART input matches RAM
+[70497000] UART TX observed byte: 0x43
+[70497000] D06 ACTIVE: Peripheral -> Memory / Transparent
+[70497000] D06 INPUT: sending eight physical 8N1 UART bytes 0xc0..0xc7
+[70901000]   D06 UART RX input byte[0]=0xc0
+[71308000]   D06 UART RX input byte[1]=0xc1
+[71714000]   D06 UART RX input byte[2]=0xc2
+[72121000]   D06 UART RX input byte[3]=0xc3
+[72528000]   D06 UART RX input byte[4]=0xc4
+[72935000]   D06 UART RX input byte[5]=0xc5
+[73341000]   D06 UART RX input byte[6]=0xc6
+[73748000]   D06 UART RX input byte[7]=0xc7
+[73748000] D06 INPUT COMPLETE: all eight UART frames reached uart_rx_i
+[77039000] UART TX observed byte: 0x36
+[77039000]   D06 CONTROL: scheduler latched direction=1 mode=2
+[77039000]   D06 WORD[0]: UART input bytes -> RAM output[0x6040]=0xc3c2c1c0 (expected 0xc3c2c1c0)
+[77039000]   D06 WORD[1]: UART input bytes -> RAM output[0x6044]=0xc7c6c5c4 (expected 0xc7c6c5c4)
+[77039000] PASS D06: Peripheral -> Memory /       TRANSPARENT; physical UART input matches RAM
+[78326000] UART TX observed byte: 0x58
+[78326000] D07 ACTIVE: Memory -> Peripheral / Burst; capturing UART output
+[78732000] UART TX observed byte: 0x10
+[78732000]   D07 BYTE[0]: RAM input=0x10 -> physical UART output=0x10 MATCH
+[79139000] UART TX observed byte: 0x11
+[79139000]   D07 BYTE[1]: RAM input=0x11 -> physical UART output=0x11 MATCH
+[79546000] UART TX observed byte: 0x12
+[79546000]   D07 BYTE[2]: RAM input=0x12 -> physical UART output=0x12 MATCH
+[79953000] UART TX observed byte: 0x13
+[79953000]   D07 BYTE[3]: RAM input=0x13 -> physical UART output=0x13 MATCH
+[80359000] UART TX observed byte: 0x14
+[80359000]   D07 BYTE[4]: RAM input=0x14 -> physical UART output=0x14 MATCH
+[80766000] UART TX observed byte: 0x15
+[80766000]   D07 BYTE[5]: RAM input=0x15 -> physical UART output=0x15 MATCH
+[81173000] UART TX observed byte: 0x16
+[81173000]   D07 BYTE[6]: RAM input=0x16 -> physical UART output=0x16 MATCH
+[81580000] UART TX observed byte: 0x17
+[81580000]   D07 BYTE[7]: RAM input=0x17 -> physical UART output=0x17 MATCH
+[81580000] PASS D07 DATA: all eight RAM bytes emerged from the actual UART path
+[82920000] UART TX observed byte: 0x37
+[82920000]   D07 CONTROL: scheduler latched direction=2 mode=0
+[82920000] PASS D07: Memory -> Peripheral / Burst; DMA completed without fault
+[84100000] UART TX observed byte: 0x59
+[84100000] D08 ACTIVE: Memory -> Peripheral / Cycle-Stealing; capturing UART output
+[84507000] UART TX observed byte: 0x20
+[84507000]   D08 BYTE[0]: RAM input=0x20 -> physical UART output=0x20 MATCH
+[84914000] UART TX observed byte: 0x21
+[84914000]   D08 BYTE[1]: RAM input=0x21 -> physical UART output=0x21 MATCH
+[85320000] UART TX observed byte: 0x22
+[85320000]   D08 BYTE[2]: RAM input=0x22 -> physical UART output=0x22 MATCH
+[85727000] UART TX observed byte: 0x23
+[85727000]   D08 BYTE[3]: RAM input=0x23 -> physical UART output=0x23 MATCH
+[86134000] UART TX observed byte: 0x24
+[86134000]   D08 BYTE[4]: RAM input=0x24 -> physical UART output=0x24 MATCH
+[86541000] UART TX observed byte: 0x25
+[86541000]   D08 BYTE[5]: RAM input=0x25 -> physical UART output=0x25 MATCH
+[86947000] UART TX observed byte: 0x26
+[86947000]   D08 BYTE[6]: RAM input=0x26 -> physical UART output=0x26 MATCH
+[87354000] UART TX observed byte: 0x27
+[87354000]   D08 BYTE[7]: RAM input=0x27 -> physical UART output=0x27 MATCH
+[87354000] PASS D08 DATA: all eight RAM bytes emerged from the actual UART path
+[88694000] UART TX observed byte: 0x38
+[88694000]   D08 CONTROL: scheduler latched direction=2 mode=1
+[88694000] PASS D08: Memory -> Peripheral / Cycle-Stealing; DMA completed without fault
+[89875000] UART TX observed byte: 0x5a
+[89875000] D09 ACTIVE: Memory -> Peripheral / Transparent; capturing UART output
+[90281000] UART TX observed byte: 0x30
+[90281000]   D09 BYTE[0]: RAM input=0x30 -> physical UART output=0x30 MATCH
+[90688000] UART TX observed byte: 0x31
+[90688000]   D09 BYTE[1]: RAM input=0x31 -> physical UART output=0x31 MATCH
+[91095000] UART TX observed byte: 0x32
+[91095000]   D09 BYTE[2]: RAM input=0x32 -> physical UART output=0x32 MATCH
+[91502000] UART TX observed byte: 0x33
+[91502000]   D09 BYTE[3]: RAM input=0x33 -> physical UART output=0x33 MATCH
+[91908000] UART TX observed byte: 0x34
+[91908000]   D09 BYTE[4]: RAM input=0x34 -> physical UART output=0x34 MATCH
+[92315000] UART TX observed byte: 0x35
+[92315000]   D09 BYTE[5]: RAM input=0x35 -> physical UART output=0x35 MATCH
+[92722000] UART TX observed byte: 0x36
+[92722000]   D09 BYTE[6]: RAM input=0x36 -> physical UART output=0x36 MATCH
+[93129000] UART TX observed byte: 0x37
+[93129000]   D09 BYTE[7]: RAM input=0x37 -> physical UART output=0x37 MATCH
+[93129000] PASS D09 DATA: all eight RAM bytes emerged from the actual UART path
+[94262000] UART TX observed byte: 0x39
+[94262000]   D09 CONTROL: scheduler latched direction=2 mode=2
+[94262000] PASS D09: Memory -> Peripheral / Transparent; DMA completed without fault
+[140992000] UART TX observed byte: 0x51
+[140992000]   QUEUE[0] RAM[0x4100]=0x51000000 -> RAM[0x5200]=0x51000000    MATCH
+[140992000]   QUEUE[1] RAM[0x4120]=0x51000001 -> RAM[0x5220]=0x51000001    MATCH
+[140992000]   QUEUE[2] RAM[0x4140]=0x51000002 -> RAM[0x5240]=0x51000002    MATCH
+[140992000]   QUEUE[3] RAM[0x4160]=0x51000003 -> RAM[0x5260]=0x51000003    MATCH
+[140992000]   QUEUE[4] RAM[0x4180]=0x51000004 -> RAM[0x5280]=0x51000004    MATCH
+[140992000]   QUEUE[5] RAM[0x41a0]=0x51000005 -> RAM[0x52a0]=0x51000005    MATCH
+[140992000]   QUEUE[6] RAM[0x41c0]=0x51000006 -> RAM[0x52c0]=0x51000006    MATCH
+[140992000]   QUEUE[7] RAM[0x41e0]=0x51000007 -> RAM[0x52e0]=0x51000007    MATCH
+[140992000] PASS Q01: PicoRV32 submitted eight scattered descriptors; FIFO order, data, and completions matched
+[143712000] UART TX observed byte: 0x52
+[143712000] P01 ACTIVE: no CPU START; waiting for UART RX to request DMA and CPU grant
+[143712000] P01 INPUT: UART autonomously sends eight bytes 0xE0..0xE7 before any CPU START
+[144115000]   P01 UART RX autonomous byte[0]=0xe0
+[144522000]   P01 UART RX autonomous byte[1]=0xe1
+[144929000]   P01 UART RX autonomous byte[2]=0xe2
+[145336000]   P01 UART RX autonomous byte[3]=0xe3
+[145359000] ACCESS REQUEST[1]: peripheral=1 id=0xff queued=0 type=1 mode=0 src=0x0000 dst=0x6060 length=8
+[145742000]   P01 UART RX autonomous byte[4]=0xe4
+[146149000]   P01 UART RX autonomous byte[5]=0xe5
+[146556000]   P01 UART RX autonomous byte[6]=0xe6
+[146963000]   P01 UART RX autonomous byte[7]=0xe7
+[146963000] P01 INPUT COMPLETE: UART supplied two AXI-Stream words
+[148780000] CPU GRANT[1]: request accepted; DMA may now reach IOMMU/AXI/UART
+[152714000] UART TX observed byte: 0x56
+[152714000] PASS P01: UART generated the only access request; CPU granted it; RAM contains E0..E7
+[153121000] UART TX observed byte: 0x50
+[153121000] PASS HYBRID ACCESS: CPU START/PUSH needed no duplicate grants; one UART request received one CPU grant
+[153121000] PASS: PicoRV32 executed all 3 directions x 3 modes, eight queued descriptors, and autonomous UART DMA
+[153121000] SOC TEST PASSED: D01-D09 + Q01 + autonomous peripheral P01
+[153122000] DMA/IOMMU AXI component: PASSED
+[153122000] PicoRV32 CPU/SoC component: PASSED
+[153122000] CPU-side MMU protection component: PASSED
+[153122000] ALL UNIFIED CPU/DMA/IOMMU/AXI TESTS PASSED
+$finish called at time : 153121618 ps : File "D:/DMA_MMU-main(1)/testbench/tb_dma_iommu_picorv32_unified.sv" Line 76

@@ -1,0 +1,30 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Mon Aug 17 14:51:36 2026
+| Host         : LAPTOP-7VHB4FBR running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file D:/_codex_dma_mmu/reports/ddr3_controller/utilization_synth.rpt
+| Design       : axi_ddr3_controller
+| Device       : xc7vx485tffg1761-2
+| Speed File   : -2
+| Design State : Optimized
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++-------------------------+----------------------+------------+------------+---------+------+-----+--------+--------+------------+
+|         Instance        |        Module        | Total LUTs | Logic LUTs | LUTRAMs | SRLs | FFs | RAMB36 | RAMB18 | DSP Blocks |
++-------------------------+----------------------+------------+------------+---------+------+-----+--------+--------+------------+
+| axi_ddr3_controller     |                (top) |        583 |        583 |       0 |    0 | 576 |      0 |      0 |          0 |
+|   (axi_ddr3_controller) |                (top) |        104 |        104 |       0 |    0 | 245 |      0 |      0 |          0 |
+|   controller_core_inst  | ddr3_controller_core |        479 |        479 |       0 |    0 | 331 |      0 |      0 |          0 |
++-------------------------+----------------------+------------+------------+---------+------+-----+--------+--------+------------+
+
+

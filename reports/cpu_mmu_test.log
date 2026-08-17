@@ -1,0 +1,47 @@
+[0] CPU-SIDE MMU SELF-CHECK START
+[110000] PASS: write response at 0x00001000
+[110000] PASS: disabled MMU bypasses RAM address
+[150000] PASS: read response at 0x00001000
+[150000] PASS: disabled MMU direct physical read preserves data
+[190000] PASS: write response at 0x30000000
+[230000] PASS: write response at 0x30000004
+[270000] PASS: write response at 0x30000008
+[310000] PASS: write response at 0x3000000c
+[350000] PASS: write response at 0x30000014
+[350000] PASS: MMU enable register
+[430000] PASS: write response at 0x00008004
+[430000] PASS: write VA 0x8004 reaches physical RAM 0x3004
+[500000] PASS: write response at 0x00008008
+[500000] PASS: TLB-hit write reaches the same translated page
+[560000] PASS: read response at 0x00008004
+[560000] PASS: read translation and TLB hit preserve data
+[560000] PASS: TLB hit/miss counters advance
+[600000] PASS: write response at 0x30000000
+[640000] PASS: write response at 0x30000004
+[680000] PASS: write response at 0x30000008
+[720000] PASS: write response at 0x3000000c
+[790000] PASS: read response at 0x0000a000
+[790000] PASS: CPU MMU TLB-miss read translates through the page table
+[850000] PASS: read response at 0x0000a000
+[850000] PASS: CPU MMU TLB-hit read preserves translated data
+[910000] PASS: read response at 0x00008004
+[910000] PASS: execute permission fault blocks RAM and raises IRQ
+[950000] PASS: write response at 0x30000010
+[950000] PASS: fault clear releases IRQ
+[1020000] PASS: write response at 0x00009000
+[1020000] PASS: unmapped write is blocked before physical AXI
+[1050000] PASS: read response at 0x30000018
+[1050000] PASS: page-fault status is sticky
+[1090000] PASS: write response at 0x30000010
+[1130000] PASS: write response at 0x30000000
+[1170000] PASS: write response at 0x30000004
+[1210000] PASS: write response at 0x30000008
+[1250000] PASS: write response at 0x3000000c
+[1320000] PASS: write response at 0x0000a000
+[1320000] PASS: write-permission fault blocks physical AXI write
+[1360000] PASS: write response at 0x30000010
+[1420000] PASS: read response at 0x0000a000
+[1420000] PASS: read-only mapping still permits read
+[1470000] PASS: write response at 0x10000040
+[1470000] PASS: physical MMIO bypass reaches downstream router
+[1470000] ALL CPU MMU TESTS PASSED

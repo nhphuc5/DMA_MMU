@@ -1,0 +1,37 @@
+{
+  "ram_bytes": 65536,
+  "firmware_bytes": 568,
+  "hex_file": "C:\\rtl\\rtl\\Project_Vivado\\firmware\\build\\image_demo\\soc_image_demo_with_images.hex",
+  "images": [
+    {
+      "id": 1,
+      "source": "C:\\rtl\\rtl\\Project_Vivado\\firmware\\img_6145_copyagoes.jpg",
+      "ram_address": "0x8000",
+      "width": 64,
+      "height": 64,
+      "bytes": 4096,
+      "preview": "C:\\rtl\\rtl\\Project_Vivado\\firmware\\build\\image_demo\\images\\image_1_64x64.png",
+      "raw": "C:\\rtl\\rtl\\Project_Vivado\\firmware\\build\\image_demo\\images\\image_1_64x64.raw"
+    },
+    {
+      "id": 2,
+      "source": "C:\\rtl\\rtl\\Project_Vivado\\firmware\\Khung-cảnh-thiên-nhiên-mùa-thu-scaled-2048x1152.jpeg",
+      "ram_address": "0x9000",
+      "width": 64,
+      "height": 64,
+      "bytes": 4096,
+      "preview": "C:\\rtl\\rtl\\Project_Vivado\\firmware\\build\\image_demo\\images\\image_2_64x64.png",
+      "raw": "C:\\rtl\\rtl\\Project_Vivado\\firmware\\build\\image_demo\\images\\image_2_64x64.raw"
+    },
+    {
+      "id": 3,
+      "source": "C:\\rtl\\rtl\\Project_Vivado\\firmware\\pexels-rpnickson-2559941.jpg",
+      "ram_address": "0xA000",
+      "width": 64,
+      "height": 64,
+      "bytes": 4096,
+      "preview": "C:\\rtl\\rtl\\Project_Vivado\\firmware\\build\\image_demo\\images\\image_3_64x64.png",
+      "raw": "C:\\rtl\\rtl\\Project_Vivado\\firmware\\build\\image_demo\\images\\image_3_64x64.raw"
+    }
+  ]
+}

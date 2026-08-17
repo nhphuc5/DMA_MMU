@@ -1,0 +1,13 @@
+CPU-SIDE MMU ADDRESS-TRANSLATION PERFORMANCE REPORT
+Clock: 100.000 MHz | transfer size per AXI-Lite access: 4 bytes
+FORMULA: Time(s)=cycles/(f_MHz*1,000,000)
+FORMULA: Throughput(MB/s)=bytes*f_MHz/cycles
+NO-MMU baseline means CPU supplies PA directly; CPU software lookup time is not included.
+NO MMU WRITE: C=5; T=4*100.000/5=80.000 MB/s
+CPU MMU WRITE TLB MISS: C=8; T=4*100.000/8=50.000 MB/s; extra=3 cycles
+CPU MMU WRITE TLB HIT : C=7; T=4*100.000/7=57.143 MB/s; extra=2 cycles
+NO MMU READ : C=4; T=4*100.000/4=100.000 MB/s
+CPU MMU READ TLB MISS : C=7; T=4*100.000/7=57.143 MB/s; extra=3 cycles
+CPU MMU READ TLB HIT  : C=6; T=4*100.000/6=66.667 MB/s; extra=2 cycles
+TRUE CPU-SOFTWARE TRANSLATION: C_total=C_SW_page_lookup+C_direct; T=4*f_MHz/C_total.
+C_SW_page_lookup must be measured in firmware; it is intentionally not fabricated here.

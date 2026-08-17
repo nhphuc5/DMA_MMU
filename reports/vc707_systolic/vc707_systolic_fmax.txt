@@ -1,0 +1,6 @@
+VC707 PicoRV32 + DMA/IOMMU + 4x4 systolic implementation
+Part              : xc7vx485tffg1761-2
+SoC constraint    : 6.667 ns (149.993 MHz)
+Post-route WNS    : 0.844 ns
+Formula           : Fmax(MHz) = 1000 / (Tconstraint - WNS)
+Estimated Fmax    : 171.733 MHz

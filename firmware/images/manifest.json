@@ -1,0 +1,22 @@
+{
+  "format": "grayscale8",
+  "width": 64,
+  "height": 64,
+  "images": [
+    {
+      "id": 1,
+      "source": "../img_6145_copyagoes.jpg",
+      "ram_address": "0x8000"
+    },
+    {
+      "id": 2,
+      "source": "../Khung-cảnh-thiên-nhiên-mùa-thu-scaled-2048x1152.jpeg",
+      "ram_address": "0x9000"
+    },
+    {
+      "id": 3,
+      "source": "../pexels-rpnickson-2559941.jpg",
+      "ram_address": "0xA000"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+VC707 DDR3 PHYSICAL INTERFACE AUDIT
+Source roots: src, constraints
+PHY primitive matches: 0
+Physical DDR3 signal matches: 0
+VC707 XDC DDR3 constraint matches: 0
+ENABLE_DDR3 disabled-default matches: 1
+
+Conclusion: the custom AXI DDR3 digital controller is present, but the
+VC707 x64 DDR3 pin PHY, calibration/training datapath and DDR pin XDC are
+not present. A physical-SODIMM bitstream is therefore not demonstrated.

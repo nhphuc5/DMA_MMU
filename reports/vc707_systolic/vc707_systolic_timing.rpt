@@ -1,0 +1,936 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Tue Aug  4 15:31:29 2026
+| Host         : LAPTOP-QB9V6NGP running 64-bit major release  (build 9200)
+| Command      : report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -file C:/rtl/rtl/Project_Vivado/reports/vc707_systolic/vc707_systolic_timing.rpt
+| Design       : dma_mmu_picorv32_vc707_top
+| Device       : 7vx485t-ffg1761
+| Speed File   : -2  PRODUCTION 1.12 2014-09-11
+| Design State : Routed
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Summary Report
+
+------------------------------------------------------------------------------------------------
+| Timer Settings
+| --------------
+------------------------------------------------------------------------------------------------
+
+  Enable Multi Corner Analysis               :  Yes
+  Enable Pessimism Removal                   :  Yes
+  Pessimism Removal Resolution               :  Nearest Common Node
+  Enable Input Delay Default Clock           :  No
+  Enable Preset / Clear Arcs                 :  No
+  Disable Flight Delays                      :  No
+  Ignore I/O Paths                           :  No
+  Timing Early Launch at Borrowing Latches   :  No
+  Borrow Time for Max Delay Exceptions       :  Yes
+  Merge Timing Exceptions                    :  Yes
+  Inter-SLR Compensation                     :  Conservative
+
+  Corner  Analyze    Analyze    
+  Name    Max Paths  Min Paths  
+  ------  ---------  ---------  
+  Slow    Yes        Yes        
+  Fast    Yes        Yes        
+
+
+------------------------------------------------------------------------------------------------
+| Report Methodology
+| ------------------
+------------------------------------------------------------------------------------------------
+
+Rule      Severity  Description                          Violations  
+--------  --------  -----------------------------------  ----------  
+DPIR-1    Warning   Asynchronous driver check            576         
+LUTAR-1   Warning   LUT drives async reset alert         1           
+SYNTH-15  Warning   Byte wide write enable not inferred  16          
+
+Note: This report is based on the most recent report_methodology run and may not be up-to-date. Run report_methodology on the current design for the latest report.
+
+
+
+check_timing report
+
+Table of Contents
+-----------------
+1. checking no_clock (0)
+2. checking constant_clock (0)
+3. checking pulse_width_clock (0)
+4. checking unconstrained_internal_endpoints (0)
+5. checking no_input_delay (2)
+6. checking no_output_delay (4)
+7. checking multiple_clock (0)
+8. checking generated_clocks (0)
+9. checking loops (0)
+10. checking partial_input_delay (0)
+11. checking partial_output_delay (0)
+12. checking latch_loops (0)
+
+1. checking no_clock (0)
+------------------------
+ There are 0 register/latch pins with no clock.
+
+
+2. checking constant_clock (0)
+------------------------------
+ There are 0 register/latch pins with constant_clock.
+
+
+3. checking pulse_width_clock (0)
+---------------------------------
+ There are 0 register/latch pins which need pulse_width check
+
+
+4. checking unconstrained_internal_endpoints (0)
+------------------------------------------------
+ There are 0 pins that are not constrained for maximum delay.
+
+ There are 0 pins that are not constrained for maximum delay due to constant clock.
+
+
+5. checking no_input_delay (2)
+------------------------------
+ There are 0 input ports with no input delay specified.
+
+ There are 2 input ports with no input delay but user has a false path constraint. (MEDIUM)
+
+cpu_reset
+uart_rx_i
+
+
+6. checking no_output_delay (4)
+-------------------------------
+ There are 0 ports with no output delay specified.
+
+ There are 4 ports with no output delay but user has a false path constraint (MEDIUM)
+
+led_o[1]
+led_o[2]
+led_o[3]
+uart_tx_o
+
+ There are 0 ports with no output delay but with a timing clock defined on it or propagating through it
+
+
+7. checking multiple_clock (0)
+------------------------------
+ There are 0 register/latch pins with multiple clocks.
+
+
+8. checking generated_clocks (0)
+--------------------------------
+ There are 0 generated clocks that are not connected to a clock source.
+
+
+9. checking loops (0)
+---------------------
+ There are 0 combinational loops in the design.
+
+
+10. checking partial_input_delay (0)
+------------------------------------
+ There are 0 input ports with partial input delay specified.
+
+
+11. checking partial_output_delay (0)
+-------------------------------------
+ There are 0 ports with partial output delay specified.
+
+
+12. checking latch_loops (0)
+----------------------------
+ There are 0 combinational latch loops in the design through latch input
+
+
+
+------------------------------------------------------------------------------------------------
+| Design Timing Summary
+| ---------------------
+------------------------------------------------------------------------------------------------
+
+    WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+    -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+      0.844        0.000                      0                23993        0.068        0.000                      0                23993        1.100        0.000                       0                  8521  
+
+
+All user specified timing constraints are met.
+
+
+------------------------------------------------------------------------------------------------
+| Clock Summary
+| -------------
+------------------------------------------------------------------------------------------------
+
+Clock                Waveform(ns)         Period(ns)      Frequency(MHz)
+-----                ------------         ----------      --------------
+vc707_sysclk_200     {0.000 2.500}        5.000           200.000         
+  mmcm_clk150_unbuf  {0.000 3.333}        6.667           150.000         
+  mmcm_clkfb_unbuf   {0.000 2.500}        5.000           200.000         
+
+
+------------------------------------------------------------------------------------------------
+| Intra Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+Clock                    WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+-----                    -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+vc707_sysclk_200                                                                                                                                                       1.100        0.000                       0                     1  
+  mmcm_clk150_unbuf        0.844        0.000                      0                18859        0.068        0.000                      0                18859        2.565        0.000                       0                  8517  
+  mmcm_clkfb_unbuf                                                                                                                                                     3.592        0.000                       0                     3  
+
+
+------------------------------------------------------------------------------------------------
+| Inter Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Other Path Groups Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group         From Clock         To Clock               WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------         ----------         --------               -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+**async_default**  mmcm_clk150_unbuf  mmcm_clk150_unbuf        2.917        0.000                      0                 5134        0.149        0.000                      0                 5134  
+
+
+------------------------------------------------------------------------------------------------
+| User Ignored Path Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group         From Clock         To Clock         
+----------         ----------         --------         
+(none)                                                   
+(none)             mmcm_clk150_unbuf                     
+(none)                                mmcm_clk150_unbuf  
+
+
+------------------------------------------------------------------------------------------------
+| Unconstrained Path Table
+| ------------------------
+------------------------------------------------------------------------------------------------
+
+Path Group         From Clock         To Clock         
+----------         ----------         --------         
+(none)                                mmcm_clk150_unbuf  
+
+
+------------------------------------------------------------------------------------------------
+| Timing Details
+| --------------
+------------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  vc707_sysclk_200
+  To Clock:  vc707_sysclk_200
+
+Setup :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+PW    :            0  Failing Endpoints,  Worst Slack        1.100ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         vc707_sysclk_200
+Waveform(ns):       { 0.000 2.500 }
+Period(ns):         5.000
+Sources:            { sys_clk_p }
+
+Check Type        Corner  Lib Pin            Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location         Pin
+Min Period        n/a     MMCME2_ADV/CLKIN1  n/a            1.071         5.000       3.929      MMCME2_ADV_X1Y5  sysclk_mmcm_inst/CLKIN1
+Max Period        n/a     MMCME2_ADV/CLKIN1  n/a            100.000       5.000       95.000     MMCME2_ADV_X1Y5  sysclk_mmcm_inst/CLKIN1
+Low Pulse Width   Slow    MMCME2_ADV/CLKIN1  n/a            1.400         2.500       1.100      MMCME2_ADV_X1Y5  sysclk_mmcm_inst/CLKIN1
+High Pulse Width  Slow    MMCME2_ADV/CLKIN1  n/a            1.400         2.500       1.100      MMCME2_ADV_X1Y5  sysclk_mmcm_inst/CLKIN1
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  mmcm_clk150_unbuf
+  To Clock:  mmcm_clk150_unbuf
+
+Setup :            0  Failing Endpoints,  Worst Slack        0.844ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.068ns,  Total Violation        0.000ns
+PW    :            0  Failing Endpoints,  Worst Slack        2.565ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.844ns  (required time - arrival time)
+  Source:                 soc_inst/systolic_accel_inst/core_inst/cycle_q_reg[2]/C
+                            (rising edge-triggered cell FDCE clocked by mmcm_clk150_unbuf  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            soc_inst/systolic_accel_inst/core_inst/product_q_reg[0][3][12]/D
+                            (rising edge-triggered cell FDCE clocked by mmcm_clk150_unbuf  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             mmcm_clk150_unbuf
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.667ns  (mmcm_clk150_unbuf rise@6.667ns - mmcm_clk150_unbuf rise@0.000ns)
+  Data Path Delay:        5.535ns  (logic 3.058ns (55.251%)  route 2.477ns (44.749%))
+  Logic Levels:           4  (DSP48E1=1 LUT2=1 LUT3=1 LUT6=1)
+  Clock Path Skew:        -0.291ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.098ns = ( 5.569 - 6.667 ) 
+    Source Clock Delay      (SCD):    -1.526ns
+    Clock Pessimism Removal (CPR):    -0.719ns
+  Clock Uncertainty:      0.061ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.099ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock mmcm_clk150_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.954     0.954 r  sysclk_ibufds_inst/O
+                         net (fo=1, routed)           1.081     2.035    clk_200mhz
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.309    -5.274 r  sysclk_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           1.697    -3.577    mmcm_clk150_unbuf
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093    -3.484 r  soc_clock_bufg_inst/O
+                         net (fo=8515, routed)        1.958    -1.526    soc_inst/systolic_accel_inst/core_inst/clk_150mhz
+    SLICE_X33Y40         FDCE                                         r  soc_inst/systolic_accel_inst/core_inst/cycle_q_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X33Y40         FDCE (Prop_fdce_C_Q)         0.223    -1.303 r  soc_inst/systolic_accel_inst/core_inst/cycle_q_reg[2]/Q
+                         net (fo=124, routed)         0.689    -0.614    soc_inst/systolic_accel_inst/core_inst/cycle_q_reg_n_0_[2]
+    SLICE_X40Y40         LUT2 (Prop_lut2_I0_O)        0.051    -0.563 r  soc_inst/systolic_accel_inst/core_inst/product_valid_q[0][3]_i_2/O
+                         net (fo=10, routed)          0.793     0.230    soc_inst/systolic_accel_inst/core_inst/product_valid_q[0][3]_i_2_n_0
+    SLICE_X30Y53         LUT6 (Prop_lut6_I4_O)        0.134     0.364 r  soc_inst/systolic_accel_inst/core_inst/p_0_out__2_i_1/O
+                         net (fo=12, routed)          0.542     0.905    soc_inst/systolic_accel_inst/core_inst/p_0_out__2_i_1_n_0
+    DSP48_X0Y20          DSP48E1 (Prop_dsp48e1_B[7]_P[12])
+                                                      2.607     3.512 r  soc_inst/systolic_accel_inst/core_inst/p_0_out__2/P[12]
+                         net (fo=1, routed)           0.453     3.965    soc_inst/systolic_accel_inst/core_inst/p_0_out__2_n_93
+    SLICE_X20Y52         LUT3 (Prop_lut3_I2_O)        0.043     4.008 r  soc_inst/systolic_accel_inst/core_inst/product_q[0][3][12]_i_1/O
+                         net (fo=1, routed)           0.000     4.008    soc_inst/systolic_accel_inst/core_inst/product_q[0][3][12]_i_1_n_0
+    SLICE_X20Y52         FDCE                                         r  soc_inst/systolic_accel_inst/core_inst/product_q_reg[0][3][12]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock mmcm_clk150_unbuf rise edge)
+                                                      6.667     6.667 r  
+    E19                                               0.000     6.667 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     6.667    sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.851     7.518 r  sysclk_ibufds_inst/O
+                         net (fo=1, routed)           0.986     8.504    clk_200mhz
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.234     2.270 r  sysclk_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           1.566     3.836    mmcm_clk150_unbuf
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     3.919 r  soc_clock_bufg_inst/O
+                         net (fo=8515, routed)        1.650     5.569    soc_inst/systolic_accel_inst/core_inst/clk_150mhz
+    SLICE_X20Y52         FDCE                                         r  soc_inst/systolic_accel_inst/core_inst/product_q_reg[0][3][12]/C
+                         clock pessimism             -0.719     4.849    
+                         clock uncertainty           -0.061     4.788    
+    SLICE_X20Y52         FDCE (Setup_fdce_C_D)        0.064     4.852    soc_inst/systolic_accel_inst/core_inst/product_q_reg[0][3][12]
+  -------------------------------------------------------------------
+                         required time                          4.852    
+                         arrival time                          -4.008    
+  -------------------------------------------------------------------
+                         slack                                  0.844    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.068ns  (arrival time - required time)
+  Source:                 soc_inst/dma_iommu_inst/crossbar_inst/axi_crossbar_rd_inst/s_ifaces[0].reg_inst/s_axi_rdata_reg_reg[2]/C
+                            (rising edge-triggered cell FDRE clocked by mmcm_clk150_unbuf  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            soc_inst/dma_iommu_inst/cdma_inst/out_fifo_wdata_reg_0_31_0_5/RAMB/I
+                            (rising edge-triggered cell RAMD32 clocked by mmcm_clk150_unbuf  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             mmcm_clk150_unbuf
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (mmcm_clk150_unbuf rise@0.000ns - mmcm_clk150_unbuf rise@0.000ns)
+  Data Path Delay:        0.213ns  (logic 0.118ns (55.433%)  route 0.095ns (44.567%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.343ns
+    Source Clock Delay      (SCD):    -0.344ns
+    Clock Pessimism Removal (CPR):    -0.012ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock mmcm_clk150_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.436     0.436 r  sysclk_ibufds_inst/O
+                         net (fo=1, routed)           0.503     0.939    clk_200mhz
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -2.859    -1.920 r  sysclk_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           0.769    -1.151    mmcm_clk150_unbuf
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.125 r  soc_clock_bufg_inst/O
+                         net (fo=8515, routed)        0.781    -0.344    soc_inst/dma_iommu_inst/crossbar_inst/axi_crossbar_rd_inst/s_ifaces[0].reg_inst/clk_150mhz
+    SLICE_X34Y59         FDRE                                         r  soc_inst/dma_iommu_inst/crossbar_inst/axi_crossbar_rd_inst/s_ifaces[0].reg_inst/s_axi_rdata_reg_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X34Y59         FDRE (Prop_fdre_C_Q)         0.118    -0.226 r  soc_inst/dma_iommu_inst/crossbar_inst/axi_crossbar_rd_inst/s_ifaces[0].reg_inst/s_axi_rdata_reg_reg[2]/Q
+                         net (fo=1, routed)           0.095    -0.131    soc_inst/dma_iommu_inst/cdma_inst/out_fifo_wdata_reg_0_31_0_5/DIB0
+    SLICE_X34Y60         RAMD32                                       r  soc_inst/dma_iommu_inst/cdma_inst/out_fifo_wdata_reg_0_31_0_5/RAMB/I
+  -------------------------------------------------------------------    -------------------
+
+                         (clock mmcm_clk150_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.518     0.518 r  sysclk_ibufds_inst/O
+                         net (fo=1, routed)           0.553     1.071    clk_200mhz
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -3.301    -2.230 r  sysclk_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           0.834    -1.396    mmcm_clk150_unbuf
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.030    -1.366 r  soc_clock_bufg_inst/O
+                         net (fo=8515, routed)        1.023    -0.343    soc_inst/dma_iommu_inst/cdma_inst/out_fifo_wdata_reg_0_31_0_5/WCLK
+    SLICE_X34Y60         RAMD32                                       r  soc_inst/dma_iommu_inst/cdma_inst/out_fifo_wdata_reg_0_31_0_5/RAMB/CLK
+                         clock pessimism              0.012    -0.331    
+    SLICE_X34Y60         RAMD32 (Hold_ramd32_CLK_I)
+                                                      0.132    -0.199    soc_inst/dma_iommu_inst/cdma_inst/out_fifo_wdata_reg_0_31_0_5/RAMB
+  -------------------------------------------------------------------
+                         required time                          0.199    
+                         arrival time                          -0.131    
+  -------------------------------------------------------------------
+                         slack                                  0.068    
+
+
+
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         mmcm_clk150_unbuf
+Waveform(ns):       { 0.000 3.333 }
+Period(ns):         6.667
+Sources:            { sysclk_mmcm_inst/CLKOUT0 }
+
+Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location         Pin
+Min Period        n/a     RAMB36E1/CLKARDCLK  n/a            2.095         6.667       4.572      RAMB36_X3Y13     soc_inst/system_ram_inst/mem_reg_0_0/CLKARDCLK
+Max Period        n/a     MMCME2_ADV/CLKOUT0  n/a            213.360       6.667       206.693    MMCME2_ADV_X1Y5  sysclk_mmcm_inst/CLKOUT0
+Low Pulse Width   Slow    RAMD64E/CLK         n/a            0.768         3.333       2.565      SLICE_X30Y101    soc_inst/cpu_inst/picorv32_core/cpuregs_reg_r1_0_63_0_2/RAMA/CLK
+High Pulse Width  Slow    RAMD64E/CLK         n/a            0.768         3.333       2.565      SLICE_X30Y101    soc_inst/cpu_inst/picorv32_core/cpuregs_reg_r1_0_63_0_2/RAMA/CLK
+
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  mmcm_clkfb_unbuf
+  To Clock:  mmcm_clkfb_unbuf
+
+Setup :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+PW    :            0  Failing Endpoints,  Worst Slack        3.592ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         mmcm_clkfb_unbuf
+Waveform(ns):       { 0.000 2.500 }
+Period(ns):         5.000
+Sources:            { sysclk_mmcm_inst/CLKFBOUT }
+
+Check Type  Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location         Pin
+Min Period  n/a     BUFG/I              n/a            1.408         5.000       3.591      BUFGCTRL_X0Y17   mmcm_feedback_bufg_inst/I
+Max Period  n/a     MMCME2_ADV/CLKFBIN  n/a            100.000       5.000       95.000     MMCME2_ADV_X1Y5  sysclk_mmcm_inst/CLKFBIN
+
+
+
+---------------------------------------------------------------------------------------------------
+Path Group:  **async_default**
+From Clock:  mmcm_clk150_unbuf
+  To Clock:  mmcm_clk150_unbuf
+
+Setup :            0  Failing Endpoints,  Worst Slack        2.917ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.149ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             2.917ns  (required time - arrival time)
+  Source:                 reset_pipe_reg[2]_replica_1/C
+                            (rising edge-triggered cell FDPE clocked by mmcm_clk150_unbuf  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            soc_inst/dma_iommu_inst/iommu_inst/tlb_miss_count_o_reg[1]/CLR
+                            (recovery check against rising-edge clock mmcm_clk150_unbuf  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            6.667ns  (mmcm_clk150_unbuf rise@6.667ns - mmcm_clk150_unbuf rise@0.000ns)
+  Data Path Delay:        3.447ns  (logic 0.259ns (7.514%)  route 3.188ns (92.486%))
+  Logic Levels:           0  
+  Clock Path Skew:        -0.030ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.105ns = ( 5.562 - 6.667 ) 
+    Source Clock Delay      (SCD):    -1.696ns
+    Clock Pessimism Removal (CPR):    -0.621ns
+  Clock Uncertainty:      0.061ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.099ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock mmcm_clk150_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.954     0.954 r  sysclk_ibufds_inst/O
+                         net (fo=1, routed)           1.081     2.035    clk_200mhz
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.309    -5.274 r  sysclk_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           1.697    -3.577    mmcm_clk150_unbuf
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093    -3.484 r  soc_clock_bufg_inst/O
+                         net (fo=8515, routed)        1.788    -1.696    clk_150mhz
+    SLICE_X30Y95         FDPE                                         r  reset_pipe_reg[2]_replica_1/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X30Y95         FDPE (Prop_fdpe_C_Q)         0.259    -1.437 f  reset_pipe_reg[2]_replica_1/Q
+                         net (fo=282, routed)         3.188     1.751    soc_inst/dma_iommu_inst/iommu_inst/reset_pipe_reg_n_0_[2]_repN_1_alias
+    SLICE_X31Y85         FDCE                                         f  soc_inst/dma_iommu_inst/iommu_inst/tlb_miss_count_o_reg[1]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock mmcm_clk150_unbuf rise edge)
+                                                      6.667     6.667 r  
+    E19                                               0.000     6.667 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     6.667    sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.851     7.518 r  sysclk_ibufds_inst/O
+                         net (fo=1, routed)           0.986     8.504    clk_200mhz
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.234     2.270 r  sysclk_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           1.566     3.836    mmcm_clk150_unbuf
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     3.919 r  soc_clock_bufg_inst/O
+                         net (fo=8515, routed)        1.643     5.562    soc_inst/dma_iommu_inst/iommu_inst/clk_150mhz
+    SLICE_X31Y85         FDCE                                         r  soc_inst/dma_iommu_inst/iommu_inst/tlb_miss_count_o_reg[1]/C
+                         clock pessimism             -0.621     4.940    
+                         clock uncertainty           -0.061     4.879    
+    SLICE_X31Y85         FDCE (Recov_fdce_C_CLR)     -0.212     4.667    soc_inst/dma_iommu_inst/iommu_inst/tlb_miss_count_o_reg[1]
+  -------------------------------------------------------------------
+                         required time                          4.667    
+                         arrival time                          -1.751    
+  -------------------------------------------------------------------
+                         slack                                  2.917    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.149ns  (arrival time - required time)
+  Source:                 reset_pipe_reg[2]_replica_28/C
+                            (rising edge-triggered cell FDPE clocked by mmcm_clk150_unbuf  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            soc_inst/cpu_router_inst/araddr_q_reg[4]/CLR
+                            (removal check against rising-edge clock mmcm_clk150_unbuf  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             **async_default**
+  Path Type:              Removal (Min at Fast Process Corner)
+  Requirement:            0.000ns  (mmcm_clk150_unbuf rise@0.000ns - mmcm_clk150_unbuf rise@0.000ns)
+  Data Path Delay:        0.362ns  (logic 0.118ns (32.625%)  route 0.244ns (67.375%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.263ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.350ns
+    Source Clock Delay      (SCD):    -0.400ns
+    Clock Pessimism Removal (CPR):    -0.213ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock mmcm_clk150_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.436     0.436 r  sysclk_ibufds_inst/O
+                         net (fo=1, routed)           0.503     0.939    clk_200mhz
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -2.859    -1.920 r  sysclk_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           0.769    -1.151    mmcm_clk150_unbuf
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.125 r  soc_clock_bufg_inst/O
+                         net (fo=8515, routed)        0.725    -0.400    clk_150mhz
+    SLICE_X40Y100        FDPE                                         r  reset_pipe_reg[2]_replica_28/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X40Y100        FDPE (Prop_fdpe_C_Q)         0.118    -0.282 f  reset_pipe_reg[2]_replica_28/Q
+                         net (fo=158, routed)         0.244    -0.038    soc_inst/cpu_router_inst/reset_pipe_reg_n_0_[2]_repN_28_alias
+    SLICE_X42Y96         FDCE                                         f  soc_inst/cpu_router_inst/araddr_q_reg[4]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock mmcm_clk150_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.518     0.518 r  sysclk_ibufds_inst/O
+                         net (fo=1, routed)           0.553     1.071    clk_200mhz
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -3.301    -2.230 r  sysclk_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           0.834    -1.396    mmcm_clk150_unbuf
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.030    -1.366 r  soc_clock_bufg_inst/O
+                         net (fo=8515, routed)        1.016    -0.350    soc_inst/cpu_router_inst/clk_150mhz
+    SLICE_X42Y96         FDCE                                         r  soc_inst/cpu_router_inst/araddr_q_reg[4]/C
+                         clock pessimism              0.213    -0.137    
+    SLICE_X42Y96         FDCE (Remov_fdce_C_CLR)     -0.050    -0.187    soc_inst/cpu_router_inst/araddr_q_reg[4]
+  -------------------------------------------------------------------
+                         required time                          0.187    
+                         arrival time                          -0.038    
+  -------------------------------------------------------------------
+                         slack                                  0.149    
+
+
+
+
+
+--------------------------------------------------------------------------------------
+Path Group:  (none)
+From Clock:  
+  To Clock:  
+
+Max Delay             1 Endpoint
+Min Delay             1 Endpoint
+--------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 sysclk_mmcm_inst/LOCKED
+                            (internal pin)
+  Destination:            led_o[0]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        7.671ns  (logic 2.090ns (27.238%)  route 5.582ns (72.762%))
+  Logic Levels:           1  (OBUF=1)
+  Timing Exception:       False Path
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    MMCME2_ADV_X1Y5      MMCME2_ADV                   0.000     0.000 r  sysclk_mmcm_inst/LOCKED
+                         net (fo=2, routed)           5.582     5.582    led_o_OBUF[0]
+    AM39                 OBUF (Prop_obuf_I_O)         2.090     7.671 r  led_o_OBUF[0]_inst/O
+                         net (fo=0)                   0.000     7.671    led_o[0]
+    AM39                                                              r  led_o[0] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 sysclk_mmcm_inst/LOCKED
+                            (internal pin)
+  Destination:            led_o[0]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        3.989ns  (logic 1.182ns (29.621%)  route 2.808ns (70.379%))
+  Logic Levels:           1  (OBUF=1)
+  Timing Exception:       False Path
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    MMCME2_ADV_X1Y5      MMCME2_ADV                   0.000     0.000 r  sysclk_mmcm_inst/LOCKED
+                         net (fo=2, routed)           2.808     2.808    led_o_OBUF[0]
+    AM39                 OBUF (Prop_obuf_I_O)         1.182     3.989 r  led_o_OBUF[0]_inst/O
+                         net (fo=0)                   0.000     3.989    led_o[0]
+    AM39                                                              r  led_o[0] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+
+--------------------------------------------------------------------------------------
+Path Group:  (none)
+From Clock:  mmcm_clk150_unbuf
+  To Clock:  
+
+Max Delay             4 Endpoints
+Min Delay             4 Endpoints
+--------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 soc_inst/uart_inst/uart_engine/rx_valid_o_reg/C
+                            (rising edge-triggered cell FDCE clocked by mmcm_clk150_unbuf  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            led_o[3]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        7.058ns  (logic 2.514ns (35.625%)  route 4.544ns (64.375%))
+  Logic Levels:           2  (LUT2=1 OBUF=1)
+  Clock Uncertainty:      0.161ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Discrete Jitter          (DJ):    0.099ns
+    Phase Error              (PE):    0.106ns
+  Timing Exception:       False Path
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock mmcm_clk150_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.954     0.954 r  sysclk_ibufds_inst/O
+                         net (fo=1, routed)           1.081     2.035    clk_200mhz
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -7.309    -5.274 r  sysclk_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           1.697    -3.577    mmcm_clk150_unbuf
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093    -3.484 r  soc_clock_bufg_inst/O
+                         net (fo=8515, routed)        1.772    -1.712    soc_inst/uart_inst/uart_engine/clk_150mhz
+    SLICE_X18Y74         FDCE                                         r  soc_inst/uart_inst/uart_engine/rx_valid_o_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X18Y74         FDCE (Prop_fdce_C_Q)         0.259    -1.453 r  soc_inst/uart_inst/uart_engine/rx_valid_o_reg/Q
+                         net (fo=48, routed)          1.972     0.519    soc_inst/uart_inst/uart_engine/rx_valid_o_reg_0
+    SLICE_X28Y98         LUT2 (Prop_lut2_I0_O)        0.050     0.569 r  soc_inst/uart_inst/uart_engine/led_o_OBUF[3]_inst_i_1/O
+                         net (fo=1, routed)           2.571     3.140    led_o_OBUF[3]
+    AT37                 OBUF (Prop_obuf_I_O)         2.205     5.346 r  led_o_OBUF[3]_inst/O
+                         net (fo=0)                   0.000     5.346    led_o[3]
+    AT37                                                              r  led_o[3] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 soc_inst/uart_inst/uart_engine/send_pattern_q_reg[0]/C
+                            (rising edge-triggered cell FDPE clocked by mmcm_clk150_unbuf  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Destination:            uart_tx_o
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        2.473ns  (logic 1.268ns (51.246%)  route 1.206ns (48.754%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.161ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Discrete Jitter          (DJ):    0.099ns
+    Phase Error              (PE):    0.106ns
+  Timing Exception:       False Path
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock mmcm_clk150_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.436     0.436 r  sysclk_ibufds_inst/O
+                         net (fo=1, routed)           0.503     0.939    clk_200mhz
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -2.859    -1.920 r  sysclk_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           0.769    -1.151    mmcm_clk150_unbuf
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.125 r  soc_clock_bufg_inst/O
+                         net (fo=8515, routed)        0.774    -0.351    soc_inst/uart_inst/uart_engine/clk_150mhz
+    SLICE_X23Y72         FDPE                                         r  soc_inst/uart_inst/uart_engine/send_pattern_q_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y72         FDPE (Prop_fdpe_C_Q)         0.100    -0.251 r  soc_inst/uart_inst/uart_engine/send_pattern_q_reg[0]/Q
+                         net (fo=1, routed)           1.206     0.955    uart_tx_o_OBUF
+    AU36                 OBUF (Prop_obuf_I_O)         1.168     2.123 r  uart_tx_o_OBUF_inst/O
+                         net (fo=0)                   0.000     2.123    uart_tx_o
+    AU36                                                              r  uart_tx_o (OUT)
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+
+--------------------------------------------------------------------------------------
+Path Group:  (none)
+From Clock:  
+  To Clock:  mmcm_clk150_unbuf
+
+Max Delay            37 Endpoints
+Min Delay            37 Endpoints
+--------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 cpu_reset
+                            (input port)
+  Destination:            reset_pipe_reg[2]_replica_2/PRE
+                            (recovery check against rising-edge clock mmcm_clk150_unbuf  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             (none)
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Data Path Delay:        5.980ns  (logic 0.763ns (12.764%)  route 5.217ns (87.236%))
+  Logic Levels:           2  (IBUF=1 LUT2=1)
+  Clock Path Skew:        -0.932ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -0.932ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.161ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Discrete Jitter          (DJ):    0.099ns
+    Phase Error              (PE):    0.106ns
+  Timing Exception:       False Path
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    AV40                                              0.000     0.000 f  cpu_reset (IN)
+                         net (fo=0)                   0.000     0.000    cpu_reset
+    AV40                 IBUF (Prop_ibuf_I_O)         0.720     0.720 f  cpu_reset_IBUF_inst/O
+                         net (fo=2, routed)           1.003     1.723    cpu_reset_IBUF
+    SLICE_X53Y133        LUT2 (Prop_lut2_I0_O)        0.043     1.766 f  reset_pipe[2]_i_1/O
+                         net (fo=36, routed)          4.214     5.980    reset_async
+    SLICE_X22Y37         FDPE                                         f  reset_pipe_reg[2]_replica_2/PRE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock mmcm_clk150_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.851     0.851 r  sysclk_ibufds_inst/O
+                         net (fo=1, routed)           0.986     1.837    clk_200mhz
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.234    -4.397 r  sysclk_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           1.566    -2.831    mmcm_clk150_unbuf
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083    -2.748 r  soc_clock_bufg_inst/O
+                         net (fo=8515, routed)        1.816    -0.932    clk_150mhz
+    SLICE_X22Y37         FDPE                                         r  reset_pipe_reg[2]_replica_2/C
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 cpu_reset
+                            (input port)
+  Destination:            reset_pipe_reg[0]/PRE
+                            (removal check against rising-edge clock mmcm_clk150_unbuf  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             (none)
+  Path Type:              Removal (Min at Fast Process Corner)
+  Data Path Delay:        0.951ns  (logic 0.254ns (26.717%)  route 0.697ns (73.283%))
+  Logic Levels:           2  (IBUF=1 LUT2=1)
+  Clock Path Skew:        -0.476ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.476ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Timing Exception:       False Path
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    AV40                                              0.000     0.000 f  cpu_reset (IN)
+                         net (fo=0)                   0.000     0.000    cpu_reset
+    AV40                 IBUF (Prop_ibuf_I_O)         0.226     0.226 f  cpu_reset_IBUF_inst/O
+                         net (fo=2, routed)           0.547     0.773    cpu_reset_IBUF
+    SLICE_X53Y133        LUT2 (Prop_lut2_I0_O)        0.028     0.801 f  reset_pipe[2]_i_1/O
+                         net (fo=36, routed)          0.150     0.951    reset_async
+    SLICE_X53Y133        FDPE                                         f  reset_pipe_reg[0]/PRE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock mmcm_clk150_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.518     0.518 r  sysclk_ibufds_inst/O
+                         net (fo=1, routed)           0.553     1.071    clk_200mhz
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -3.301    -2.230 r  sysclk_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           0.834    -1.396    mmcm_clk150_unbuf
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.030    -1.366 r  soc_clock_bufg_inst/O
+                         net (fo=8515, routed)        0.890    -0.476    clk_150mhz
+    SLICE_X53Y133        FDPE                                         r  reset_pipe_reg[0]/C
+
+
+
+
+
+--------------------------------------------------------------------------------------
+Path Group:  (none)
+From Clock:  
+  To Clock:  mmcm_clk150_unbuf
+
+Max Delay            36 Endpoints
+Min Delay            36 Endpoints
+--------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 sysclk_mmcm_inst/LOCKED
+                            (internal pin)
+  Destination:            reset_pipe_reg[2]_replica_2/PRE
+                            (recovery check against rising-edge clock mmcm_clk150_unbuf  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             (none)
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Data Path Delay:        8.582ns  (logic 0.043ns (0.501%)  route 8.539ns (99.499%))
+  Logic Levels:           1  (LUT2=1)
+  Clock Uncertainty:      0.161ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Discrete Jitter          (DJ):    0.099ns
+    Phase Error              (PE):    0.106ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    MMCME2_ADV_X1Y5      MMCME2_ADV                   0.000     0.000 r  sysclk_mmcm_inst/LOCKED
+                         net (fo=2, routed)           4.326     4.326    led_o_OBUF[0]
+    SLICE_X53Y133        LUT2 (Prop_lut2_I1_O)        0.043     4.369 f  reset_pipe[2]_i_1/O
+                         net (fo=36, routed)          4.214     8.582    reset_async
+    SLICE_X22Y37         FDPE                                         f  reset_pipe_reg[2]_replica_2/PRE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock mmcm_clk150_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.851     0.851 r  sysclk_ibufds_inst/O
+                         net (fo=1, routed)           0.986     1.837    clk_200mhz
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -6.234    -4.397 r  sysclk_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           1.566    -2.831    mmcm_clk150_unbuf
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083    -2.748 r  soc_clock_bufg_inst/O
+                         net (fo=8515, routed)        1.816    -0.932    clk_150mhz
+    SLICE_X22Y37         FDPE                                         r  reset_pipe_reg[2]_replica_2/C
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 sysclk_mmcm_inst/LOCKED
+                            (internal pin)
+  Destination:            reset_pipe_reg[0]/PRE
+                            (removal check against rising-edge clock mmcm_clk150_unbuf  {rise@0.000ns fall@3.333ns period=6.667ns})
+  Path Group:             (none)
+  Path Type:              Removal (Min at Fast Process Corner)
+  Data Path Delay:        2.590ns  (logic 0.028ns (1.081%)  route 2.562ns (98.919%))
+  Logic Levels:           1  (LUT2=1)
+  Clock Uncertainty:      0.161ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Discrete Jitter          (DJ):    0.099ns
+    Phase Error              (PE):    0.106ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    MMCME2_ADV_X1Y5      MMCME2_ADV                   0.000     0.000 r  sysclk_mmcm_inst/LOCKED
+                         net (fo=2, routed)           2.413     2.413    led_o_OBUF[0]
+    SLICE_X53Y133        LUT2 (Prop_lut2_I1_O)        0.028     2.441 f  reset_pipe[2]_i_1/O
+                         net (fo=36, routed)          0.150     2.590    reset_async
+    SLICE_X53Y133        FDPE                                         f  reset_pipe_reg[0]/PRE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock mmcm_clk150_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.518     0.518 r  sysclk_ibufds_inst/O
+                         net (fo=1, routed)           0.553     1.071    clk_200mhz
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -3.301    -2.230 r  sysclk_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           0.834    -1.396    mmcm_clk150_unbuf
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.030    -1.366 r  soc_clock_bufg_inst/O
+                         net (fo=8515, routed)        0.890    -0.476    clk_150mhz
+    SLICE_X53Y133        FDPE                                         r  reset_pipe_reg[0]/C
+
+
+
+
+

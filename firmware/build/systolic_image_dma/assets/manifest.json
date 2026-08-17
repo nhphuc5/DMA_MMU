@@ -1,0 +1,17 @@
+{
+  "source": "C:\\rtl\\rtl\\Project_Vivado\\firmware\\images\\systolic_test_input.png",
+  "ram_bytes": 262144,
+  "ram_words_32": 65536,
+  "image": {
+    "width": 64,
+    "height": 64,
+    "format": "GRAY8"
+  },
+  "layout": {
+    "input_tiled_centered": "0x10000",
+    "identity_matrix": "0x11000",
+    "scratch_int32": "0x12000",
+    "output_raster": "0x13000"
+  },
+  "pipeline": "BRAM -> DMA/AXI4 -> AXI-Stream -> systolic -> AXI-Stream -> DMA/AXI4 -> BRAM -> DMA -> UART"
+}

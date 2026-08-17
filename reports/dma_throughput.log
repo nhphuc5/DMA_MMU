@@ -1,0 +1,184 @@
+DMA AND AXI BUS THROUGHPUT REPORT
+Clock used by this behavioral benchmark: 149.993 MHz
+[A] DMA standalone is the ideal raw datapath reference: one 32-bit word/clock, no bus/control wait.
+[B] Current DMA subsystem is measured from cfg_start to done and includes all protocol/control latency.
+CPU-side MMU is not in the DMA data path; its cost is reported separately in cpu_mmu_throughput.log.
+[C] AXI full-transaction speed includes AR-to-last-R or AW-to-B; active-beat speed is diagnostic only.
+MB/s uses decimal MB. Maximum of a 32-bit bus at 149.993 MHz is 599.970 MB/s per direction.
+FORMULAS (f_MHz is the clock frequency in MHz):
+  Time(s) = cycles/(f_MHz*1,000,000)
+  Throughput(MB/s) = bytes/time/1,000,000 = bytes*f_MHz/cycles
+  Ideal one-beat throughput = (DATA_WIDTH/8)*f_MHz = 4*149.993 = 599.970 MB/s
+  Bus utilization(%) = 100*transferred_bytes/(active_cycles*bytes_per_beat)
+  Burst: C_total=C_fixed+C_address_setup+C_AXI_protocol+C_data_beats.
+  Cycle-Stealing: C_total=C_fixed+C_address_setup+C_active+C_release_gap+C_protocol.
+  Transparent: C_total=C_fixed+C_address_setup+C_active+C_CPU_busy_wait+C_protocol.
+  AXI read full cycles: AR handshake -> final R handshake; AXI write full cycles: AW handshake -> B handshake.
+------------------------------------------------------------
+TEST: D01 M2M / BURST
+Payload=32 bytes | clock=149.993 MHz
+[A] DMA STANDALONE REFERENCE (ideal interfaces, no bus/control wait)
+    DMA-only datapath: READ=599.970 MB/s, WRITE=599.970 MB/s (theoretical 1 word/clock)
+[B] CURRENT DMA SUBSYSTEM MEASURED (cfg_start-to-done)
+    Complete command: 40 cycles, effective=119.994 MB/s, reduction_vs_DMA_only=80.00%
+    Source endpoint active span: bytes=32 cycles=8, instantaneous=599.970 MB/s
+    Destination endpoint active span: bytes=32 cycles=8, instantaneous=599.970 MB/s
+    Data-window only: 12 cycles, effective=399.980 MB/s
+[C] AXI BUS DETAILS
+    AXI READ full transaction (AR -> last R): bytes=32 AR=1 cycles=11, effective=436.342 MB/s
+    AXI READ active data beats only: cycles=8, instantaneous=599.970 MB/s, utilization=100.00%
+    AXI WRITE full transaction (AW -> B): bytes=32 AW=1 cycles=18, effective=266.653 MB/s
+    AXI WRITE active data beats only: cycles=8, instantaneous=599.970 MB/s, utilization=100.00%
+    AXI-Stream IN=0 bytes | AXI-Stream OUT=0 bytes
+[D] MODE TIMING CHECK: scheduler_gap_cycles=0 transparent_cpu_busy_wait_cycles=0
+------------------------------------------------------------
+TEST: D05 S2M / CYCLE-STEALING
+Payload=32 bytes | clock=149.993 MHz
+[A] DMA STANDALONE REFERENCE (ideal interfaces, no bus/control wait)
+    DMA-only datapath: STREAM-IN=599.970 MB/s, MEMORY-WRITE=599.970 MB/s (theoretical 1 word/clock)
+[B] CURRENT DMA SUBSYSTEM MEASURED (cfg_start-to-done)
+    Complete command: 134 cycles, effective=35.819 MB/s, reduction_vs_DMA_only=94.03%
+    Source endpoint active span: bytes=32 cycles=113, instantaneous=42.476 MB/s
+    Destination endpoint active span: bytes=32 cycles=113, instantaneous=42.476 MB/s
+    Data-window only: 117 cycles, effective=41.024 MB/s
+[C] AXI BUS DETAILS
+    AXI READ full transaction (AR -> last R): bytes=0 AR=0 cycles=0, effective=0.000 MB/s
+    AXI READ active data beats only: cycles=0, instantaneous=0.000 MB/s, utilization=0.00%
+    AXI WRITE full transaction (AW -> B): bytes=32 AW=8 cycles=116, effective=41.377 MB/s
+    AXI WRITE active data beats only: cycles=113, instantaneous=42.476 MB/s, utilization=7.08%
+    AXI-Stream IN=32 bytes | AXI-Stream OUT=0 bytes
+[D] MODE TIMING CHECK: scheduler_gap_cycles=7 transparent_cpu_busy_wait_cycles=0
+------------------------------------------------------------
+TEST: D09 M2S / TRANSPARENT
+Payload=32 bytes | clock=149.993 MHz
+[A] DMA STANDALONE REFERENCE (ideal interfaces, no bus/control wait)
+    DMA-only datapath: MEMORY-READ=599.970 MB/s, STREAM-OUT=599.970 MB/s (theoretical 1 word/clock)
+[B] CURRENT DMA SUBSYSTEM MEASURED (cfg_start-to-done)
+    Complete command: 119 cycles, effective=40.334 MB/s, reduction_vs_DMA_only=93.28%
+    Source endpoint active span: bytes=32 cycles=99, instantaneous=48.482 MB/s
+    Destination endpoint active span: bytes=32 cycles=99, instantaneous=48.482 MB/s
+    Data-window only: 102 cycles, effective=47.056 MB/s
+[C] AXI BUS DETAILS
+    AXI READ full transaction (AR -> last R): bytes=32 AR=8 cycles=102, effective=47.056 MB/s
+    AXI READ active data beats only: cycles=99, instantaneous=48.482 MB/s, utilization=8.08%
+    AXI WRITE full transaction (AW -> B): bytes=0 AW=0 cycles=0, effective=0.000 MB/s
+    AXI WRITE active data beats only: cycles=0, instantaneous=0.000 MB/s, utilization=0.00%
+    AXI-Stream IN=0 bytes | AXI-Stream OUT=32 bytes
+[D] MODE TIMING CHECK: scheduler_gap_cycles=0 transparent_cpu_busy_wait_cycles=29
+------------------------------------------------------------
+TEST: D02 M2M / CYCLE-STEALING
+Payload=32 bytes | clock=149.993 MHz
+[A] DMA STANDALONE REFERENCE (ideal interfaces, no bus/control wait)
+    DMA-only datapath: READ=599.970 MB/s, WRITE=599.970 MB/s (theoretical 1 word/clock)
+[B] CURRENT DMA SUBSYSTEM MEASURED (cfg_start-to-done)
+    Complete command: 194 cycles, effective=24.741 MB/s, reduction_vs_DMA_only=95.88%
+    Source endpoint active span: bytes=32 cycles=162, instantaneous=29.628 MB/s
+    Destination endpoint active span: bytes=32 cycles=162, instantaneous=29.628 MB/s
+    Data-window only: 166 cycles, effective=28.914 MB/s
+[C] AXI BUS DETAILS
+    AXI READ full transaction (AR -> last R): bytes=32 AR=8 cycles=165, effective=29.089 MB/s
+    AXI READ active data beats only: cycles=162, instantaneous=29.628 MB/s, utilization=4.94%
+    AXI WRITE full transaction (AW -> B): bytes=32 AW=8 cycles=172, effective=27.906 MB/s
+    AXI WRITE active data beats only: cycles=162, instantaneous=29.628 MB/s, utilization=4.94%
+    AXI-Stream IN=0 bytes | AXI-Stream OUT=0 bytes
+[D] MODE TIMING CHECK: scheduler_gap_cycles=7 transparent_cpu_busy_wait_cycles=0
+------------------------------------------------------------
+TEST: D03 M2M / TRANSPARENT
+Payload=32 bytes | clock=149.993 MHz
+[A] DMA STANDALONE REFERENCE (ideal interfaces, no bus/control wait)
+    DMA-only datapath: READ=599.970 MB/s, WRITE=599.970 MB/s (theoretical 1 word/clock)
+[B] CURRENT DMA SUBSYSTEM MEASURED (cfg_start-to-done)
+    Complete command: 187 cycles, effective=25.667 MB/s, reduction_vs_DMA_only=95.72%
+    Source endpoint active span: bytes=32 cycles=155, instantaneous=30.966 MB/s
+    Destination endpoint active span: bytes=32 cycles=155, instantaneous=30.966 MB/s
+    Data-window only: 159 cycles, effective=30.187 MB/s
+[C] AXI BUS DETAILS
+    AXI READ full transaction (AR -> last R): bytes=32 AR=8 cycles=158, effective=30.378 MB/s
+    AXI READ active data beats only: cycles=155, instantaneous=30.966 MB/s, utilization=5.16%
+    AXI WRITE full transaction (AW -> B): bytes=32 AW=8 cycles=165, effective=29.089 MB/s
+    AXI WRITE active data beats only: cycles=155, instantaneous=30.966 MB/s, utilization=5.16%
+    AXI-Stream IN=0 bytes | AXI-Stream OUT=0 bytes
+[D] MODE TIMING CHECK: scheduler_gap_cycles=0 transparent_cpu_busy_wait_cycles=46
+------------------------------------------------------------
+TEST: D04 S2M / BURST
+Payload=32 bytes | clock=149.993 MHz
+[A] DMA STANDALONE REFERENCE (ideal interfaces, no bus/control wait)
+    DMA-only datapath: STREAM-IN=599.970 MB/s, MEMORY-WRITE=599.970 MB/s (theoretical 1 word/clock)
+[B] CURRENT DMA SUBSYSTEM MEASURED (cfg_start-to-done)
+    Complete command: 35 cycles, effective=137.136 MB/s, reduction_vs_DMA_only=77.14%
+    Source endpoint active span: bytes=32 cycles=15, instantaneous=319.984 MB/s
+    Destination endpoint active span: bytes=32 cycles=14, instantaneous=342.840 MB/s
+    Data-window only: 18 cycles, effective=266.653 MB/s
+[C] AXI BUS DETAILS
+    AXI READ full transaction (AR -> last R): bytes=0 AR=0 cycles=0, effective=0.000 MB/s
+    AXI READ active data beats only: cycles=0, instantaneous=0.000 MB/s, utilization=0.00%
+    AXI WRITE full transaction (AW -> B): bytes=32 AW=1 cycles=17, effective=282.339 MB/s
+    AXI WRITE active data beats only: cycles=14, instantaneous=342.840 MB/s, utilization=57.14%
+    AXI-Stream IN=32 bytes | AXI-Stream OUT=0 bytes
+[D] MODE TIMING CHECK: scheduler_gap_cycles=0 transparent_cpu_busy_wait_cycles=0
+------------------------------------------------------------
+TEST: D06 S2M / TRANSPARENT
+Payload=32 bytes | clock=149.993 MHz
+[A] DMA STANDALONE REFERENCE (ideal interfaces, no bus/control wait)
+    DMA-only datapath: STREAM-IN=599.970 MB/s, MEMORY-WRITE=599.970 MB/s (theoretical 1 word/clock)
+[B] CURRENT DMA SUBSYSTEM MEASURED (cfg_start-to-done)
+    Complete command: 134 cycles, effective=35.819 MB/s, reduction_vs_DMA_only=94.03%
+    Source endpoint active span: bytes=32 cycles=113, instantaneous=42.476 MB/s
+    Destination endpoint active span: bytes=32 cycles=113, instantaneous=42.476 MB/s
+    Data-window only: 117 cycles, effective=41.024 MB/s
+[C] AXI BUS DETAILS
+    AXI READ full transaction (AR -> last R): bytes=0 AR=0 cycles=0, effective=0.000 MB/s
+    AXI READ active data beats only: cycles=0, instantaneous=0.000 MB/s, utilization=0.00%
+    AXI WRITE full transaction (AW -> B): bytes=32 AW=8 cycles=116, effective=41.377 MB/s
+    AXI WRITE active data beats only: cycles=113, instantaneous=42.476 MB/s, utilization=7.08%
+    AXI-Stream IN=32 bytes | AXI-Stream OUT=0 bytes
+[D] MODE TIMING CHECK: scheduler_gap_cycles=0 transparent_cpu_busy_wait_cycles=32
+------------------------------------------------------------
+TEST: D07 M2S / BURST
+Payload=32 bytes | clock=149.993 MHz
+[A] DMA STANDALONE REFERENCE (ideal interfaces, no bus/control wait)
+    DMA-only datapath: MEMORY-READ=599.970 MB/s, STREAM-OUT=599.970 MB/s (theoretical 1 word/clock)
+[B] CURRENT DMA SUBSYSTEM MEASURED (cfg_start-to-done)
+    Complete command: 28 cycles, effective=171.420 MB/s, reduction_vs_DMA_only=71.43%
+    Source endpoint active span: bytes=32 cycles=8, instantaneous=599.970 MB/s
+    Destination endpoint active span: bytes=32 cycles=8, instantaneous=599.970 MB/s
+    Data-window only: 11 cycles, effective=436.342 MB/s
+[C] AXI BUS DETAILS
+    AXI READ full transaction (AR -> last R): bytes=32 AR=1 cycles=11, effective=436.342 MB/s
+    AXI READ active data beats only: cycles=8, instantaneous=599.970 MB/s, utilization=100.00%
+    AXI WRITE full transaction (AW -> B): bytes=0 AW=0 cycles=0, effective=0.000 MB/s
+    AXI WRITE active data beats only: cycles=0, instantaneous=0.000 MB/s, utilization=0.00%
+    AXI-Stream IN=0 bytes | AXI-Stream OUT=32 bytes
+[D] MODE TIMING CHECK: scheduler_gap_cycles=0 transparent_cpu_busy_wait_cycles=0
+------------------------------------------------------------
+TEST: D08 M2S / CYCLE-STEALING
+Payload=32 bytes | clock=149.993 MHz
+[A] DMA STANDALONE REFERENCE (ideal interfaces, no bus/control wait)
+    DMA-only datapath: MEMORY-READ=599.970 MB/s, STREAM-OUT=599.970 MB/s (theoretical 1 word/clock)
+[B] CURRENT DMA SUBSYSTEM MEASURED (cfg_start-to-done)
+    Complete command: 126 cycles, effective=38.093 MB/s, reduction_vs_DMA_only=93.65%
+    Source endpoint active span: bytes=32 cycles=106, instantaneous=45.281 MB/s
+    Destination endpoint active span: bytes=32 cycles=106, instantaneous=45.281 MB/s
+    Data-window only: 109 cycles, effective=44.034 MB/s
+[C] AXI BUS DETAILS
+    AXI READ full transaction (AR -> last R): bytes=32 AR=8 cycles=109, effective=44.034 MB/s
+    AXI READ active data beats only: cycles=106, instantaneous=45.281 MB/s, utilization=7.55%
+    AXI WRITE full transaction (AW -> B): bytes=0 AW=0 cycles=0, effective=0.000 MB/s
+    AXI WRITE active data beats only: cycles=0, instantaneous=0.000 MB/s, utilization=0.00%
+    AXI-Stream IN=0 bytes | AXI-Stream OUT=32 bytes
+[D] MODE TIMING CHECK: scheduler_gap_cycles=7 transparent_cpu_busy_wait_cycles=0
+============================================================
+D01-D09 TIMING AND THROUGHPUT SUMMARY
+ID  DIRECTION  MODE          CYCLES  MB/s     AR AW ARLEN AWLEN GAP CPU-WAIT
+D01 M2M        BURST             40  119.994  1  1     7     7   0        0
+D02 M2M        CYCLE-STEAL      194   24.741  8  8     0     0   7        0
+D03 M2M        TRANSPARENT      187   25.667  8  8     0     0   0       46
+D04 S2M        BURST             35  137.136  0  1     0     7   0        0
+D05 S2M        CYCLE-STEAL      134   35.819  0  8     0     0   7        0
+D06 S2M        TRANSPARENT      134   35.819  0  8     0     0   0       32
+D07 M2S        BURST             28  171.420  1  0     7     0   0        0
+D08 M2S        CYCLE-STEAL      126   38.093  8  0     0     0   7        0
+D09 M2S        TRANSPARENT      119   40.334  8  0     0     0   0       29
+NOTE: Burst must use multi-beat AXI; Cycle-Stealing must show GAP cycles; Transparent must show CPU-WAIT cycles.
+------------------------------------------------------------
+END OF THROUGHPUT REPORT

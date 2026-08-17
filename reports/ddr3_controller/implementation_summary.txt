@@ -1,0 +1,6 @@
+CUSTOM AXI DDR3 CONTROLLER OOC IMPLEMENTATION
+Part: xc7vx485tffg1761-2
+Constraint: 3.000 ns
+Worst routed slack: 0.204 ns
+Estimated routed Fmax: 357.654 MHz
+DSP cells: 0

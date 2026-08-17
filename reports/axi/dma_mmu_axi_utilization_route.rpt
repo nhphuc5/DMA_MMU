@@ -1,0 +1,44 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Tue Jul 14 16:10:25 2026
+| Host         : LAPTOP-QB9V6NGP running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file C:/rtl/rtl/Project_Vivado/reports/axi/dma_mmu_axi_utilization_route.rpt -force
+| Design       : dma_mmu_axi_top
+| Device       : xc7a35tcpg236-1
+| Speed File   : -1
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++----------------------------+---------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+|          Instance          |              Module             | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP Blocks |
++----------------------------+---------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+| dma_mmu_axi_top            |                           (top) |       1904 |       1822 |      82 |    0 | 1762 |      0 |      0 |          0 |
+|   (dma_mmu_axi_top)        |                           (top) |          0 |          0 |       0 |    0 |   16 |      0 |      0 |          0 |
+|   cdma_inst                |                        axi_cdma |        431 |        401 |      30 |    0 |  266 |      0 |      0 |          0 |
+|   crossbar_inst            |                    axi_crossbar |        199 |        199 |       0 |    0 |  334 |      0 |      0 |          0 |
+|     axi_crossbar_rd_inst   |                 axi_crossbar_rd |        107 |        107 |       0 |    0 |  192 |      0 |      0 |          0 |
+|       s_ifaces[1].reg_inst |               axi_register_rd_8 |         40 |         40 |       0 |    0 |   71 |      0 |      0 |          0 |
+|       s_ifaces[0].reg_inst |                 axi_register_rd |         42 |         42 |       0 |    0 |   71 |      0 |      0 |          0 |
+|     axi_crossbar_wr_inst   |                 axi_crossbar_wr |         92 |         92 |       0 |    0 |  142 |      0 |      0 |          0 |
+|       m_ifaces[0].reg_inst | axi_register_wr__parameterized0 |         47 |         47 |       0 |    0 |  105 |      0 |      0 |          0 |
+|   dma_rd_inst              |                      axi_dma_rd |        274 |        250 |      24 |    0 |  169 |      0 |      0 |          0 |
+|   dma_wr_inst              |                      axi_dma_wr |        314 |        286 |      28 |    0 |  174 |      0 |      0 |          0 |
+|   iommu_inst               |                   dma_iommu_tlb |        239 |        239 |       0 |    0 |  339 |      0 |      0 |          0 |
+|     (iommu_inst)           |                   dma_iommu_tlb |        150 |        150 |       0 |    0 |  336 |      0 |      0 |          0 |
+|     tlb_replacement        |                       pseudoLRU |         90 |         90 |       0 |    0 |    3 |      0 |      0 |          0 |
+|   regs_inst                |                   dma_axil_regs |        200 |        200 |       0 |    0 |  348 |      0 |      0 |          0 |
+|   scheduler_inst           |               dma_axi_scheduler |        250 |        250 |       0 |    0 |  116 |      0 |      0 |          0 |
++----------------------------+---------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+

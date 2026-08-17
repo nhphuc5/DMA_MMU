@@ -1,0 +1,9 @@
+DMA MEMORY-TO-UART IMAGE TEST
+Format: 64x64 grayscale, 4096 bytes/image
+IMG1 RAM=0x8000, IMG2 RAM=0x9000, IMG3 RAM=0xA000
+Path: AXI RAM -> DMA AXI4 read -> AXI-Stream -> UART
+------------------------------------------------------------
+PASS IMG1: 4096/4096 payload bytes matched
+PASS IMG2: 4096/4096 payload bytes matched
+PASS IMG3: 4096/4096 payload bytes matched
+PASS: IMG1/IMG2/IMG3, 64x64 gray8, 12288 bytes compared, mismatches=0

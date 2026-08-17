@@ -1,0 +1,282 @@
+Time resolution is 1 ps
+PASS DDR initialization sequence completed
+PASS PHY calibration completed
+PASS Initialization command ordering legal
+PASS AW handshake completed
+PASS W beat handshake completed
+PASS B response completed
+PASS B response code
+PASS B response ID preserved
+PASS AR handshake completed
+PASS single write/read response
+PASS single write/read response code
+PASS single write/read data
+PASS AW handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS B response completed
+PASS B response code
+PASS B response ID preserved
+PASS AR handshake completed
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS RDATA matched written burst
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS RDATA matched written burst
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS RDATA matched written burst
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS RDATA matched written burst
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS RDATA matched written burst
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS RDATA matched written burst
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS RDATA matched written burst
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS RDATA matched written burst
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS RDATA matched written burst
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS RDATA matched written burst
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS RDATA matched written burst
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS RDATA matched written burst
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS RDATA matched written burst
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS RDATA matched written burst
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS RDATA matched written burst
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS RDATA matched written burst
+PASS AW handshake completed
+PASS W beat handshake completed
+PASS B response completed
+PASS B response code
+PASS B response ID preserved
+PASS AW handshake completed
+PASS W beat handshake completed
+PASS B response completed
+PASS B response code
+PASS B response ID preserved
+PASS AR handshake completed
+PASS partial WSTRB response
+PASS partial WSTRB response code
+PASS partial WSTRB data
+PASS AW handshake completed
+PASS W beat handshake completed
+PASS B response completed
+PASS B response code
+PASS B response ID preserved
+PASS AR handshake completed
+PASS narrow halfword response
+PASS narrow halfword response code
+PASS narrow halfword data
+PASS AW handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS B response completed
+PASS B response code
+PASS B response ID preserved
+PASS AR handshake completed
+PASS FIXED burst response
+PASS FIXED burst response code
+PASS FIXED burst data
+PASS AW handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS B response completed
+PASS B response code
+PASS B response ID preserved
+PASS AR handshake completed
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS RDATA matched written burst
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS RDATA matched written burst
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS RDATA matched written burst
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS RDATA matched written burst
+PASS AW handshake completed
+PASS W beat handshake completed
+PASS B response completed
+PASS B response code
+PASS B response ID preserved
+PASS AR handshake completed
+PASS DFI backpressure response
+PASS DFI backpressure response code
+PASS DFI backpressure data
+PASS AW handshake completed
+PASS W beat handshake completed
+PASS B response completed
+PASS B response code
+PASS B response ID preserved
+PASS AR handshake completed
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS AW handshake completed
+PASS W beat handshake completed
+PASS B response completed
+PASS B response code
+PASS B response ID preserved
+PASS AR handshake completed
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS AW handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS B response completed
+PASS B response code
+PASS B response ID preserved
+PASS AR handshake completed
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS AW handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS B response completed
+PASS B response code
+PASS B response ID preserved
+PASS AW handshake completed
+PASS W beat handshake completed
+PASS B response completed
+PASS B response code
+PASS B response ID preserved
+PASS AW handshake completed
+PASS W beat handshake completed
+PASS W beat handshake completed
+PASS B response completed
+PASS B response code
+PASS B response ID preserved
+PASS AW handshake completed
+PASS W beat handshake completed
+PASS B response completed
+PASS B response code
+PASS B response ID preserved
+PASS AR handshake completed
+PASS R beat completed
+PASS R response code
+PASS R response ID preserved
+PASS RLAST position
+PASS AW handshake completed
+PASS W beat handshake completed
+PASS B response completed
+PASS B response code
+PASS B response ID preserved
+PASS AW handshake completed
+PASS W beat handshake completed
+PASS B response completed
+PASS B response code
+PASS B response ID preserved
+PASS open-row hit avoided extra ACT
+PASS AW handshake completed
+PASS W beat handshake completed
+PASS B response completed
+PASS B response code
+PASS B response ID preserved
+PASS row conflict issued PRECHARGE
+PASS periodic refresh reached memory
+PASS refresh issued with banks closed
+PASS AW handshake completed
+PASS W beat handshake completed
+PASS B response completed
+PASS B response code
+PASS B response ID preserved
+PASS AR handshake completed
+PASS traffic after refresh response
+PASS traffic after refresh response code
+PASS traffic after refresh data
+PASS DFI read/write commands exercised
+PASS AW handshake completed
+PASS reset cleared AXI responses
+PASS recalibration after reset
+PASS no DFI protocol errors
+DDR3 AXI CONTROLLER: checks=278 failures=0
+ALL DDR3 AXI CONTROLLER TESTS PASSED
+$finish called at time : 9642369 ps : File "D:/DMA_MMU-main(1)/testbench/tb_axi_ddr3_controller.sv" Line 462

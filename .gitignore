@@ -1,0 +1,59 @@
+# Vivado generated project data
+.Xil/
+.vivado_user/
+build/vivado/
+vivado_unified_project/
+archive/
+xsim.dir/
+
+# Vivado generated directories (wherever they appear)
+*.cache/
+*.gen/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.srcs/
+
+# Simulator and tool temporary files
+*.jou
+*.log
+*.str
+*.pb
+*.wdb
+*.vcd
+*.vvp
+*.tmp
+*.bak
+*~
+
+# ModelSim/Questa compiled libraries and local transcripts
+ModelSim_test/
+transcript
+
+# Python bytecode is machine-local and reproducible
+__pycache__/
+*.pyc
+
+# Keep the useful verification/performance logs committed as reports
+!reports/**/*.log
+
+# Large generated design checkpoints are reproducible from the Tcl scripts
+reports/**/*.dcp
+
+# Local editor settings
+.vscode/
+
+# Local Vivado runtime marker
+dfx_runtime.txt
+
+# Document render/QA intermediates and Office lock files
+docs/_qa*
+docs/~$*
+tmp/
+
+# Firmware compiler intermediates; keep firmware/build/soc_demo.hex
+firmware/build/*.elf
+firmware/build/*.bin
+firmware/build/**/*.elf
+firmware/build/**/*.bin

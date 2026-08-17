@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1040" viewBox="0 0 1600 1040">
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#22303a" stroke-width="0.7" opacity="0.55"/>
+      <path d="M 6 0 V24 M12 0 V24 M18 0 V24 M0 6 H24 M0 12 H24 M0 18 H24" fill="none" stroke="#18232b" stroke-width="0.45" opacity="0.4"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#f5f7fa"/>
+    </marker>
+    <style>
+      .title { font: 700 35px Arial, sans-serif; fill: #f6f8fb; }
+      .subtitle { font: 700 23px Arial, sans-serif; fill: #f6f8fb; }
+      .block-title { font: 700 19px Arial, sans-serif; fill: #f8fafc; text-anchor: middle; }
+      .block-sub { font: 500 14px Arial, sans-serif; fill: #dce4ec; text-anchor: middle; }
+      .label { font: 600 13px Arial, sans-serif; fill: #f8fafc; }
+      .small { font: 500 12px Arial, sans-serif; fill: #dce4ec; }
+      .box { fill: #10161b; stroke-width: 2.2; rx: 8; }
+      .control { stroke: #39a9ff; }
+      .fifo { stroke: #b56cff; }
+      .sched { stroke: #ffc928; }
+      .engine { stroke: #7ee14b; }
+      .bus { stroke: #edf2f7; }
+      .wire { fill: none; stroke: #f5f7fa; stroke-width: 2; marker-end: url(#arrow); }
+      .status { fill: none; stroke: #f5f7fa; stroke-width: 1.8; stroke-dasharray: 7 5; marker-end: url(#arrow); }
+      .outer { fill: none; stroke: #e8eef4; stroke-width: 2.4; rx: 14; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1040" fill="#090d10"/>
+  <rect width="1600" height="1040" fill="url(#grid)"/>
+  <text class="title" x="800" y="48" text-anchor="middle">KIẾN TRÚC BÊN TRONG KHỐI DMA</text>
+  <rect class="outer" x="28" y="68" width="1544" height="902"/>
+  <text class="subtitle" x="800" y="98" text-anchor="middle">DMA SUBSYSTEM — dma_mmu_axi_top</text>
+
+  <!-- Control and queue plane -->
+  <rect class="box control" x="110" y="125" width="290" height="78"/>
+  <text class="block-title" x="255" y="157">Control / Status Registers</text>
+  <text class="block-sub" x="255" y="182">dma_axil_regs</text>
+
+  <rect class="box fifo" x="110" y="250" width="290" height="72"/>
+  <text class="block-title" x="255" y="279">Descriptor FIFO</text>
+  <text class="block-sub" x="255" y="302">8 entries</text>
+
+  <rect class="box control" x="110" y="372" width="290" height="92"/>
+  <text class="block-title" x="255" y="401">DMA Access Controller</text>
+  <text class="block-sub" x="255" y="426">CPU-origin: implicit grant</text>
+  <text class="block-sub" x="255" y="448">UART autonomous: grant / deny</text>
+
+  <rect class="box fifo" x="550" y="125" width="270" height="78"/>
+  <text class="block-title" x="685" y="157">Completion FIFO</text>
+  <text class="block-sub" x="685" y="182">8 entries</text>
+
+  <rect class="box sched" x="510" y="372" width="520" height="102"/>
+  <text class="block-title" x="770" y="411">DMA Scheduler / 13-state FSM</text>
+  <text class="block-sub" x="770" y="440">dma_axi_scheduler — chunking, mode control, engine selection</text>
+
+  <rect class="box sched" x="1160" y="210" width="330" height="190"/>
+  <text class="block-title" x="1325" y="252">DMA-side IOMMU</text>
+  <text class="block-sub" x="1325" y="278">dma_iommu_tlb</text>
+  <text class="block-sub" x="1325" y="310">Page Table: 16 entries</text>
+  <text class="block-sub" x="1325" y="334">TLB: 4 entries, fully associative</text>
+  <text class="block-sub" x="1325" y="358">Pseudo-LRU | permission | range check</text>
+
+  <!-- Control and completion wires -->
+  <path class="wire" d="M255 203 V250"/>
+  <text class="label" x="270" y="231">Descriptor PUSH</text>
+
+  <path class="wire" d="M400 145 H550"/>
+  <text class="label" x="430" y="136">COMP_POP</text>
+  <path class="wire" d="M550 182 H400"/>
+  <text class="label" x="412" y="198">Completion status / count</text>
+
+  <path class="wire" d="M650 372 V203"/>
+  <text class="label" x="665" y="292">ID + DONE/FAULT</text>
+  <text class="small" x="665" y="311">fault code + bytes transferred</text>
+
+  <path class="wire" d="M400 190 H440 V225 H1080 V230 H1160"/>
+  <text class="label" x="820" y="217">PT programming / TLB invalidate</text>
+
+  <path class="wire" d="M255 322 V372"/>
+  <text class="label" x="271" y="351">Queued descriptor</text>
+
+  <path class="wire" d="M400 410 H510"/>
+  <text class="label" x="416" y="400">Grant + descriptor</text>
+  <path class="status" d="M510 448 H400"/>
+  <text class="label" x="418" y="438">Request status</text>
+
+  <path class="wire" d="M1030 398 H1160"/>
+  <text class="label" x="1043" y="386">IOVA + length + R/W</text>
+  <path class="wire" d="M1160 348 H1030 V448"/>
+  <text class="label" x="1050" y="337">PA + allow / fault</text>
+
+  <!-- External side-control signals -->
+  <path class="wire" d="M30 400 H110"/>
+  <text class="label" x="44" y="377">periph_req</text>
+  <text class="small" x="44" y="393">CPU grant / deny</text>
+  <path class="wire" d="M30 493 H470 V462 H510"/>
+  <text class="label" x="44" y="483">cpu_bus_idle</text>
+  <text class="small" x="145" y="483">Transparent mode</text>
+  <path class="status" d="M110 140 H34"/>
+  <text class="label" x="42" y="119">IRQ: DONE / FAULT / REQUEST</text>
+
+  <!-- Data engines -->
+  <rect class="box engine" x="90" y="590" width="330" height="115"/>
+  <text class="block-title" x="255" y="624">Memory → Memory Engine</text>
+  <text class="block-sub" x="255" y="650">axi_cdma</text>
+  <text class="block-sub" x="255" y="678">AXI Read + AXI Write</text>
+
+  <rect class="box engine" x="490" y="590" width="330" height="115"/>
+  <text class="block-title" x="655" y="624">Memory → Peripheral Engine</text>
+  <text class="block-sub" x="655" y="650">axi_dma_rd</text>
+  <text class="block-sub" x="655" y="678">AXI Read → AXI-Stream</text>
+
+  <rect class="box engine" x="890" y="590" width="330" height="115"/>
+  <text class="block-title" x="1055" y="624">Peripheral → Memory Engine</text>
+  <text class="block-sub" x="1055" y="650">axi_dma_wr</text>
+  <text class="block-sub" x="1055" y="678">AXI-Stream → AXI Write</text>
+
+  <rect class="box engine" x="1300" y="590" width="260" height="115"/>
+  <text class="block-title" x="1430" y="635">UART / AXI-Stream</text>
+  <text class="block-sub" x="1430" y="663">Peripheral</text>
+
+  <!-- Scheduler/engine descriptor and status pairs -->
+  <path class="wire" d="M625 474 V525 H220 V590"/>
+  <text class="label" x="210" y="552">Descriptor</text>
+  <path class="status" d="M285 590 V548 H655 V474"/>
+  <text class="label" x="308" y="568">Status</text>
+
+  <path class="wire" d="M735 474 V590"/>
+  <text class="label" x="680" y="552">Descriptor</text>
+  <path class="status" d="M775 590 V474"/>
+  <text class="label" x="785" y="552">Status</text>
+
+  <path class="wire" d="M870 474 V525 H1020 V590"/>
+  <text class="label" x="916" y="552">Descriptor</text>
+  <path class="status" d="M1090 590 V525 H900 V474"/>
+  <text class="label" x="1100" y="552">Status</text>
+
+  <!-- AXI-Stream connections -->
+  <path class="wire" d="M820 635 H850 V500 H1270 V620 H1300"/>
+  <text class="label" x="1045" y="492">M_AXIS: DMA → UART</text>
+  <path class="wire" d="M1300 682 H1220"/>
+  <text class="label" x="1288" y="724" text-anchor="end">S_AXIS: UART → DMA</text>
+
+  <!-- AXI memory path -->
+  <rect class="box bus" x="145" y="785" width="1080" height="78"/>
+  <text class="block-title" x="685" y="819">Internal AXI4 Crossbar — 2S:1M</text>
+  <text class="block-sub" x="685" y="844">Round-Robin Arbitration | axi_crossbar</text>
+
+  <path class="wire" d="M255 705 V785"/>
+  <text class="label" x="105" y="749">Port 0: AXI4 Read + Write</text>
+  <path class="wire" d="M655 705 V785"/>
+  <text class="label" x="555" y="749">Port 1: AXI4 Read</text>
+  <path class="wire" d="M1055 705 V785"/>
+  <text class="label" x="948" y="749">Port 1: AXI4 Write</text>
+
+  <rect class="box bus" x="320" y="885" width="730" height="58"/>
+  <text class="block-title" x="685" y="921">M_AXI — AXI4-Full Master Interface</text>
+  <path class="wire" d="M685 863 V885"/>
+
+  <rect class="box bus" x="480" y="984" width="410" height="46"/>
+  <text class="block-title" x="685" y="1014">System AXI Bus / AXI RAM Controller</text>
+  <path class="wire" d="M685 943 V984"/>
+
+  <!-- Legend -->
+  <rect class="outer" x="1260" y="780" width="285" height="135"/>
+  <text class="block-title" x="1402" y="810">CHÚ THÍCH</text>
+  <line x1="1290" y1="840" x2="1360" y2="840" stroke="#f5f7fa" stroke-width="2" marker-end="url(#arrow)"/>
+  <text class="small" x="1375" y="845">Dữ liệu / điều khiển</text>
+  <line x1="1290" y1="875" x2="1360" y2="875" stroke="#f5f7fa" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrow)"/>
+  <text class="small" x="1375" y="880">Status / IRQ</text>
+</svg>

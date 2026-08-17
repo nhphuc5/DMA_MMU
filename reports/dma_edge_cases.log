@@ -1,0 +1,69 @@
+DMA/IOMMU/AXI EDGE, ERROR-INJECTION, AND ROBUSTNESS REPORT
+Every PASS is generated from observed RTL state, AXI handshakes, status, or memory data.
+Clock=149.993 MHz, DATA_WIDTH=32 bits, PAGE_SIZE=4096 bytes
+[1134000] PASS      D01 Burst is continuous: one AR/AW burst, LEN=7
+[2247000] PASS      D05 Cycle-Stealing issued one-beat writes and released the bus
+[3287000] PASS      D09 Transparent transfer waited for CPU idle and used one-beat reads
+[4801000] PASS      D02 M2M Cycle-Stealing used 8 one-beat read/write transactions plus gaps
+[6281000] PASS      D03 M2M Transparent progressed only during CPU-idle opportunities
+[6728000] PASS      D04 S2M Burst accepted the stream and issued one 8-beat AXI write
+[7862000] PASS      D06 S2M Transparent waited for CPU idle and issued one-beat writes
+[8302000] PASS      D07 M2S Burst produced 8 stream beats/TLAST from one AXI read burst
+[9382000] PASS      D08 M2S Cycle-Stealing used one-beat reads and released the bus
+[9659000] PASS      E01 write to read-only page rejected with destination permission fault 0x32
+[9939000] PASS      E02 unmapped source page rejected with source page fault 0x21
+[10219000] PASS      E03 unmapped destination page rejected with destination page fault 0x31
+[10632000] PASS      E04 read from write-only page rejected with source permission fault 0x22
+[10655000] PASS      E05 single IOMMU request crossing a 4 KiB page returned RANGE fault 3
+[11306000] PASS      E06 cross-page command was split into two authorized AXI chunks and data matched
+[12312000] PASS      E07 TLB observed hits=2 misses=6; fifth page replaced one of four entries; invalidate forced a new miss
+[12729000] PASS      E08 ARREADY delayed; request held for 8 cycles and data remained correct
+[13149000] PASS      E09 AW/W READY delayed; AW stalls=7 W stalls=8 and memory data matched
+[13519000] PASS      E10 AXI-Stream backpressure held VALID/data for 8 cycles; count=1 data=e8300001
+[13879000] PASS      E11 AXI read SLVERR propagated as DMA source fault 0x54
+[14240000] PASS      E12 AXI write DECERR propagated as DMA destination fault 0x67
+[14466000] PASS      E13 zero-byte command rejected as bad command
+[14906000] PASS      E14 one-word command completed and copied exact data
+[15133000] PASS      E15 non-word-multiple length rejected as bad command
+[15360000] PASS      E16 unaligned memory source rejected as bad command
+[15586000] PASS      E17 unaligned memory destination rejected as bad command
+[16453000] PASS      E18 80-byte transfer split into 8+8+4 beat bursts and all 20 words matched
+[16707000] PASS      E19 register block suppressed cfg_start while dma_busy=1
+[16813000] PASS E19-DATA original in-flight command completed without corruption
+[18774000] PASS Q01-FULL all eight descriptor slots were occupied while dispatch was paused
+[19034000] PASS  Q01-OVF ninth push was rejected without corrupting FIFO contents
+[20908000] PASS  Q01-RUN eight queued descriptors executed in sequence and generated eight completions
+[20908000] PASS Q01-DATA0 non-contiguous word copied to destination: d5000000
+[20994000] PASS Q01-COMP0 completion ID=0x10 DONE=1 bytes=4
+[20994000] PASS Q01-DATA1 non-contiguous word copied to destination: d5000001
+[21081000] PASS Q01-COMP1 completion ID=0x11 DONE=1 bytes=4
+[21081000] PASS Q01-DATA2 non-contiguous word copied to destination: d5000002
+[21168000] PASS Q01-COMP2 completion ID=0x12 DONE=1 bytes=4
+[21168000] PASS Q01-DATA3 non-contiguous word copied to destination: d5000003
+[21254000] PASS Q01-COMP3 completion ID=0x13 DONE=1 bytes=4
+[21254000] PASS Q01-DATA4 non-contiguous word copied to destination: d5000004
+[21341000] PASS Q01-COMP4 completion ID=0x14 DONE=1 bytes=4
+[21341000] PASS Q01-DATA5 non-contiguous word copied to destination: d5000005
+[21428000] PASS Q01-COMP5 completion ID=0x15 DONE=1 bytes=4
+[21428000] PASS Q01-DATA6 non-contiguous word copied to destination: d5000006
+[21514000] PASS Q01-COMP6 completion ID=0x16 DONE=1 bytes=4
+[21514000] PASS Q01-DATA7 non-contiguous word copied to destination: d5000007
+[21601000] PASS Q01-COMP7 completion ID=0x17 DONE=1 bytes=4
+[21628000] PASS  Q01-POP CPU consumed all completion records
+[21628000] PASS  Q01-IRQ only the final descriptor's IRQ flag raised the interrupt
+[21654000] PASS Q01-TOTAL hardware completion counter recorded eight queued commands
+[22801000] PASS Q02-HALT permission fault halted the queue and retained the following descriptor
+[22801000] PASS Q02-DATA descriptor before fault completed; descriptor after fault did not execute
+[22888000] PASS Q02-COMP0 first descriptor reported successful completion
+[22975000] PASS Q02-COMP1 faulting descriptor reported IOMMU write-permission fault 0x32
+[23055000] PASS Q02-FLUSH software flushed the retained descriptor and cleared halt state
+[23081000] PASS Q02-TOTAL completion counter includes eight successes, one later success, and one fault
+[23615000] PASS  A01-CPU CPU START executed immediately without a redundant request/grant handshake
+[24235000] PASS A02-QUEUE CPU-pushed descriptor executed immediately and preserved completion ID/data
+[24548000] PASS  A03-REQ autonomous UART request raised IRQ and remained outside IOMMU/AXI before grant
+[24788000] PASS A03-GRANT CPU grant released the autonomous UART word through IOMMU into RAM
+[25095000] PASS A04-DENY CPU denial returned fault 0x70 with no AXI write or RAM change
+[25495000] PASS      E20 mid-transfer reset returned scheduler/registers/AXI outputs to idle with no stale DONE/FAULT
+[25548000] PASS  E20-TLB reset also cleared TLB hit/miss counters
+------------------------------------------------------------
+ALL DMA/IOMMU/AXI EDGE AND ROBUSTNESS TESTS PASSED

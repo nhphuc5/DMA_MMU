@@ -1,0 +1,5 @@
+RESULT=PASS
+RUN_STATUS=route_design Complete!
+TOP=dma_mmu_axi_impl_top
+IO_PORTS=34
+WNS_NS=0.055

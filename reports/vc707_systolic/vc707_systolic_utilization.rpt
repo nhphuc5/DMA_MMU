@@ -1,0 +1,70 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Tue Aug  4 15:31:26 2026
+| Host         : LAPTOP-QB9V6NGP running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file C:/rtl/rtl/Project_Vivado/reports/vc707_systolic/vc707_systolic_utilization.rpt
+| Design       : dma_mmu_picorv32_vc707_top
+| Device       : xc7vx485tffg1761-2
+| Speed File   : -2
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++--------------------------------+-----------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+|            Instance            |               Module              | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP Blocks |
++--------------------------------+-----------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+| dma_mmu_picorv32_vc707_top     |                             (top) |       8374 |       8206 |     168 |    0 | 8243 |     16 |      0 |         16 |
+|   (dma_mmu_picorv32_vc707_top) |                             (top) |          1 |          1 |       0 |    0 |   36 |      0 |      0 |          0 |
+|   soc_inst                     |              dma_mmu_picorv32_soc |       8373 |       8205 |     168 |    0 | 8207 |     16 |      0 |         16 |
+|     cpu_inst                   |                      picorv32_axi |       1551 |       1463 |      88 |    0 |  963 |      0 |      0 |          0 |
+|       picorv32_core            |                          picorv32 |       1536 |       1448 |      88 |    0 |  959 |      0 |      0 |          0 |
+|         (picorv32_core)        |                          picorv32 |       1150 |       1062 |      88 |    0 |  703 |      0 |      0 |          0 |
+|         pcpi_mul               |                 picorv32_pcpi_mul |        386 |        386 |       0 |    0 |  256 |      0 |      0 |          0 |
+|     cpu_mmu_inst               |                  picorv32_cpu_mmu |       1637 |       1637 |       0 |    0 | 1262 |      0 |      0 |          0 |
+|       (cpu_mmu_inst)           |                  picorv32_cpu_mmu |       1441 |       1441 |       0 |    0 | 1259 |      0 |      0 |          0 |
+|       cpu_tlb_plru             |                      pseudoLRU_19 |        198 |        198 |       0 |    0 |    3 |      0 |      0 |          0 |
+|     cpu_router_inst            |              picorv32_axil_router |        305 |        305 |       0 |    0 |  106 |      0 |      0 |          0 |
+|     dma_iommu_inst             |                   dma_mmu_axi_top |       2299 |       2219 |      80 |    0 | 2931 |      0 |      0 |          0 |
+|       (dma_iommu_inst)         |                   dma_mmu_axi_top |          1 |          1 |       0 |    0 |  106 |      0 |      0 |          0 |
+|       access_controller_inst   |             dma_access_controller |         21 |         21 |       0 |    0 |   75 |      0 |      0 |          0 |
+|       cdma_inst                |                          axi_cdma |        270 |        242 |      28 |    0 |  237 |      0 |      0 |          0 |
+|       completion_fifo_inst     |               dma_completion_fifo |        115 |        115 |       0 |    0 |  266 |      0 |      0 |          0 |
+|       crossbar_inst            |                      axi_crossbar |        277 |        277 |       0 |    0 |  332 |      0 |      0 |          0 |
+|         axi_crossbar_rd_inst   |                   axi_crossbar_rd |        128 |        128 |       0 |    0 |  190 |      0 |      0 |          0 |
+|           s_ifaces[1].reg_inst |                axi_register_rd_18 |         37 |         37 |       0 |    0 |   67 |      0 |      0 |          0 |
+|           s_ifaces[0].reg_inst |                   axi_register_rd |         36 |         36 |       0 |    0 |   67 |      0 |      0 |          0 |
+|         axi_crossbar_wr_inst   |                   axi_crossbar_wr |        149 |        149 |       0 |    0 |  142 |      0 |      0 |          0 |
+|           m_ifaces[0].reg_inst |   axi_register_wr__parameterized0 |         97 |         97 |       0 |    0 |  104 |      0 |      0 |          0 |
+|       descriptor_fifo_inst     |               dma_descriptor_fifo |        231 |        231 |       0 |    0 |  562 |      0 |      0 |          0 |
+|       dma_rd_inst              |                        axi_dma_rd |        147 |        123 |      24 |    0 |  135 |      0 |      0 |          0 |
+|       dma_wr_inst              |                        axi_dma_wr |        291 |        263 |      28 |    0 |  157 |      0 |      0 |          0 |
+|       iommu_inst               |                     dma_iommu_tlb |        178 |        178 |       0 |    0 |  354 |      0 |      0 |          0 |
+|         (iommu_inst)           |                     dma_iommu_tlb |        170 |        170 |       0 |    0 |  351 |      0 |      0 |          0 |
+|       regs_inst                |                     dma_axil_regs |        409 |        409 |       0 |    0 |  550 |      0 |      0 |          0 |
+|       scheduler_inst           |                 dma_axi_scheduler |        366 |        366 |       0 |    0 |  157 |      0 |      0 |          0 |
+|     system_axi_crossbar        |      axi_crossbar__parameterized0 |        220 |        220 |       0 |    0 |  353 |      0 |      0 |          0 |
+|       axi_crossbar_rd_inst     |   axi_crossbar_rd__parameterized0 |        100 |        100 |       0 |    0 |  203 |      0 |      0 |          0 |
+|         s_ifaces[1].reg_inst   | axi_register_rd__parameterized1_8 |         41 |         41 |       0 |    0 |   71 |      0 |      0 |          0 |
+|         s_ifaces[0].reg_inst   |   axi_register_rd__parameterized1 |          4 |          4 |       0 |    0 |   67 |      0 |      0 |          0 |
+|       axi_crossbar_wr_inst     |   axi_crossbar_wr__parameterized0 |        120 |        120 |       0 |    0 |  150 |      0 |      0 |          0 |
+|         m_ifaces[0].reg_inst   |   axi_register_wr__parameterized2 |         53 |         53 |       0 |    0 |  103 |      0 |      0 |          0 |
+|     system_ram_inst            |                           axi_ram |        108 |        108 |       0 |    0 |   88 |     16 |      0 |          0 |
+|     systolic_accel_inst        |               systolic_accel_axil |       2006 |       2006 |       0 |    0 | 2134 |      0 |      0 |         16 |
+|       (systolic_accel_inst)    |               systolic_accel_axil |        128 |        128 |       0 |    0 |  344 |      0 |      0 |          0 |
+|       core_inst                |               systolic_matmul_4x4 |       1878 |       1878 |       0 |    0 | 1790 |      0 |      0 |         16 |
+|     uart_inst                  |                    uart_axil_axis |        254 |        254 |       0 |    0 |  370 |      0 |      0 |          0 |
+|       (uart_inst)              |                    uart_axil_axis |         24 |         24 |       0 |    0 |  268 |      0 |      0 |          0 |
+|       uart_engine              |                    simpleuart_dma |        234 |        234 |       0 |    0 |  102 |      0 |      0 |          0 |
++--------------------------------+-----------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+

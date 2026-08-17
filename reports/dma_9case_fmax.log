@@ -1,0 +1,19 @@
+D01-D09 POST-ROUTE FMAX MAPPING
+Device: xc7a35tcpg236-1
+Fmax is static for one implementation; traffic direction/mode changes latency and throughput, not the routed critical path.
+Formula: Tcritical(ns)=Tconstraint(ns)-Slack(ns); Fmax(MHz)=1000/Tcritical(ns).
+System substitution: Tcritical=6.667-(0.219)=6.448 ns; Fmax=1000/6.448=155.087 MHz
+System Fmax=155.087 MHz | DMA-core Fmax=158.278 MHz | IOMMU-core Fmax=171.350 MHz
+------------------------------------------------------------
+ID  Direction  Mode            System MHz  DMA MHz  IOMMU MHz
+D01 M2M        BURST              155.087  158.278    171.350
+D02 M2M        CYCLE-STEALING     155.087  158.278    171.350
+D03 M2M        TRANSPARENT        155.087  158.278    171.350
+D04 S2M        BURST              155.087  158.278    171.350
+D05 S2M        CYCLE-STEALING     155.087  158.278    171.350
+D06 S2M        TRANSPARENT        155.087  158.278    171.350
+D07 M2S        BURST              155.087  158.278    171.350
+D08 M2S        CYCLE-STEALING     155.087  158.278    171.350
+D09 M2S        TRANSPARENT        155.087  158.278    171.350
+------------------------------------------------------------
+Use dma_throughput.log for per-case cycles and MB/s.

@@ -1,0 +1,20 @@
+Time resolution is 1 ps
+Addressing configuration for axi_crossbar_addr instance tb_axi_bram_ddr3_subsystem.dut.memory_decode_inst.axi_crossbar_wr_inst.s_ifaces[0].addr_inst
+ 0 ( 0): 00000000 / 16 -- 00000000-0000ffff
+ 1 ( 0): 80000000 / 30 -- 80000000-bfffffff
+Addressing configuration for axi_crossbar_addr instance tb_axi_bram_ddr3_subsystem.dut.memory_decode_inst.axi_crossbar_rd_inst.s_ifaces[0].addr_inst
+ 0 ( 0): 00000000 / 16 -- 00000000-0000ffff
+ 1 ( 0): 80000000 / 30 -- 80000000-bfffffff
+PASS subsystem DDR initialized and calibrated
+PASS low address write reached retained AXI RAM
+PASS integration read returned RLAST
+PASS low address read returned AXI RAM data
+PASS AXI RAM access did not issue a DDR command
+PASS high address write reached DDR controller
+PASS integration read returned RLAST
+PASS high address read returned DDR model data
+PASS DDR target emitted read and write commands
+PASS integration produced legal DFI sequence
+BRAM+DDR SUBSYSTEM: checks=10 failures=0
+ALL BRAM+DDR SUBSYSTEM TESTS PASSED
+$finish called at time : 1319868 ps : File "D:/DMA_MMU-main(1)/testbench/tb_axi_bram_ddr3_subsystem.sv" Line 203

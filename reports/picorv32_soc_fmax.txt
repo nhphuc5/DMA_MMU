@@ -1,0 +1,13 @@
+PicoRV32 + DMA/IOMMU + UART SoC post-route timing
+Device           : xc7a35tcpg236-1
+Target period    : 7.143 ns
+Target frequency : 139.997 MHz (nominal 140 MHz)
+WNS / TNS        : +0.035 ns / 0.000 ns
+WHS / THS        : +0.018 ns / 0.000 ns
+Estimated Fmax   : 140.687 MHz
+Formula          : 1000 / (7.143 - 0.035)
+Route status     : complete, 0 failed nets
+
+Functional regressions after optimization:
+- AXI DMA/IOMMU: M2M, S2M, M2S, burst, cycle-stealing, transparent and permission fault PASS
+- PicoRV32 SoC: firmware configured IOMMU/DMA and verified M2M copy; SOC TEST PASSED

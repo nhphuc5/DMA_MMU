@@ -1,0 +1,67 @@
+SEPARATE DMA AND IOMMU FMAX REPORT
+Design: unified PicoRV32 + DMA/IOMMU SoC
+Device: xc7a35tcpg236-1
+Important: these are post-route internal-path estimates in the full SoC physical context.
+They are not behavioral-simulation throughput measurements.
+FMAX FORMULA: Tcritical(ns)=Tconstraint(ns)-Slack(ns); Fmax(MHz)=1000/Tcritical(ns).
+------------------------------------------------------------
+CORE: WHOLE SYSTEM
+Scope: PicoRV32 + CPU MMU + DMA + IOMMU + AXI + UART + RAM controller
+Reference clock constraint : 6.667 ns (149.993 MHz)
+Worst system slack         : 0.219 ns
+Equivalent critical period : 6.448 ns
+Estimated system Fmax      : 155.087 MHz
+Substitution Tcritical     : 6.667 - 0.219 = 6.448 ns
+Substitution Fmax          : 1000 / 6.448 = 155.087 MHz
+Startpoint                 : cpu_mmu_inst/pt_vpn_q_reg[5][2]/C
+Endpoint                   : cpu_mmu_inst/rd_pt_idx_q_reg[0]/D
+------------------------------------------------------------
+CORE: DMA CORE
+Scope: scheduler + axi_cdma + axi_dma_rd + axi_dma_wr + internal axi_crossbar
+Sequential cells in scope: 1170
+Reference clock constraint : 6.667 ns (149.993 MHz)
+Worst internal slack       : 0.349 ns
+Equivalent critical period : 6.318 ns
+Estimated isolated Fmax    : 158.278 MHz
+Formula                     : Tcritical = Tconstraint - Slack
+Substitution                : 6.667 - 0.349 = 6.318 ns
+Formula                     : Fmax(MHz) = 1000 / Tcritical(ns)
+Substitution                : 1000 / 6.318 = 158.278 MHz
+Logic levels               : 5
+Startpoint                 : dma_iommu_inst/cdma_inst/write_addr_reg_reg[1]/C
+Endpoint                   : dma_iommu_inst/cdma_inst/axi_cmd_output_cycle_count_reg_reg[5]/D
+Method: post-route register-to-register path constrained to this hierarchy.
+------------------------------------------------------------
+CORE: IOMMU CORE
+Scope: dma_iommu_tlb including Page Table, TLB and pseudo-LRU
+Sequential cells in scope: 354
+Reference clock constraint : 6.667 ns (149.993 MHz)
+Worst internal slack       : 0.831 ns
+Equivalent critical period : 5.836 ns
+Estimated isolated Fmax    : 171.350 MHz
+Formula                     : Tcritical = Tconstraint - Slack
+Substitution                : 6.667 - 0.831 = 5.836 ns
+Formula                     : Fmax(MHz) = 1000 / Tcritical(ns)
+Substitution                : 1000 / 5.836 = 171.350 MHz
+Logic levels               : 7
+Startpoint                 : dma_iommu_inst/iommu_inst/req_vaddr_q_reg[14]/C
+Endpoint                   : dma_iommu_inst/iommu_inst/match_pt_index_q_reg[0]/D
+Method: post-route register-to-register path constrained to this hierarchy.
+------------------------------------------------------------
+CORE: CPU MMU CORE
+Scope: picorv32_cpu_mmu used on the PicoRV32 memory path
+Sequential cells in scope: 1259
+Reference clock constraint : 6.667 ns (149.993 MHz)
+Worst internal slack       : 0.219 ns
+Equivalent critical period : 6.448 ns
+Estimated isolated Fmax    : 155.087 MHz
+Formula                     : Tcritical = Tconstraint - Slack
+Substitution                : 6.667 - 0.219 = 6.448 ns
+Formula                     : Fmax(MHz) = 1000 / Tcritical(ns)
+Substitution                : 1000 / 6.448 = 155.087 MHz
+Logic levels               : 8
+Startpoint                 : cpu_mmu_inst/pt_vpn_q_reg[5][2]/C
+Endpoint                   : cpu_mmu_inst/rd_pt_idx_q_reg[0]/D
+Method: post-route register-to-register path constrained to this hierarchy.
+------------------------------------------------------------
+END OF SEPARATE FMAX REPORT

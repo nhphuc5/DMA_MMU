@@ -1,0 +1,43 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Tue Jul 14 16:09:19 2026
+| Host         : LAPTOP-QB9V6NGP running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file C:/rtl/rtl/Project_Vivado/reports/axi/dma_mmu_axi_utilization_synth.rpt -force
+| Design       : dma_mmu_axi_top
+| Device       : xc7a35tcpg236-1
+| Speed File   : -1
+| Design State : Synthesized
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++----------------------------+---------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+|          Instance          |              Module             | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP Blocks |
++----------------------------+---------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+| dma_mmu_axi_top            |                           (top) |       1948 |       1864 |      84 |    0 | 1762 |      0 |      0 |          0 |
+|   (dma_mmu_axi_top)        |                           (top) |          0 |          0 |       0 |    0 |   16 |      0 |      0 |          0 |
+|   cdma_inst                |                        axi_cdma |        439 |        407 |      32 |    0 |  266 |      0 |      0 |          0 |
+|   crossbar_inst            |                    axi_crossbar |        202 |        202 |       0 |    0 |  334 |      0 |      0 |          0 |
+|     axi_crossbar_rd_inst   |                 axi_crossbar_rd |        109 |        109 |       0 |    0 |  192 |      0 |      0 |          0 |
+|       s_ifaces[1].reg_inst |               axi_register_rd_8 |         41 |         41 |       0 |    0 |   71 |      0 |      0 |          0 |
+|       s_ifaces[0].reg_inst |                 axi_register_rd |         42 |         42 |       0 |    0 |   71 |      0 |      0 |          0 |
+|     axi_crossbar_wr_inst   |                 axi_crossbar_wr |         93 |         93 |       0 |    0 |  142 |      0 |      0 |          0 |
+|       m_ifaces[0].reg_inst | axi_register_wr__parameterized0 |         48 |         48 |       0 |    0 |  105 |      0 |      0 |          0 |
+|   dma_rd_inst              |                      axi_dma_rd |        275 |        251 |      24 |    0 |  169 |      0 |      0 |          0 |
+|   dma_wr_inst              |                      axi_dma_wr |        334 |        306 |      28 |    0 |  174 |      0 |      0 |          0 |
+|   iommu_inst               |                   dma_iommu_tlb |        232 |        232 |       0 |    0 |  339 |      0 |      0 |          0 |
+|     (iommu_inst)           |                   dma_iommu_tlb |        149 |        149 |       0 |    0 |  336 |      0 |      0 |          0 |
+|     tlb_replacement        |                       pseudoLRU |         83 |         83 |       0 |    0 |    3 |      0 |      0 |          0 |
+|   regs_inst                |                   dma_axil_regs |        216 |        216 |       0 |    0 |  348 |      0 |      0 |          0 |
+|   scheduler_inst           |               dma_axi_scheduler |        250 |        250 |       0 |    0 |  116 |      0 |      0 |          0 |
++----------------------------+---------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+
+

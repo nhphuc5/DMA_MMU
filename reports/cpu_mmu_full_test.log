@@ -1,0 +1,110 @@
+[0] ================================================================
+[0]   CPU-SIDE MMU COMPREHENSIVE SELF-CHECK
+[0]   DUT: picorv32_cpu_mmu (PT=16, TLB=4, page=4KiB)
+[0] ================================================================
+[65000] ===== GROUP 1: Page-Table Register Interface =====
+[1490000] PASS [T01]: PT_INDEX write/read: got 0x5, exp 5
+[1720000] PASS [T02a]: PT_VPN readback: got 0xabcde, exp 0xABCDE
+[1750000] PASS [T02b]: PT_PPN readback: got 0x12345, exp 0x12345
+[1780000] PASS [T03]: PT_FLAGS readback: got 0xf, exp 0xF
+[2330000] PASS [T04a]: Entry 1 VPN: got 0x00010
+[2360000] PASS [T04b]: Entry 1 PPN: got 0x00020
+[2430000] PASS [T04c]: Entry 2 flags: got 0x5, exp 0x5
+[2500000] PASS [T04d]: Entry 3 flags: got 0x9, exp 0x9
+[4250000] PASS [T05]: Overwritten VPN: got 0xccccc, exp 0xCCCCC
+[4280000] PASS [T06]: CONFIG register: got 0x10040c01, exp 0x10040C01
+[4320000] PASS [T07]: Invalid register write returns DECERR
+[4350000] PASS [T08]: Invalid register read: got 0xdeadbeef, exp 0xDEADBEEF
+[4350000] ===== GROUP 2: Address Translation =====
+[5990000] PASS [T09]: Identity mapping: VA=PA=0x5000
+[7630000] PASS [T10]: Non-identity: VA 0x8004 -> PA 0x3004
+[9270000] PASS [T11]: Offset 0xFFC preserved: VA 0x7FFC -> PA 0x2FFC
+[11630000] PASS [T12a]: Multi-map page 4->1
+[11630000] PASS [T12b]: Multi-map page 5->2
+[11630000] PASS [T12c]: Multi-map page 6->3
+[11630000] PASS [T12d]: Multi-map page 7->4
+[15670000] PASS [T13a]: Full PT entry 0: page 0->15
+[15750000] PASS [T13b]: Full PT entry 10: page 10->5
+[17390000] PASS [T14]: Translated write reaches downstream AXI
+[19020000] PASS [T15]: Read translation: got 0xbeefdead
+[19020000] ===== GROUP 3: TLB Cache and Replacement =====
+[20680000] PASS [T16a]: First access causes TLB miss: miss_count=1
+[20740000] PASS [T16b]: Second access causes TLB hit: hit_count=1
+[20740000] PASS [T17]: TLB hit data correct: got 0xcafe0001
+[22520000] PASS [T18]: After TLB invalidation, re-access causes miss: miss=1
+[24500000] PASS [T19]: PTE update auto-invalidates TLB (access after causes miss)
+[26520000] PASS [T20]: Both pages hit after fill: hits=2, miss=0
+[29110000] PASS [T21]: 5th page causes pLRU eviction and correct data
+[29420000] PASS [T22]: Evicted entry causes miss on re-access: miss=3
+[31150000] PASS [T23]: Counters cleared to zero
+[34430000] PASS [T24]: TLB thrashing: miss_count=14 (expect many misses)
+[34430000] ===== GROUP 4: Read/Write/Execute Protection =====
+[36060000] PASS [T25]: Read-only page: read succeeds
+[36160000] PASS [T26a]: Read-only page: write blocked from downstream
+[36160000] PASS [T26b]: Read-only page: fault_irq asserted
+[36190000] PASS [T26c]: Fault code = FAULT_WRITE(3): got 3
+[37870000] PASS [T27]: Write-only page: write succeeds
+[37960000] PASS [T28a]: Write-only page: read returns DEAD_BEEF
+[37960000] PASS [T28b]: Write-only page: fault_irq asserted
+[37990000] PASS [T28c]: Fault code = FAULT_READ(2): got 2
+[39650000] PASS [T29a]: No-exec page: fetch returns DEAD_BEEF
+[39650000] PASS [T29b]: No-exec page: fault_irq asserted
+[39680000] PASS [T29c]: Fault code = FAULT_EXEC(4): got 4
+[41350000] PASS [T30]: Execute-permitted page: fetch succeeds
+[42990000] PASS [T31a]: RWX: write OK
+[43050000] PASS [T31b]: RWX: read OK
+[43110000] PASS [T31c]: RWX: execute OK
+[44770000] PASS [T32a]: Valid-only: read faults
+[44870000] PASS [T32b]: Valid-only: write faults
+[44960000] PASS [T32c]: Valid-only: execute faults
+[46770000] PASS [T33a]: Write fault via TLB hit: blocked from downstream
+[46770000] PASS [T33b]: Write fault occurred on TLB hit path: hits=1
+[48480000] PASS [T34a]: Write fault via PT hit: blocked from downstream
+[48480000] PASS [T34b]: Write fault occurred on TLB miss (PT hit) path
+[50290000] PASS [T35a]: Read fault via TLB hit: returns DEAD_BEEF
+[50290000] PASS [T35b]: Read fault occurred on TLB hit path
+[51990000] PASS [T36a]: Read fault via PT hit: returns DEAD_BEEF
+[51990000] PASS [T36b]: Read fault occurred on TLB miss (PT hit) path
+[52030000] ===== GROUP 5: Page Fault Handling =====
+[53540000] PASS [T37a]: Unmapped write blocked from downstream
+[53570000] PASS [T37b]: Page fault code: got 1, exp 1
+[53570000] PASS [T37c]: fault_pending sticky bit set
+[55110000] PASS [T38a]: Unmapped read returns DEAD_BEEF
+[55140000] PASS [T38b]: Read page fault code: got 1, exp 1
+[56720000] PASS [T39]: FAULT_VA = 0x0000abcd, exp 0x0000ABCD
+[58300000] PASS [T40a]: STATUS.mmu_enabled = 1
+[58300000] PASS [T40b]: STATUS.fault_pending = 1
+[58300000] PASS [T40c]: STATUS.fault_code = PAGE(1)
+[59810000] PASS [T41a]: fault_irq asserted before clear
+[59850000] PASS [T41b]: fault_irq de-asserted after clear
+[59880000] PASS [T41c]: fault_pending cleared
+[59880000] PASS [T41d]: fault_code cleared to NONE
+[61450000] PASS [T42]: Faulted write+read do not increment downstream counter
+[63140000] PASS [T43]: Last fault VA: got 0x0000b000, exp 0x0000B000
+[63180000] ===== GROUP 6: MMIO Bypass =====
+[64630000] PASS [T44]: DMA window 0x1000_0040 bypasses translation
+[64680000] PASS [T45]: UART window 0x2000_0004 bypasses translation
+[64730000] PASS [T46]: High address 0xF000_0000 bypasses translation
+[64770000] PASS [T47a]: MMU register write does not reach downstream
+[64800000] PASS [T47b]: MMU register read does not reach downstream
+[64800000] ===== GROUP 7: Enable / Disable MMU =====
+[66210000] PASS [T48]: MMU disabled: VA=PA pass-through
+[67770000] PASS [T49a]: MMU enabled signal asserted
+[67850000] PASS [T49b]: MMU enabled: translation active
+[67940000] PASS [T50a]: Toggled disable: VA=PA
+[68050000] PASS [T50b]: Toggled re-enable: translation resumes
+[68160000] PASS [T51]: PT entry survives disable: VPN=0x00008
+[68160000] ===== GROUP 8: AXI4-Lite Protocol Compliance =====
+[69810000] PASS [T52]: AW-before-W handshake works
+[69910000] PASS [T53a]: B2B write 1
+[69910000] PASS [T53b]: B2B write 2
+[69950000] PASS [T54a]: B2B read 1
+[69990000] PASS [T54b]: B2B read 2
+[70080000] PASS [T55a]: Interleave read correct
+[70080000] PASS [T55b]: Interleave write correct
+[70150000] PASS [T56a]: Slow rready: data not lost
+[70220000] PASS [T56b]: Slow bready: write committed correctly
+[70220000] ================================================================
+[70220000]   RESULTS: 94 / 94 passed, 0 failed
+[70220000] ================================================================
+[70220000] ALL CPU MMU TESTS PASSED

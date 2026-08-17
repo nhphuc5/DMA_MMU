@@ -1,0 +1,18 @@
+UART -> AXI-STREAM -> DMA/IOMMU -> AXI4 -> RAM REPORT
+Input file: D:/DMA_MMU-main(1)/testdata/uart_input_50k.txt
+Payload: 51200 bytes (50 KiB)
+Destination VA/PA: 0x1000..0xd7ff
+Serial UART bytes sent : 51200
+AXI-Stream bytes accepted: 51200
+AXI4 bytes written      : 51200
+AXI4 write bursts       : 800
+Maximum AWLEN           : 15 (16 beats)
+Source checksum (sum32) : 0x0030fef2
+Memory checksum (sum32) : 0x0030fef2
+Start-to-done cycles    : 3072015
+Start-to-done time      : 20481.124 us
+Effective payload speed : 2.500 MB/s
+RAM byte mismatches     : 0
+First 16 input bytes    : 44 4d 41 2f 49 4f 4d 4d 55 20 50 69 63 6f 52 56
+First 16 memory bytes   : 44 4d 41 2f 49 4f 4d 4d 55 20 50 69 63 6f 52 56
+PASS: all 51,200 bytes traversed UART/AXIS/DMA/IOMMU/AXI and matched RAM

@@ -1,0 +1,138 @@
+Kịch bản kiểm thử cho khối CPU MMU (picorv32_cpu_mmu)
+Dựa trên file testbench tb_cpu_mmu_full_test.sv.
+
+Tổng cộng có 56 test cases được chia thành 8 nhóm chính. Dưới đây là chi tiết từng trường hợp kiểm thử (T01 - T56):
+
+----------------------------------------------------------------------
+Group 1 – Giao diện thanh ghi Page-table (T01–T08)
+----------------------------------------------------------------------
+Kiểm tra việc CPU đọc/ghi vào các thanh ghi cấu hình bảng phân trang (Page Table) thông qua giao diện AXI4-Lite:
+- T01: Ghi và đọc lại thanh ghi PT_INDEX thành công.
+- T02a: Ghi và đọc lại thanh ghi PT_VPN chính xác.
+- T02b: Ghi và đọc lại thanh ghi PT_PPN chính xác.
+- T03: Đọc lại thanh ghi PT_FLAGS sau khi commit entry thành công.
+- T04a: Đọc lại VPN của Entry 1 khi có nhiều PTE entries.
+- T04b: Đọc lại PPN của Entry 1 khi có nhiều PTE entries.
+- T04c: Đọc lại FLAGS của Entry 2 khi có nhiều PTE entries.
+- T04d: Đọc lại FLAGS của Entry 3 khi có nhiều PTE entries.
+- T05: Ghi đè lên một PTE entry cũ (overwrite) hoạt động đúng.
+- T06: Thanh ghi REG_CONFIG chỉ cho phép đọc và trả về giá trị cấu hình mặc định (10040C01).
+- T07: Ghi vào địa chỉ thanh ghi không tồn tại (invalid offset) trả về lỗi DECERR.
+- T08: Đọc từ địa chỉ thanh ghi không tồn tại trả về giá trị rác (DEAD_BEEF).
+
+----------------------------------------------------------------------
+Group 2 – Dịch địa chỉ (Address translation) (T09–T15)
+----------------------------------------------------------------------
+Kiểm tra khả năng dịch địa chỉ ảo (VA) sang địa chỉ vật lý (PA) của MMU:
+- T09: Dịch đồng nhất (Identity mapping) VA = PA thành công.
+- T10: Dịch không đồng nhất (Non-identity) VA 0x8004 -> PA 0x3004 thành công.
+- T11: Đảm bảo phần bù offset trong trang nhớ (0xFFC) được bảo toàn không bị thay đổi.
+- T12a: Cho phép dịch nhiều trang cùng lúc: Trang 4 -> 1.
+- T12b: Cho phép dịch nhiều trang cùng lúc: Trang 5 -> 2.
+- T12c: Cho phép dịch nhiều trang cùng lúc: Trang 6 -> 3.
+- T12d: Cho phép dịch nhiều trang cùng lúc: Trang 7 -> 4.
+- T13a: Dịch thành công khi nạp đầy toàn bộ 16 entry bảng phân trang (Entry 0: 0->15).
+- T13b: Dịch thành công khi nạp đầy toàn bộ 16 entry (Entry 10: 10->5).
+- T14: Đảm bảo giao dịch GHI (write) sau khi dịch sẽ được chuyển tiếp ra bus (downstream AXI).
+- T15: Đảm bảo giao dịch ĐỌC (read) sau khi dịch trả về đúng dữ liệu từ bộ nhớ vật lý.
+
+----------------------------------------------------------------------
+Group 3 – Bộ nhớ đệm TLB và thuật toán thay thế (TLB cache and replacement) (T16–T24)
+----------------------------------------------------------------------
+Kiểm tra hoạt động và các thuật toán thay thế bộ đệm TLB:
+- T16a: Lần truy cập đầu tiên vào trang mới gây ra TLB miss (bắt buộc tìm trong Page Table).
+- T16b: Lần truy cập thứ 2 vào cùng trang sinh ra TLB hit (không tốn thời gian tra bảng).
+- T17: Dữ liệu đọc qua TLB hit trả về chính xác.
+- T18: Ra lệnh xóa TLB (Invalidate) khiến cho lần truy cập tiếp theo bị TLB miss lại.
+- T19: Khi một PTE entry bị cập nhật, MMU tự động xóa toàn bộ TLB (auto-invalidate) -> gây ra miss.
+- T20: TLB sẽ ưu tiên lấp đầy vào các ô (slot) đang trống (invalid entry).
+- T21: Khi TLB đã đầy, truy cập trang thứ 5 sẽ đuổi 1 trang cũ theo thuật toán Pseudo-LRU (pLRU).
+- T22: Truy cập lại vào trang vừa bị đuổi khỏi TLB sẽ sinh ra TLB miss.
+- T23: Các bộ đếm (Counter) của TLB hit/miss có thể được reset thành 0 thành công.
+- T24: Xảy ra hiện tượng TLB thrashing (truy cập liên tục 5 trang trên TLB 4 chỗ) -> gây ra miss liên tục.
+
+----------------------------------------------------------------------
+Group 4 – Bảo vệ quyền Đọc/Ghi/Thực thi (Read/Write/Execute protection) (T25–T36)
+----------------------------------------------------------------------
+Kiểm tra cơ chế phân quyền (Permissions):
+- T25: Trang Read-only: lệnh Đọc thành công.
+- T26a: Trang Read-only: lệnh Ghi bị chặn, không đẩy ra bus downstream.
+- T26b: Trang Read-only: lệnh Ghi kích hoạt ngắt lỗi (fault_irq).
+- T26c: Mã lỗi trả về đúng là FAULT_WRITE (3).
+- T27: Trang Write-only: lệnh Ghi thành công.
+- T28a: Trang Write-only: lệnh Đọc bị chặn và trả về DEAD_BEEF.
+- T28b: Trang Write-only: lệnh Đọc kích hoạt ngắt lỗi (fault_irq).
+- T28c: Mã lỗi trả về đúng là FAULT_READ (2).
+- T29a: Trang Không cho phép thực thi (No-exec): lệnh Fetch bị chặn trả về DEAD_BEEF.
+- T29b: Trang Không cho phép thực thi: kích hoạt ngắt lỗi.
+- T29c: Mã lỗi trả về đúng là FAULT_EXEC (4).
+- T30: Trang Cho phép thực thi (Execute-permitted): lệnh Fetch thành công.
+- T31a: Trang full quyền (RWX): Ghi thành công.
+- T31b: Trang full quyền (RWX): Đọc thành công.
+- T31c: Trang full quyền (RWX): Thực thi thành công.
+- T32a: Trang Valid-only (không có quyền RWX): Đọc bị lỗi.
+- T32b: Trang Valid-only: Ghi bị lỗi.
+- T32c: Trang Valid-only: Thực thi bị lỗi.
+- T33a: Ghi lỗi do vi phạm phân quyền qua luồng TLB Hit: Ghi bị chặn.
+- T33b: Ghi lỗi vẫn được ghi nhận là một lần TLB Hit.
+- T34a: Ghi lỗi do vi phạm phân quyền qua luồng PT Hit (TLB Miss): Ghi bị chặn.
+- T34b: Ghi lỗi được ghi nhận là một lần TLB Miss.
+- T35a: Đọc lỗi do vi phạm phân quyền qua luồng TLB Hit: trả về DEAD_BEEF.
+- T35b: Đọc lỗi vẫn được ghi nhận là một lần TLB Hit.
+- T36a: Đọc lỗi do vi phạm phân quyền qua luồng PT Hit: trả về DEAD_BEEF.
+- T36b: Đọc lỗi được ghi nhận là một lần TLB Miss.
+
+----------------------------------------------------------------------
+Group 5 – Xử lý lỗi trang (Page-fault handling) (T37–T43)
+----------------------------------------------------------------------
+Kiểm tra xử lý ngoại lệ khi truy cập vùng nhớ chưa map:
+- T37a: Ghi vào trang chưa được map (unmapped page) bị chặn.
+- T37b: Mã lỗi trả về đúng là FAULT_PAGE (1).
+- T37c: Cờ fault_pending (sticky bit) được kích hoạt và giữ nguyên.
+- T38a: Đọc từ trang chưa được map bị chặn và trả về DEAD_BEEF.
+- T38b: Mã lỗi trả về đúng là FAULT_PAGE (1).
+- T39: Thanh ghi FAULT_VA lưu trữ đúng địa chỉ (Address) đã gây ra lỗi.
+- T40a: Định dạng thanh ghi STATUS hiển thị đúng trạng thái mmu_enabled = 1.
+- T40b: Định dạng thanh ghi STATUS hiển thị đúng trạng thái fault_pending = 1.
+- T40c: Định dạng thanh ghi STATUS hiển thị đúng mã lỗi PAGE (1).
+- T41a: Tín hiệu ngắt fault_irq kéo lên mức CAO trước khi được phần mềm xóa.
+- T41b: Tín hiệu ngắt fault_irq hạ xuống mức THẤP ngay sau khi ra lệnh xóa.
+- T41c: Cờ fault_pending trở lại 0.
+- T41d: Mã lỗi (fault_code) trở lại trạng thái NONE.
+- T42: Các giao dịch gây ra lỗi trang không được phép tăng biến đếm của downstream bus.
+- T43: Nếu xảy ra nhiều lỗi trang liên tiếp chưa kịp xử lý, thanh ghi FAULT_VA luôn giữ địa chỉ của lỗi CUỐI CÙNG xảy ra.
+
+----------------------------------------------------------------------
+Group 6 – Cơ chế MMIO bypass (T44–T47)
+----------------------------------------------------------------------
+Kiểm tra khả năng đi tắt thẳng qua MMU cho vùng địa chỉ ngoại vi:
+- T44: Truy cập dải địa chỉ của DMA (0x1000_0040) đi thẳng (bypass translation).
+- T45: Truy cập dải địa chỉ của UART (0x2000_0004) đi thẳng (bypass translation).
+- T46: Truy cập một địa chỉ cực cao tùy ý (0xF000_0000) cũng được cho đi thẳng.
+- T47a: Lệnh GHI vào thanh ghi quản lý MMU không bị tuồn ra bus downstream.
+- T47b: Lệnh ĐỌC từ thanh ghi quản lý MMU không bị tuồn ra bus downstream.
+
+----------------------------------------------------------------------
+Group 7 – Bật / tắt MMU (Enable / disable MMU) (T48–T51)
+----------------------------------------------------------------------
+Kiểm tra tính trạng thái vận hành của MMU:
+- T48: Khi MMU bị tắt, các truy cập được map 1:1 (VA=PA).
+- T49a: Tín hiệu nội bộ báo hiệu MMU đã bật được kéo lên.
+- T49b: Khi MMU bật trở lại, quá trình dịch địa chỉ thông qua bảng lại có tác dụng.
+- T50a: Đang chạy thì Tắt MMU đi -> Lại chuyển về map 1:1.
+- T50b: Bật lại MMU sau khi tắt -> Lại tiếp tục dịch trang như bình thường.
+- T51: Việc tắt MMU không làm mất hay xóa các dữ liệu Entry trong bảng phân trang.
+
+----------------------------------------------------------------------
+Group 8 – Tuân thủ giao thức AXI4-Lite (AXI4-Lite protocol compliance) (T52–T56)
+----------------------------------------------------------------------
+Kiểm tra các hành vi tuân thủ tín hiệu Handshake:
+- T52: Xử lý đúng khi tín hiệu địa chỉ (AW) được đẩy trước tín hiệu dữ liệu (W).
+- T53a: Xử lý đúng khi Ghi liên tiếp không nghỉ (Back-to-back write) lệnh 1.
+- T53b: Xử lý đúng khi Ghi liên tiếp không nghỉ (Back-to-back write) lệnh 2.
+- T54a: Xử lý đúng khi Đọc liên tiếp không nghỉ (Back-to-back read) lệnh 1.
+- T54b: Xử lý đúng khi Đọc liên tiếp không nghỉ (Back-to-back read) lệnh 2.
+- T55a: Cho phép đan xen (Interleave) luồng Đọc và Ghi một cách chính xác - lệnh đọc trả đúng dữ liệu.
+- T55b: Đan xen luồng Đọc và Ghi - lệnh ghi xuống bộ nhớ chính xác.
+- T56a: Xử lý đúng khi CPU giữ tín hiệu READY Đọc (rready) trễ - dữ liệu không bị mất.
+- T56b: Xử lý đúng khi CPU giữ tín hiệu READY Ghi (bready) trễ - dữ liệu được ghi chốt chuẩn xác.

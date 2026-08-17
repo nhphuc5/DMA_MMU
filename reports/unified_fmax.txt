@@ -1,0 +1,7 @@
+UNIFIED PICORV32 + CPU-MMU + DMA/IOMMU + AXI FMAX REPORT
+Formula: Tcritical(ns)=Tconstraint(ns)-WNS(ns)
+Formula: Fmax(MHz)=1000/Tcritical(ns)
+Clock constraint: 6.667 ns (149.993 MHz)
+WNS: 0.219 ns
+Substitution: Tcritical=6.667-(0.219)=6.448 ns
+Substitution: Fmax=1000/6.448=155.087 MHz

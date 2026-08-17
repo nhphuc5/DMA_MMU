@@ -1,0 +1,51 @@
+DMA/IOMMU/PicoRV32 SAFE OPTIMIZATION SUMMARY
+============================================
+Architecture and externally visible functions are unchanged.
+Device: xc7a35tcpg236-1
+
+POST-ROUTE FREQUENCY
+--------------------
+Previous whole-system Fmax        : approximately 140.7 MHz
+Verified final clock target       : 149.993 MHz (6.667 ns)
+Final post-route WNS              : +0.328 ns
+Estimated post-route Fmax ceiling : 157.754 MHz
+DMA internal estimated Fmax       : 157.754 MHz
+IOMMU internal estimated Fmax     : 173.943 MHz
+
+THROUGHPUT CYCLE IMPROVEMENT (frequency independent)
+----------------------------------------------------
+Transfer / mode              Before       Final        Cycle reduction
+M2M / Burst                  40 cycles    40 cycles     0.0%
+S2M / Cycle-Stealing        162 cycles   134 cycles    17.3%
+M2S / Transparent           147 cycles   119 cycles    19.0%
+
+FINAL MEASURED EFFECTIVE SPEED AT VERIFIED 149.993 MHz
+------------------------------------------------------
+M2M / Burst                 : 119.994 MB/s start-to-done
+S2M / Cycle-Stealing        :  35.819 MB/s start-to-done
+M2S / Transparent           :  40.334 MB/s start-to-done
+32-bit active-beat peak     : 599.970 MB/s per direction
+
+WHY CYCLE-STEALING AND TRANSPARENT REMAIN BELOW PEAK
+----------------------------------------------------
+Cycle-Stealing intentionally releases the bus after every word.
+Transparent intentionally waits until the CPU leaves the bus idle.
+Removing those gaps would change the requested DMA mode semantics.
+
+VERIFICATION
+------------
+M2M data comparison         : PASS (8/8 words)
+S2M data comparison         : PASS (8/8 words)
+M2S data comparison         : PASS (8/8 words, TLAST correct)
+IOMMU permission denial     : PASS (fault 0x32)
+PicoRV32 firmware/SoC test  : PASS
+Unified verification        : ALL TESTS PASSED
+Implementation              : ROUTED, timing met at 150 MHz
+
+See also:
+  dma_throughput.log
+  unified_fmax.txt
+  dma_iommu_separate_fmax.log
+  unified_timing.rpt
+  unified_utilization.rpt
+  unified_verification.log
