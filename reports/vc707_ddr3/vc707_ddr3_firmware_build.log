@@ -1,0 +1,10 @@
+make[1]: Entering directory 'D:/DMA_MMU-main(1)/firmware'
+[1/4] C++ to ELF32 RV32I
+[2/4] ELF to raw binary
+[3/4] Binary to 64-KiB AXI-RAM HEX image
+[4/4] Verify ELF class, machine, and ISA
+  Class:                             ELF32
+  Machine:                           RISC-V
+  Tag_RISCV_arch: "rv32i2p1"
+SUCCESS: src/soc_ddr3_test.cpp -> build/vc707_ddr3/soc_ddr3_test.elf -> build/vc707_ddr3/soc_ddr3_test.bin -> build/vc707_ddr3/soc_ddr3_test.hex
+make[1]: Leaving directory 'D:/DMA_MMU-main(1)/firmware'

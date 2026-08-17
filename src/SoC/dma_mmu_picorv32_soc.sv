@@ -17,6 +17,7 @@ module dma_mmu_picorv32_soc #(
     parameter int UART_DEFAULT_DIV = 434,
     parameter MEM_INIT_FILE = "",
     parameter bit ENABLE_DDR3 = 1'b0,
+    parameter bit USE_EXTERNAL_DDR_AXI = 1'b0,
     parameter logic [31:0] DDR_BASE_ADDR = 32'h8000_0000,
     parameter logic [31:0] DDR_SIZE_BYTES = 32'h4000_0000
 ) (
@@ -48,7 +49,53 @@ module dma_mmu_picorv32_soc #(
     input  logic ddr_dfi_error_i,
     output logic ddr_phy_calib_start_o,
     input  logic ddr_phy_calib_done_i,
-    input  logic ddr_phy_calib_error_i
+    input  logic ddr_phy_calib_error_i,
+
+    // Optional board-level AXI connection to a complete DDR controller/PHY.
+    // Width is 32 bits here; the VC707 top performs CDC and width conversion
+    // before the 512-bit MIG user interface.
+    output logic [DMA_AXI_ID_WIDTH+1:0] m_ddr_axi_awid,
+    output logic [AXI_ADDR_WIDTH-1:0]   m_ddr_axi_awaddr,
+    output logic [7:0]                  m_ddr_axi_awlen,
+    output logic [2:0]                  m_ddr_axi_awsize,
+    output logic [1:0]                  m_ddr_axi_awburst,
+    output logic                        m_ddr_axi_awlock,
+    output logic [3:0]                  m_ddr_axi_awcache,
+    output logic [2:0]                  m_ddr_axi_awprot,
+    output logic [3:0]                  m_ddr_axi_awqos,
+    output logic [3:0]                  m_ddr_axi_awregion,
+    output logic                        m_ddr_axi_awvalid,
+    input  logic                        m_ddr_axi_awready,
+    output logic [AXI_DATA_WIDTH-1:0]   m_ddr_axi_wdata,
+    output logic [AXI_DATA_WIDTH/8-1:0] m_ddr_axi_wstrb,
+    output logic                        m_ddr_axi_wlast,
+    output logic                        m_ddr_axi_wvalid,
+    input  logic                        m_ddr_axi_wready,
+    input  logic [DMA_AXI_ID_WIDTH+1:0] m_ddr_axi_bid,
+    input  logic [1:0]                  m_ddr_axi_bresp,
+    input  logic                        m_ddr_axi_bvalid,
+    output logic                        m_ddr_axi_bready,
+    output logic [DMA_AXI_ID_WIDTH+1:0] m_ddr_axi_arid,
+    output logic [AXI_ADDR_WIDTH-1:0]   m_ddr_axi_araddr,
+    output logic [7:0]                  m_ddr_axi_arlen,
+    output logic [2:0]                  m_ddr_axi_arsize,
+    output logic [1:0]                  m_ddr_axi_arburst,
+    output logic                        m_ddr_axi_arlock,
+    output logic [3:0]                  m_ddr_axi_arcache,
+    output logic [2:0]                  m_ddr_axi_arprot,
+    output logic [3:0]                  m_ddr_axi_arqos,
+    output logic [3:0]                  m_ddr_axi_arregion,
+    output logic                        m_ddr_axi_arvalid,
+    input  logic                        m_ddr_axi_arready,
+    input  logic [DMA_AXI_ID_WIDTH+1:0] m_ddr_axi_rid,
+    input  logic [AXI_DATA_WIDTH-1:0]   m_ddr_axi_rdata,
+    input  logic [1:0]                  m_ddr_axi_rresp,
+    input  logic                        m_ddr_axi_rlast,
+    input  logic                        m_ddr_axi_rvalid,
+    output logic                        m_ddr_axi_rready,
+    input  logic                        external_ddr_calib_done_i,
+    input  logic                        external_ddr_calib_error_i,
+    input  logic                        external_ddr_ui_reset_i
 );
 
     localparam int SYS_ID_WIDTH = DMA_AXI_ID_WIDTH + 1;
@@ -85,6 +132,14 @@ module dma_mmu_picorv32_soc #(
     wire cpu_mmu_idle;
     wire [31:0] cpu_mmu_tlb_hits;
     wire [31:0] cpu_mmu_tlb_misses;
+    wire [31:0] ddr_status_word;
+
+    assign ddr_status_word = {
+        USE_EXTERNAL_DDR_AXI, 26'd0,
+        (USE_EXTERNAL_DDR_AXI ? external_ddr_ui_reset_i : 1'b0),
+        ddr_refresh_busy_o, ddr_calib_error_o,
+        ddr_calib_done_o, ddr_init_done_o
+    };
 
     wire systolic_irq;
     // IRQ bit 6 is reserved for CPU-side MMU faults.  Existing DMA/UART IRQ
@@ -316,6 +371,7 @@ module dma_mmu_picorv32_soc #(
         .m_systolic_arvalid(systolic_axil_arvalid), .m_systolic_arready(systolic_axil_arready),
         .m_systolic_rdata(systolic_axil_rdata), .m_systolic_rresp(systolic_axil_rresp),
         .m_systolic_rvalid(systolic_axil_rvalid), .m_systolic_rready(systolic_axil_rready),
+        .ddr_status_i(ddr_status_word),
         .cpu_bus_idle_o(cpu_bus_idle)
     );
 
@@ -648,6 +704,7 @@ module dma_mmu_picorv32_soc #(
                 .AXI_ID_WIDTH(MEM_ID_WIDTH),
                 .BRAM_ADDR_WIDTH(BRAM_ADDR_WIDTH),
                 .BOOT_INIT_FILE(MEM_INIT_FILE),
+                .USE_EXTERNAL_DDR_AXI(USE_EXTERNAL_DDR_AXI),
                 .DDR_BASE_ADDR(DDR_BASE_ADDR),
                 .DDR_SIZE_BYTES(DDR_SIZE_BYTES)
             ) memory_subsystem_inst (
@@ -686,7 +743,21 @@ module dma_mmu_picorv32_soc #(
                 .dfi_error_i(ddr_dfi_error_i),
                 .phy_calib_start_o(ddr_phy_calib_start_o),
                 .phy_calib_done_i(ddr_phy_calib_done_i),
-                .phy_calib_error_i(ddr_phy_calib_error_i)
+                .phy_calib_error_i(ddr_phy_calib_error_i),
+                .m_ddr_axi_awid, .m_ddr_axi_awaddr, .m_ddr_axi_awlen,
+                .m_ddr_axi_awsize, .m_ddr_axi_awburst, .m_ddr_axi_awlock,
+                .m_ddr_axi_awcache, .m_ddr_axi_awprot, .m_ddr_axi_awqos,
+                .m_ddr_axi_awregion, .m_ddr_axi_awvalid, .m_ddr_axi_awready,
+                .m_ddr_axi_wdata, .m_ddr_axi_wstrb, .m_ddr_axi_wlast,
+                .m_ddr_axi_wvalid, .m_ddr_axi_wready, .m_ddr_axi_bid,
+                .m_ddr_axi_bresp, .m_ddr_axi_bvalid, .m_ddr_axi_bready,
+                .m_ddr_axi_arid, .m_ddr_axi_araddr, .m_ddr_axi_arlen,
+                .m_ddr_axi_arsize, .m_ddr_axi_arburst, .m_ddr_axi_arlock,
+                .m_ddr_axi_arcache, .m_ddr_axi_arprot, .m_ddr_axi_arqos,
+                .m_ddr_axi_arregion, .m_ddr_axi_arvalid, .m_ddr_axi_arready,
+                .m_ddr_axi_rid, .m_ddr_axi_rdata, .m_ddr_axi_rresp,
+                .m_ddr_axi_rlast, .m_ddr_axi_rvalid, .m_ddr_axi_rready,
+                .external_ddr_calib_done_i, .external_ddr_calib_error_i
             );
         end else begin : g_bram_only
             axi_ram #(
@@ -728,6 +799,34 @@ module dma_mmu_picorv32_soc #(
                 ddr_dfi_wrdata_o = '0;
                 ddr_dfi_wrmask_o = '1;
                 ddr_phy_calib_start_o = 1'b0;
+                m_ddr_axi_awid = '0;
+                m_ddr_axi_awaddr = '0;
+                m_ddr_axi_awlen = '0;
+                m_ddr_axi_awsize = '0;
+                m_ddr_axi_awburst = '0;
+                m_ddr_axi_awlock = 1'b0;
+                m_ddr_axi_awcache = '0;
+                m_ddr_axi_awprot = '0;
+                m_ddr_axi_awqos = '0;
+                m_ddr_axi_awregion = '0;
+                m_ddr_axi_awvalid = 1'b0;
+                m_ddr_axi_wdata = '0;
+                m_ddr_axi_wstrb = '0;
+                m_ddr_axi_wlast = 1'b0;
+                m_ddr_axi_wvalid = 1'b0;
+                m_ddr_axi_bready = 1'b0;
+                m_ddr_axi_arid = '0;
+                m_ddr_axi_araddr = '0;
+                m_ddr_axi_arlen = '0;
+                m_ddr_axi_arsize = '0;
+                m_ddr_axi_arburst = '0;
+                m_ddr_axi_arlock = 1'b0;
+                m_ddr_axi_arcache = '0;
+                m_ddr_axi_arprot = '0;
+                m_ddr_axi_arqos = '0;
+                m_ddr_axi_arregion = '0;
+                m_ddr_axi_arvalid = 1'b0;
+                m_ddr_axi_rready = 1'b0;
             end
         end
     endgenerate

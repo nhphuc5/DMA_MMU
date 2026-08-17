@@ -8,6 +8,10 @@ module axi_bram_ddr3_subsystem #(
     parameter int AXI_ID_WIDTH = 6,
     parameter int BRAM_ADDR_WIDTH = 16,
     parameter BOOT_INIT_FILE = "",
+    // Select the board-level MIG AXI port instead of the project-owned
+    // controller/DFI-lite path.  The default keeps all existing simulations
+    // and non-MIG integrations source-compatible.
+    parameter bit USE_EXTERNAL_DDR_AXI = 1'b0,
     parameter logic [AXI_ADDR_WIDTH-1:0] DDR_BASE_ADDR = 32'h8000_0000,
     parameter logic [AXI_ADDR_WIDTH-1:0] DDR_SIZE_BYTES = 32'h4000_0000,
     parameter int DDR_ROW_WIDTH = 16,
@@ -74,7 +78,51 @@ module axi_bram_ddr3_subsystem #(
     input  logic                         dfi_error_i,
     output logic                         phy_calib_start_o,
     input  logic                         phy_calib_done_i,
-    input  logic                         phy_calib_error_i
+    input  logic                         phy_calib_error_i,
+
+    // 32-bit AXI4 master exported to a vendor DDR PHY/controller such as MIG.
+    // Addresses are rebased to zero at DDR_BASE_ADDR.
+    output logic [AXI_ID_WIDTH-1:0]      m_ddr_axi_awid,
+    output logic [AXI_ADDR_WIDTH-1:0]    m_ddr_axi_awaddr,
+    output logic [7:0]                   m_ddr_axi_awlen,
+    output logic [2:0]                   m_ddr_axi_awsize,
+    output logic [1:0]                   m_ddr_axi_awburst,
+    output logic                         m_ddr_axi_awlock,
+    output logic [3:0]                   m_ddr_axi_awcache,
+    output logic [2:0]                   m_ddr_axi_awprot,
+    output logic [3:0]                   m_ddr_axi_awqos,
+    output logic [3:0]                   m_ddr_axi_awregion,
+    output logic                         m_ddr_axi_awvalid,
+    input  logic                         m_ddr_axi_awready,
+    output logic [AXI_DATA_WIDTH-1:0]    m_ddr_axi_wdata,
+    output logic [AXI_DATA_WIDTH/8-1:0]  m_ddr_axi_wstrb,
+    output logic                         m_ddr_axi_wlast,
+    output logic                         m_ddr_axi_wvalid,
+    input  logic                         m_ddr_axi_wready,
+    input  logic [AXI_ID_WIDTH-1:0]      m_ddr_axi_bid,
+    input  logic [1:0]                   m_ddr_axi_bresp,
+    input  logic                         m_ddr_axi_bvalid,
+    output logic                         m_ddr_axi_bready,
+    output logic [AXI_ID_WIDTH-1:0]      m_ddr_axi_arid,
+    output logic [AXI_ADDR_WIDTH-1:0]    m_ddr_axi_araddr,
+    output logic [7:0]                   m_ddr_axi_arlen,
+    output logic [2:0]                   m_ddr_axi_arsize,
+    output logic [1:0]                   m_ddr_axi_arburst,
+    output logic                         m_ddr_axi_arlock,
+    output logic [3:0]                   m_ddr_axi_arcache,
+    output logic [2:0]                   m_ddr_axi_arprot,
+    output logic [3:0]                   m_ddr_axi_arqos,
+    output logic [3:0]                   m_ddr_axi_arregion,
+    output logic                         m_ddr_axi_arvalid,
+    input  logic                         m_ddr_axi_arready,
+    input  logic [AXI_ID_WIDTH-1:0]      m_ddr_axi_rid,
+    input  logic [AXI_DATA_WIDTH-1:0]    m_ddr_axi_rdata,
+    input  logic [1:0]                   m_ddr_axi_rresp,
+    input  logic                         m_ddr_axi_rlast,
+    input  logic                         m_ddr_axi_rvalid,
+    output logic                         m_ddr_axi_rready,
+    input  logic                         external_ddr_calib_done_i,
+    input  logic                         external_ddr_calib_error_i
 );
 
     localparam int M_COUNT = 2;
@@ -98,15 +146,15 @@ module axi_bram_ddr3_subsystem #(
     wire [M_COUNT*4-1:0] m_awqos;
     wire [M_COUNT*4-1:0] m_awregion;
     wire [M_COUNT-1:0] m_awvalid;
-    wire [M_COUNT-1:0] m_awready;
+    logic [M_COUNT-1:0] m_awready;
     wire [M_COUNT*AXI_DATA_WIDTH-1:0] m_wdata;
     wire [M_COUNT*STRB_WIDTH-1:0] m_wstrb;
     wire [M_COUNT-1:0] m_wlast;
     wire [M_COUNT-1:0] m_wvalid;
-    wire [M_COUNT-1:0] m_wready;
-    wire [M_COUNT*AXI_ID_WIDTH-1:0] m_bid;
-    wire [M_COUNT*2-1:0] m_bresp;
-    wire [M_COUNT-1:0] m_bvalid;
+    logic [M_COUNT-1:0] m_wready;
+    logic [M_COUNT*AXI_ID_WIDTH-1:0] m_bid;
+    logic [M_COUNT*2-1:0] m_bresp;
+    logic [M_COUNT-1:0] m_bvalid;
     wire [M_COUNT-1:0] m_bready;
     wire [M_COUNT*AXI_ID_WIDTH-1:0] m_arid;
     wire [M_COUNT*AXI_ADDR_WIDTH-1:0] m_araddr;
@@ -119,12 +167,12 @@ module axi_bram_ddr3_subsystem #(
     wire [M_COUNT*4-1:0] m_arqos;
     wire [M_COUNT*4-1:0] m_arregion;
     wire [M_COUNT-1:0] m_arvalid;
-    wire [M_COUNT-1:0] m_arready;
-    wire [M_COUNT*AXI_ID_WIDTH-1:0] m_rid;
-    wire [M_COUNT*AXI_DATA_WIDTH-1:0] m_rdata;
-    wire [M_COUNT*2-1:0] m_rresp;
-    wire [M_COUNT-1:0] m_rlast;
-    wire [M_COUNT-1:0] m_rvalid;
+    logic [M_COUNT-1:0] m_arready;
+    logic [M_COUNT*AXI_ID_WIDTH-1:0] m_rid;
+    logic [M_COUNT*AXI_DATA_WIDTH-1:0] m_rdata;
+    logic [M_COUNT*2-1:0] m_rresp;
+    logic [M_COUNT-1:0] m_rlast;
+    logic [M_COUNT-1:0] m_rvalid;
     wire [M_COUNT-1:0] m_rready;
 
     axi_crossbar #(
@@ -212,47 +260,139 @@ module axi_bram_ddr3_subsystem #(
         .s_axi_rvalid(m_rvalid[0]), .s_axi_rready(m_rready[0])
     );
 
-    axi_ddr3_controller #(
-        .AXI_ADDR_WIDTH(AXI_ADDR_WIDTH), .AXI_DATA_WIDTH(AXI_DATA_WIDTH),
-        .AXI_ID_WIDTH(AXI_ID_WIDTH), .DDR_BASE_ADDR(DDR_BASE_ADDR),
-        .DDR_SIZE_BYTES(DDR_SIZE_BYTES), .ROW_WIDTH(DDR_ROW_WIDTH),
-        .COL_WIDTH(DDR_COL_WIDTH), .BANK_WIDTH(DDR_BANK_WIDTH)
-    ) ddr_controller_inst (
-        .aclk(clk_i), .aresetn(!rst_i),
-        .s_axi_awid(m_awid[AXI_ID_WIDTH +: AXI_ID_WIDTH]),
-        .s_axi_awaddr(m_awaddr[AXI_ADDR_WIDTH +: AXI_ADDR_WIDTH]),
-        .s_axi_awlen(m_awlen[8 +: 8]), .s_axi_awsize(m_awsize[3 +: 3]),
-        .s_axi_awburst(m_awburst[2 +: 2]), .s_axi_awlock(m_awlock[1]),
-        .s_axi_awcache(m_awcache[4 +: 4]), .s_axi_awprot(m_awprot[3 +: 3]),
-        .s_axi_awqos(m_awqos[4 +: 4]),
-        .s_axi_awvalid(m_awvalid[1]), .s_axi_awready(m_awready[1]),
-        .s_axi_wdata(m_wdata[AXI_DATA_WIDTH +: AXI_DATA_WIDTH]),
-        .s_axi_wstrb(m_wstrb[STRB_WIDTH +: STRB_WIDTH]),
-        .s_axi_wlast(m_wlast[1]), .s_axi_wvalid(m_wvalid[1]),
-        .s_axi_wready(m_wready[1]),
-        .s_axi_bid(m_bid[AXI_ID_WIDTH +: AXI_ID_WIDTH]),
-        .s_axi_bresp(m_bresp[2 +: 2]), .s_axi_bvalid(m_bvalid[1]),
-        .s_axi_bready(m_bready[1]),
-        .s_axi_arid(m_arid[AXI_ID_WIDTH +: AXI_ID_WIDTH]),
-        .s_axi_araddr(m_araddr[AXI_ADDR_WIDTH +: AXI_ADDR_WIDTH]),
-        .s_axi_arlen(m_arlen[8 +: 8]), .s_axi_arsize(m_arsize[3 +: 3]),
-        .s_axi_arburst(m_arburst[2 +: 2]), .s_axi_arlock(m_arlock[1]),
-        .s_axi_arcache(m_arcache[4 +: 4]), .s_axi_arprot(m_arprot[3 +: 3]),
-        .s_axi_arqos(m_arqos[4 +: 4]),
-        .s_axi_arvalid(m_arvalid[1]), .s_axi_arready(m_arready[1]),
-        .s_axi_rid(m_rid[AXI_ID_WIDTH +: AXI_ID_WIDTH]),
-        .s_axi_rdata(m_rdata[AXI_DATA_WIDTH +: AXI_DATA_WIDTH]),
-        .s_axi_rresp(m_rresp[2 +: 2]), .s_axi_rlast(m_rlast[1]),
-        .s_axi_rvalid(m_rvalid[1]), .s_axi_rready(m_rready[1]),
-        .init_done_o(ddr_init_done_o), .calib_done_o(ddr_calib_done_o),
-        .calib_error_o(ddr_calib_error_o),
-        .refresh_busy_o(ddr_refresh_busy_o),
-        .refresh_count_o(ddr_refresh_count_o),
-        .dfi_cmd_valid_o, .dfi_cmd_ready_i, .dfi_cmd_o, .dfi_bank_o,
-        .dfi_addr_o, .dfi_wrdata_o, .dfi_wrmask_o,
-        .dfi_rddata_valid_i, .dfi_rddata_i, .dfi_error_i,
-        .phy_calib_start_o, .phy_calib_done_i, .phy_calib_error_i
-    );
+    generate
+        if (USE_EXTERNAL_DDR_AXI) begin : g_external_ddr
+            always_comb begin
+                m_ddr_axi_awid     = m_awid[AXI_ID_WIDTH +: AXI_ID_WIDTH];
+                m_ddr_axi_awaddr   = m_awaddr[AXI_ADDR_WIDTH +: AXI_ADDR_WIDTH]
+                                   - DDR_BASE_ADDR;
+                m_ddr_axi_awlen    = m_awlen[8 +: 8];
+                m_ddr_axi_awsize   = m_awsize[3 +: 3];
+                m_ddr_axi_awburst  = m_awburst[2 +: 2];
+                m_ddr_axi_awlock   = m_awlock[1];
+                m_ddr_axi_awcache  = m_awcache[4 +: 4];
+                m_ddr_axi_awprot   = m_awprot[3 +: 3];
+                m_ddr_axi_awqos    = m_awqos[4 +: 4];
+                m_ddr_axi_awregion = m_awregion[4 +: 4];
+                m_ddr_axi_awvalid  = m_awvalid[1];
+                m_awready[1]       = m_ddr_axi_awready;
+                m_ddr_axi_wdata    = m_wdata[AXI_DATA_WIDTH +: AXI_DATA_WIDTH];
+                m_ddr_axi_wstrb    = m_wstrb[STRB_WIDTH +: STRB_WIDTH];
+                m_ddr_axi_wlast    = m_wlast[1];
+                m_ddr_axi_wvalid   = m_wvalid[1];
+                m_wready[1]        = m_ddr_axi_wready;
+                m_bid[AXI_ID_WIDTH +: AXI_ID_WIDTH] = m_ddr_axi_bid;
+                m_bresp[2 +: 2]    = m_ddr_axi_bresp;
+                m_bvalid[1]        = m_ddr_axi_bvalid;
+                m_ddr_axi_bready   = m_bready[1];
+                m_ddr_axi_arid     = m_arid[AXI_ID_WIDTH +: AXI_ID_WIDTH];
+                m_ddr_axi_araddr   = m_araddr[AXI_ADDR_WIDTH +: AXI_ADDR_WIDTH]
+                                   - DDR_BASE_ADDR;
+                m_ddr_axi_arlen    = m_arlen[8 +: 8];
+                m_ddr_axi_arsize   = m_arsize[3 +: 3];
+                m_ddr_axi_arburst  = m_arburst[2 +: 2];
+                m_ddr_axi_arlock   = m_arlock[1];
+                m_ddr_axi_arcache  = m_arcache[4 +: 4];
+                m_ddr_axi_arprot   = m_arprot[3 +: 3];
+                m_ddr_axi_arqos    = m_arqos[4 +: 4];
+                m_ddr_axi_arregion = m_arregion[4 +: 4];
+                m_ddr_axi_arvalid  = m_arvalid[1];
+                m_arready[1]       = m_ddr_axi_arready;
+                m_rid[AXI_ID_WIDTH +: AXI_ID_WIDTH] = m_ddr_axi_rid;
+                m_rdata[AXI_DATA_WIDTH +: AXI_DATA_WIDTH] = m_ddr_axi_rdata;
+                m_rresp[2 +: 2]    = m_ddr_axi_rresp;
+                m_rlast[1]         = m_ddr_axi_rlast;
+                m_rvalid[1]        = m_ddr_axi_rvalid;
+                m_ddr_axi_rready   = m_rready[1];
+
+                ddr_init_done_o     = external_ddr_calib_done_i;
+                ddr_calib_done_o    = external_ddr_calib_done_i;
+                ddr_calib_error_o   = external_ddr_calib_error_i;
+                ddr_refresh_busy_o  = 1'b0;
+                ddr_refresh_count_o = '0;
+                dfi_cmd_valid_o     = 1'b0;
+                dfi_cmd_o           = '0;
+                dfi_bank_o          = '0;
+                dfi_addr_o          = '0;
+                dfi_wrdata_o        = '0;
+                dfi_wrmask_o        = '1;
+                phy_calib_start_o   = 1'b0;
+            end
+        end else begin : g_internal_ddr
+            axi_ddr3_controller #(
+                .AXI_ADDR_WIDTH(AXI_ADDR_WIDTH), .AXI_DATA_WIDTH(AXI_DATA_WIDTH),
+                .AXI_ID_WIDTH(AXI_ID_WIDTH), .DDR_BASE_ADDR(DDR_BASE_ADDR),
+                .DDR_SIZE_BYTES(DDR_SIZE_BYTES), .ROW_WIDTH(DDR_ROW_WIDTH),
+                .COL_WIDTH(DDR_COL_WIDTH), .BANK_WIDTH(DDR_BANK_WIDTH)
+            ) ddr_controller_inst (
+                .aclk(clk_i), .aresetn(!rst_i),
+                .s_axi_awid(m_awid[AXI_ID_WIDTH +: AXI_ID_WIDTH]),
+                .s_axi_awaddr(m_awaddr[AXI_ADDR_WIDTH +: AXI_ADDR_WIDTH]),
+                .s_axi_awlen(m_awlen[8 +: 8]), .s_axi_awsize(m_awsize[3 +: 3]),
+                .s_axi_awburst(m_awburst[2 +: 2]), .s_axi_awlock(m_awlock[1]),
+                .s_axi_awcache(m_awcache[4 +: 4]), .s_axi_awprot(m_awprot[3 +: 3]),
+                .s_axi_awqos(m_awqos[4 +: 4]),
+                .s_axi_awvalid(m_awvalid[1]), .s_axi_awready(m_awready[1]),
+                .s_axi_wdata(m_wdata[AXI_DATA_WIDTH +: AXI_DATA_WIDTH]),
+                .s_axi_wstrb(m_wstrb[STRB_WIDTH +: STRB_WIDTH]),
+                .s_axi_wlast(m_wlast[1]), .s_axi_wvalid(m_wvalid[1]),
+                .s_axi_wready(m_wready[1]),
+                .s_axi_bid(m_bid[AXI_ID_WIDTH +: AXI_ID_WIDTH]),
+                .s_axi_bresp(m_bresp[2 +: 2]), .s_axi_bvalid(m_bvalid[1]),
+                .s_axi_bready(m_bready[1]),
+                .s_axi_arid(m_arid[AXI_ID_WIDTH +: AXI_ID_WIDTH]),
+                .s_axi_araddr(m_araddr[AXI_ADDR_WIDTH +: AXI_ADDR_WIDTH]),
+                .s_axi_arlen(m_arlen[8 +: 8]), .s_axi_arsize(m_arsize[3 +: 3]),
+                .s_axi_arburst(m_arburst[2 +: 2]), .s_axi_arlock(m_arlock[1]),
+                .s_axi_arcache(m_arcache[4 +: 4]), .s_axi_arprot(m_arprot[3 +: 3]),
+                .s_axi_arqos(m_arqos[4 +: 4]),
+                .s_axi_arvalid(m_arvalid[1]), .s_axi_arready(m_arready[1]),
+                .s_axi_rid(m_rid[AXI_ID_WIDTH +: AXI_ID_WIDTH]),
+                .s_axi_rdata(m_rdata[AXI_DATA_WIDTH +: AXI_DATA_WIDTH]),
+                .s_axi_rresp(m_rresp[2 +: 2]), .s_axi_rlast(m_rlast[1]),
+                .s_axi_rvalid(m_rvalid[1]), .s_axi_rready(m_rready[1]),
+                .init_done_o(ddr_init_done_o), .calib_done_o(ddr_calib_done_o),
+                .calib_error_o(ddr_calib_error_o),
+                .refresh_busy_o(ddr_refresh_busy_o),
+                .refresh_count_o(ddr_refresh_count_o),
+                .dfi_cmd_valid_o, .dfi_cmd_ready_i, .dfi_cmd_o, .dfi_bank_o,
+                .dfi_addr_o, .dfi_wrdata_o, .dfi_wrmask_o,
+                .dfi_rddata_valid_i, .dfi_rddata_i, .dfi_error_i,
+                .phy_calib_start_o, .phy_calib_done_i, .phy_calib_error_i
+            );
+
+            always_comb begin
+                m_ddr_axi_awid = '0;
+                m_ddr_axi_awaddr = '0;
+                m_ddr_axi_awlen = '0;
+                m_ddr_axi_awsize = '0;
+                m_ddr_axi_awburst = '0;
+                m_ddr_axi_awlock = 1'b0;
+                m_ddr_axi_awcache = '0;
+                m_ddr_axi_awprot = '0;
+                m_ddr_axi_awqos = '0;
+                m_ddr_axi_awregion = '0;
+                m_ddr_axi_awvalid = 1'b0;
+                m_ddr_axi_wdata = '0;
+                m_ddr_axi_wstrb = '0;
+                m_ddr_axi_wlast = 1'b0;
+                m_ddr_axi_wvalid = 1'b0;
+                m_ddr_axi_bready = 1'b0;
+                m_ddr_axi_arid = '0;
+                m_ddr_axi_araddr = '0;
+                m_ddr_axi_arlen = '0;
+                m_ddr_axi_arsize = '0;
+                m_ddr_axi_arburst = '0;
+                m_ddr_axi_arlock = 1'b0;
+                m_ddr_axi_arcache = '0;
+                m_ddr_axi_arprot = '0;
+                m_ddr_axi_arqos = '0;
+                m_ddr_axi_arregion = '0;
+                m_ddr_axi_arvalid = 1'b0;
+                m_ddr_axi_rready = 1'b0;
+            end
+        end
+    endgenerate
 
     logic _unused;
     assign _unused = &{1'b0, s_axi_awregion, s_axi_arregion,

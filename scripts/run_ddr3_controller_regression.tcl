@@ -36,6 +36,7 @@ set sim_files [list \
     [file join $root_dir "testbench/ddr3_dfi_memory_model.sv"] \
     [file join $root_dir "testbench/tb_axi_ddr3_controller.sv"] \
     [file join $root_dir "testbench/tb_axi_bram_ddr3_subsystem.sv"] \
+    [file join $root_dir "testbench/tb_axi_bram_external_ddr_subsystem.sv"] \
 ]
 add_files -fileset sources_1 -norecurse $design_files
 add_files -fileset sim_1 -norecurse $sim_files
@@ -62,5 +63,12 @@ file copy -force [file join $out_dir \
     "DDR3_Controller_Regression.sim/sim_1/behav/xsim/simulate.log"] \
     [file join $report_dir "xsim_bram_ddr_integration.log"]
 close_sim
+set_property top tb_axi_bram_external_ddr_subsystem [get_filesets sim_1]
+update_compile_order -fileset sim_1
+launch_simulation
+file copy -force [file join $out_dir \
+    "DDR3_Controller_Regression.sim/sim_1/behav/xsim/simulate.log"] \
+    [file join $report_dir "xsim_external_mig_bridge.log"]
+close_sim
 close_project
-puts "DDR3 controller and BRAM+DDR integration XSim regressions completed."
+puts "DDR3 controller, BRAM integration and external MIG bridge XSim regressions completed."

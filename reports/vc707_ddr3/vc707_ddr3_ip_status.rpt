@@ -1,0 +1,38 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Mon Aug 17 20:14:44 2026
+| Host         : LAPTOP-7VHB4FBR running 64-bit major release  (build 9200)
+| Command      : report_ip_status
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+IP Status Summary
+
+1. Project IP Status
+--------------------
+Your project uses 3 IP. Some of these IP may have undergone changes in this release of the software. Please review the recommended actions.
+
+More information on the Xilinx versioning policy is available at www.xilinx.com.
+
+Project IP Instances
++-------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| Instance Name           | Status     | Recommendation      | Change    | IP Name            | IP      | New Version   | New        | Original Part        |
+|                         |            |                     | Log       |                    | Version |               | License    |                      |
++-------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| soc_ddr_axi_converter   | Up-to-date | No changes required |  *(1)     | AXI Data Width     | 2.1     | 2.1 (Rev. 36) | Included   | xc7vx485tffg1761-2   |
+|                         |            |                     |           | Converter          | (Rev.   |               |            |                      |
+|                         |            |                     |           |                    | 36)     |               |            |                      |
++-------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| soc_ddr_clock_converter | Up-to-date | No changes required |  *(2)     | AXI Clock          | 2.1     | 2.1 (Rev. 34) | Included   | xc7vx485tffg1761-2   |
+|                         |            |                     |           | Converter          | (Rev.   |               |            |                      |
+|                         |            |                     |           |                    | 34)     |               |            |                      |
++-------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+| vc707_mig               | Up-to-date | No changes required |  *(3)     | Memory Interface   | 4.2     | 4.2 (Rev. 2)  | Included   | xc7vx485tffg1761-2   |
+|                         |            |                     |           | Generator (MIG 7   | (Rev.   |               |            |                      |
+|                         |            |                     |           | Series)            | 2)      |               |            |                      |
++-------------------------+------------+---------------------+-----------+--------------------+---------+---------------+------------+----------------------+
+*(1) d:/2025.1/Vivado/data/ip/xilinx/axi_dwidth_converter_v2_1/doc/axi_dwidth_converter_v2_1_changelog.txt
+*(2) d:/2025.1/Vivado/data/ip/xilinx/axi_clock_converter_v2_1/doc/axi_clock_converter_v2_1_changelog.txt
+*(3) d:/2025.1/Vivado/data/ip/xilinx/mig_7series_v4_2/doc/mig_7series_v4_2_changelog.txt
+
+

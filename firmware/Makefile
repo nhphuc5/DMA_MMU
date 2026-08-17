@@ -40,9 +40,9 @@ CXXFLAGS := -std=c++17 -march=rv32i -mabi=ilp32 -Os \
 
 LDFLAGS := -T "$(LINKER)" -Wl,--gc-sections -Wl,--build-id=none
 
-.PHONY: all vc707 image-demo vc707-image-demo systolic-demo \
+.PHONY: all vc707 vc707-ddr3-test image-demo vc707-image-demo systolic-demo \
         systolic-image-dma vc707-systolic-image-dma \
-        vc707-systolic-demo verify clean clean-vc707 clean-image-demo \
+        vc707-systolic-demo verify clean clean-vc707 clean-vc707-ddr3-test clean-image-demo \
         clean-vc707-image-demo clean-systolic-demo \
         clean-vc707-systolic-demo clean-systolic-image-dma \
         clean-vc707-systolic-image-dma rebuild help check-tools
@@ -54,6 +54,10 @@ all: check-tools $(HEX) verify
 # unchanged and both targets can coexist.
 vc707:
 	@"$(MAKE)" BUILD_DIR=build/vc707 FW_DEFINES=-DSOC_UART_DIVIDER=1300u all
+
+# Physical DDR3 SODIMM acceptance firmware for the MIG-backed VC707 top.
+vc707-ddr3-test:
+	@"$(MAKE)" PROGRAM=soc_ddr3_test BUILD_DIR=build/vc707_ddr3 FW_DEFINES=-DSOC_UART_DIVIDER=1300u all
 
 # Dedicated image streams.  These do not replace or modify soc_demo.hex.
 image-demo:
@@ -115,6 +119,9 @@ clean:
 clean-vc707:
 	@"$(MAKE)" BUILD_DIR=build/vc707 clean
 
+clean-vc707-ddr3-test:
+	@"$(MAKE)" PROGRAM=soc_ddr3_test BUILD_DIR=build/vc707_ddr3 clean
+
 clean-image-demo:
 	@"$(MAKE)" PROGRAM=soc_image_demo BUILD_DIR=build/image_demo clean
 
@@ -143,6 +150,7 @@ help:
 	@echo make clean     - Delete generated ELF, BIN and HEX
 	@echo make rebuild   - Clean and build everything again
 	@echo make vc707     - Build the 150-MHz VC707/115200-baud firmware image
+	@echo make vc707-ddr3-test - Build MIG/DDR3 board acceptance firmware
 	@echo make image-demo       - Build simulation firmware plus three RAM images
 	@echo make vc707-image-demo - Build VC707 firmware plus three RAM images
 	@echo make systolic-demo       - Build fast-simulation 4x4 matrix demo

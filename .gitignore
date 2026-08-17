@@ -57,3 +57,4 @@ firmware/build/*.elf
 firmware/build/*.bin
 firmware/build/**/*.elf
 firmware/build/**/*.bin
+firmware/build/vc707_ddr3/

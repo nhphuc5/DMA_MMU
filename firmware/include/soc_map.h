@@ -6,6 +6,18 @@
 #define SOC_UART_BASE       0x20000000u
 #define SOC_CPU_MMU_BASE    0x30000000u
 #define SOC_SYSTOLIC_BASE   0x40000000u
+#define SOC_DDR_CTRL_BASE   0x50000000u
+#define SOC_DDR_BASE        0x80000000u
+
+/* Read-only DDR status page.  MIG-backed hardware sets bit 31; firmware must
+ * wait for CALIB_DONE before touching the physical DDR aperture. */
+#define DDR_STATUS          (*(volatile unsigned *)(SOC_DDR_CTRL_BASE + 0x00u))
+#define DDR_STATUS_INIT_DONE       (1u << 0)
+#define DDR_STATUS_CALIB_DONE      (1u << 1)
+#define DDR_STATUS_CALIB_ERROR     (1u << 2)
+#define DDR_STATUS_REFRESH_BUSY    (1u << 3)
+#define DDR_STATUS_UI_RESET        (1u << 4)
+#define DDR_STATUS_EXTERNAL_MIG    (1u << 31)
 
 /* 4x4 signed INT8 systolic matrix multiplier.  Each A/B row register packs
  * four signed 8-bit values in little-endian byte order.  Results are signed

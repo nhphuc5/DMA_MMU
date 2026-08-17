@@ -53,6 +53,26 @@ real self-checking PASS/FAIL result over UART.
 - Architecture and register map: `docs/SYSTOLIC_ARRAY_GUIDE.md`
 - End-to-end result: `reports/systolic_soc_test.log`
 
+## Complete VC707 physical DDR3 target
+
+The physical-board target retains the 64-KiB AXI boot RAM and connects the
+SoC's `0x8000_0000`--`0xBFFF_FFFF` aperture to the VC707 1-GiB x64 DDR3
+SODIMM.  It uses a reproducibly generated Xilinx MIG 7 Series PHY/controller,
+an AXI clock-domain converter, and a 32-to-512-bit AXI data-width converter.
+The tracked firmware image waits for real MIG calibration and then tests DDR3
+data/address lines, narrow writes, deterministic memory patterns, and
+DMA/IOMMU transfers in both directions.
+
+- One-command Windows build: `BUILD_VC707_DDR3_BITSTREAM.cmd`
+- Physical top: `src/SoC/dma_mmu_picorv32_vc707_ddr3_top.sv`
+- MIG configuration and all DDR pin assignments: `ip/vc707_mig_7series/mig.prj`
+- Prebuilt RV32I self-test: `firmware/prebuilt/vc707_ddr3/soc_ddr3_test.hex`
+- Clone/build/program/UART procedure: `docs/VC707_DDR3_DEPLOYMENT.md`
+- Implementation evidence: `reports/vc707_ddr3/`
+
+The MIG/DDR path uses zero DSP blocks.  The complete SoC still uses 16 DSP48E1
+blocks in the independent, pre-existing systolic accelerator.
+
 ## Two independent address-translation domains
 
 The SoC deliberately contains two different translation blocks.  The new

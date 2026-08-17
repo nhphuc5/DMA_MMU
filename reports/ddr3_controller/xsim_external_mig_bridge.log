@@ -1,0 +1,53 @@
+#-----------------------------------------------------------
+# xsim v2025.1 (64-bit)
+# SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Mon Aug 17 20:19:23 2026
+# Process ID         : 10056
+# Current directory  : D:/_codex_vivado/external_bridge_xsim
+# Command line       : xsim.exe -mode tcl -source {xsim.dir/tb_external_mig_bridge_sim/xsim_script.tcl}
+# Log file           : D:/_codex_vivado/external_bridge_xsim/xsim.log
+# Journal file       : D:/_codex_vivado/external_bridge_xsim\xsim.jou
+# Running On         : LAPTOP-7VHB4FBR
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i7-13700H
+# CPU Frequency      : 2918 MHz
+# CPU Physical cores : 14
+# CPU Logical cores  : 20
+# Host memory        : 16786 MB
+# Swap memory        : 3499 MB
+# Total Virtual      : 20286 MB
+# Available Virtual  : 3828 MB
+#-----------------------------------------------------------
+source xsim.dir/tb_external_mig_bridge_sim/xsim_script.tcl
+# xsim {tb_external_mig_bridge_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+Addressing configuration for axi_crossbar_addr instance tb_axi_bram_external_ddr_subsystem.dut.memory_decode_inst.axi_crossbar_wr_inst.s_ifaces[0].addr_inst
+ 0 ( 0): 00000000 / 16 -- 00000000-0000ffff
+ 1 ( 0): 80000000 / 30 -- 80000000-bfffffff
+Addressing configuration for axi_crossbar_addr instance tb_axi_bram_external_ddr_subsystem.dut.memory_decode_inst.axi_crossbar_rd_inst.s_ifaces[0].addr_inst
+ 0 ( 0): 00000000 / 16 -- 00000000-0000ffff
+ 1 ( 0): 80000000 / 30 -- 80000000-bfffffff
+PASS external MIG status starts uncalibrated
+PASS external MIG calibration status propagated
+PASS write response and ID
+PASS read response, ID and RLAST
+PASS retained axi_ram read/write data
+PASS low address never reached external MIG port
+PASS write response and ID
+PASS DDR AXI address rebased to MIG zero
+PASS DDR AXI ID and WSTRB preserved
+PASS DDR AXI word transaction metadata preserved
+PASS read response, ID and RLAST
+PASS external MIG read returned partial-write result
+PASS high address selected external MIG port once
+PASS external MIG calibration error propagated
+PASS MIG-owned refresh status has defined external value
+EXTERNAL MIG BRIDGE: checks=15 failures=0
+ALL EXTERNAL MIG BRIDGE TESTS PASSED
+$finish called at time : 314302 ps : File "D:/DMA_MMU_work/testbench/tb_axi_bram_external_ddr_subsystem.sv" Line 286
+exit
+INFO: [Common 17-206] Exiting xsim at Mon Aug 17 20:19:25 2026...

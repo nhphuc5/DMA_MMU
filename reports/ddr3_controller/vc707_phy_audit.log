@@ -1,10 +1,15 @@
 VC707 DDR3 PHYSICAL INTERFACE AUDIT
-Source roots: src, constraints
-PHY primitive matches: 0
-Physical DDR3 signal matches: 0
-VC707 XDC DDR3 constraint matches: 0
-ENABLE_DDR3 disabled-default matches: 1
+Audited target files: physical top, MIG config/generator, firmware
+Physical DDR3 top-level signal matches: 45
+Tracked MIG DDR3 pin assignments: 114
+MIG physical instance matches: 1
+AXI clock converter matches: 1
+AXI width converter matches: 1
+Physical top ENABLE_DDR3=1 matches: 1
+Physical top external-MIG matches: 1
+Official mig_7series generator matches: 1
+Prebuilt DDR3 test firmware present: True
 
-Conclusion: the custom AXI DDR3 digital controller is present, but the
-VC707 x64 DDR3 pin PHY, calibration/training datapath and DDR pin XDC are
-not present. A physical-SODIMM bitstream is therefore not demonstrated.
+Conclusion: the VC707 target includes the official Xilinx MIG controller,
+x64 PHY/calibration path, complete DDR pin map, AXI converters and test
+firmware. Generated MIG HDL/XDC is recreated by Vivado from mig.prj.

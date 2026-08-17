@@ -7,6 +7,7 @@
 //   0x1000_0000 - 0x1000_00FF : DMA/IOMMU control registers
 //   0x2000_0000 - 0x2000_00FF : UART control/data registers
 //   0x4000_0000 - 0x4000_00FF : 4x4 systolic accelerator registers
+//   0x5000_0000 - 0x5000_00FF : read-only DDR controller status
 //
 // PicoRV32 issues one memory transaction at a time.  This router nevertheless
 // buffers AW and W independently so it remains AXI4-Lite protocol compliant.
@@ -125,11 +126,12 @@ module picorv32_axil_router #(
     input  logic                         m_systolic_rvalid,
     output logic                         m_systolic_rready,
 
+    input  logic [31:0] ddr_status_i,
     output logic cpu_bus_idle_o
 );
 
     typedef enum logic [2:0] {
-        SEL_RAM, SEL_DMA, SEL_UART, SEL_SYSTOLIC, SEL_DECERR
+        SEL_RAM, SEL_DMA, SEL_UART, SEL_SYSTOLIC, SEL_DDR_STATUS, SEL_DECERR
     } target_t;
     typedef enum logic [1:0] {W_COLLECT, W_SEND, W_RESPONSE} wstate_t;
     typedef enum logic [1:0] {R_IDLE, R_SEND, R_RESPONSE} rstate_t;
@@ -159,6 +161,8 @@ module picorv32_axil_router #(
             decode_target = SEL_UART;
         else if (addr[31:8] == 24'h400000)
             decode_target = SEL_SYSTOLIC;
+        else if (DDR_ENABLE && addr[31:8] == 24'h500000)
+            decode_target = SEL_DDR_STATUS;
         else if ({1'b0, addr} < (33'd1 << BRAM_ADDR_WIDTH))
             decode_target = SEL_RAM;
         else if (DDR_ENABLE && addr >= DDR_BASE_ADDR
@@ -272,6 +276,11 @@ module picorv32_axil_router #(
                     s_axil_bvalid = m_systolic_bvalid;
                     m_systolic_bready = s_axil_bready;
                 end
+                SEL_DDR_STATUS: begin
+                    // The status page is intentionally read-only.
+                    s_axil_bresp = 2'b10;
+                    s_axil_bvalid = 1'b1;
+                end
                 default: begin
                     s_axil_bresp = 2'b11;
                     s_axil_bvalid = 1'b1;
@@ -312,6 +321,11 @@ module picorv32_axil_router #(
                     s_axil_rresp = m_systolic_rresp;
                     s_axil_rvalid = m_systolic_rvalid;
                     m_systolic_rready = s_axil_rready;
+                end
+                SEL_DDR_STATUS: begin
+                    s_axil_rdata = ddr_status_i;
+                    s_axil_rresp = 2'b00;
+                    s_axil_rvalid = 1'b1;
                 end
                 default: begin
                     s_axil_rdata = 32'hDEAD_BEEF;
@@ -383,6 +397,7 @@ module picorv32_axil_router #(
                     if (target_w_fire)
                         w_sent_q <= 1'b1;
                     if (wtarget_q == SEL_DECERR
+                        || wtarget_q == SEL_DDR_STATUS
                         || ((aw_sent_q || target_aw_fire)
                             && (w_sent_q || target_w_fire)))
                         wstate_q <= W_RESPONSE;
@@ -410,6 +425,7 @@ module picorv32_axil_router #(
                 end
                 R_SEND: begin
                     if (rtarget_q == SEL_DECERR
+                        || rtarget_q == SEL_DDR_STATUS
                         || (m_ram_arvalid && m_ram_arready)
                         || (m_dma_arvalid && m_dma_arready)
                         || (m_uart_arvalid && m_uart_arready)
