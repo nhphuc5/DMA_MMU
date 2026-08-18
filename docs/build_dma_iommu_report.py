@@ -776,7 +776,7 @@ def build_report() -> Path:
 
     doc.add_heading("5.5. UART", level=2)
     add_body(doc,
-             "uart_axil_axis kết hợp thanh ghi CPU với bộ chuyển đổi AXI-Stream 32 bit. Ở chiều DMA→UART, một word và TKEEP được tách thành byte serial. Ở chiều UART→DMA, các byte nhận được ghép thành word và phát ra M_AXIS; phần word chưa đủ bốn byte có thể flush. simpleuart_dma thực hiện truyền/nhận 8N1, bộ chia baud, đồng bộ RX và phát hiện overrun.")
+             "axil_to_apb_bridge chuyển truy cập điều khiển AXI4-Lite của CPU sang APB cho uart_apb_axis. Ở chiều DMA→UART, một word AXI4-Stream và TKEEP được tách thành byte serial. Ở chiều UART→DMA, các byte nhận được ghép thành word và phát ra M_AXIS; phần word chưa đủ bốn byte có thể flush. simpleuart_dma thực hiện truyền/nhận 8N1, bộ chia baud, đồng bộ RX và phát hiện overrun.")
 
     add_chapter(doc, "CHƯƠNG 6. CHỨC NĂNG CÁC TỆP MÃ NGUỒN CHÍNH")
     doc.add_heading("6.1. Tệp RTL cấp hệ thống và IP", level=2)
@@ -789,7 +789,7 @@ def build_report() -> Path:
         ("dma_iommu_tlb.sv", "PT 16, TLB 4, 3-stage lookup, permission/range/fault", "Cấp PA/allow cho scheduler"),
         ("axil_to_apb_bridge.sv", "Cầu nối dịch giao thức AXI4-Lite sang APB", "AXI Router ↔ UART"),
         ("uart_apb_axis.sv", "UART register bank (APB) và adapter AXI-Stream 32-bit", "CPU + DMA ↔ UART"),
-        ("simpleuart_dma.sv", "Byte engine UART 8N1, divider, RX synchronizer", "Được bọc bởi uart_axil_axis"),
+        ("simpleuart_dma.sv", "Byte engine UART 8N1, divider, RX synchronizer", "Được bọc bởi uart_apb_axis"),
     ], [2450, 4630, 2280], font_size=8.6)
 
     doc.add_heading("6.2. Tệp lõi AXI và thuật toán hỗ trợ", level=2)

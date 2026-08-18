@@ -8,7 +8,7 @@
   **** SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
   **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
   **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
-  **** Start of session at: Tue Aug 18 13:49:51 2026
+  **** Start of session at: Tue Aug 18 15:10:37 2026
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 
@@ -21,13 +21,11 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7vx485t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7vx485t'
 INFO: [Device 21-403] Loading part xc7vx485tffg1761-2
-INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
-INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 38660
+INFO: [Synth 8-7075] Helper process launched with PID 43956
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1525.336 ; gain = 492.715
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1525.043 ; gain = 492.145
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-11065] parameter 'AXI_WORD_WIDTH' becomes localparam in 'axi_cdma' with formal parameter declaration list [D:/_codex_dma_mmu/src/DMA/axi_cdma.v:123]
 WARNING: [Synth 8-11065] parameter 'AXI_WORD_SIZE' becomes localparam in 'axi_cdma' with formal parameter declaration list [D:/_codex_dma_mmu/src/DMA/axi_cdma.v:124]
@@ -807,13 +805,17 @@ INFO: [Common 17-14] Message 'Synth 8-7186' appears 100 times and further instan
 INFO: [Synth 8-6157] synthesizing module 'systolic_matmul_4x4' [D:/_codex_dma_mmu/src/Systolic/systolic_matmul_4x4.sv:9]
 INFO: [Synth 8-6155] done synthesizing module 'systolic_matmul_4x4' (0#1) [D:/_codex_dma_mmu/src/Systolic/systolic_matmul_4x4.sv:9]
 INFO: [Synth 8-6155] done synthesizing module 'systolic_accel_axil_axis' (0#1) [D:/_codex_dma_mmu/src/Systolic/systolic_accel_axil_axis.sv:20]
-INFO: [Synth 8-6157] synthesizing module 'uart_axil_axis' [D:/_codex_dma_mmu/src/UART/uart_axil_axis.sv:15]
-	Parameter AXIL_ADDR_WIDTH bound to: 32'sb00000000000000000000000000001000 
+INFO: [Synth 8-6157] synthesizing module 'axil_to_apb_bridge' [D:/_codex_dma_mmu/src/AXI/axil_to_apb_bridge.sv:3]
+	Parameter ADDR_WIDTH bound to: 32'sb00000000000000000000000000001000 
+	Parameter DATA_WIDTH bound to: 32'sb00000000000000000000000000100000 
+INFO: [Synth 8-6155] done synthesizing module 'axil_to_apb_bridge' (0#1) [D:/_codex_dma_mmu/src/AXI/axil_to_apb_bridge.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'uart_apb_axis' [D:/_codex_dma_mmu/src/UART/uart_apb_axis.sv:14]
+	Parameter APB_ADDR_WIDTH bound to: 32'sb00000000000000000000000000001000 
 	Parameter DEFAULT_DIV bound to: 161 - type: integer 
 INFO: [Synth 8-6157] synthesizing module 'simpleuart_dma' [D:/_codex_dma_mmu/src/UART/simpleuart_dma.sv:9]
 	Parameter DEFAULT_DIV bound to: 161 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'simpleuart_dma' (0#1) [D:/_codex_dma_mmu/src/UART/simpleuart_dma.sv:9]
-INFO: [Synth 8-6155] done synthesizing module 'uart_axil_axis' (0#1) [D:/_codex_dma_mmu/src/UART/uart_axil_axis.sv:15]
+INFO: [Synth 8-6155] done synthesizing module 'uart_apb_axis' (0#1) [D:/_codex_dma_mmu/src/UART/uart_apb_axis.sv:14]
 INFO: [Synth 8-6157] synthesizing module 'axi_crossbar__parameterized1' [D:/_codex_dma_mmu/src/AXI/axi_crossbar.v:34]
 	Parameter S_COUNT bound to: 2 - type: integer 
 	Parameter M_COUNT bound to: 1 - type: integer 
@@ -993,12 +995,12 @@ WARNING: [Synth 8-7071] port 'ddr_dfi_wrdata_o' of module 'dma_mmu_picorv32_soc'
 WARNING: [Synth 8-7071] port 'ddr_dfi_wrmask_o' of module 'dma_mmu_picorv32_soc' is unconnected for instance 'soc_inst' [D:/_codex_dma_mmu/src/SoC/dma_mmu_picorv32_vc707_ddr3_top.sv:148]
 WARNING: [Synth 8-7071] port 'ddr_phy_calib_start_o' of module 'dma_mmu_picorv32_soc' is unconnected for instance 'soc_inst' [D:/_codex_dma_mmu/src/SoC/dma_mmu_picorv32_vc707_ddr3_top.sv:148]
 WARNING: [Synth 8-7023] instance 'soc_inst' of module 'dma_mmu_picorv32_soc' has 69 connections declared, but only 57 given [D:/_codex_dma_mmu/src/SoC/dma_mmu_picorv32_vc707_ddr3_top.sv:148]
-INFO: [Synth 8-6157] synthesizing module 'soc_ddr_clock_converter' [D:/_codex_dma_mmu/build/vivado/vc707_ddr3/DMA_IOMMU_PicoRV32_VC707_DDR3.runs/synth_1/.Xil/Vivado-8160-LAPTOP-7VHB4FBR/realtime/soc_ddr_clock_converter_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'soc_ddr_clock_converter' (0#1) [D:/_codex_dma_mmu/build/vivado/vc707_ddr3/DMA_IOMMU_PicoRV32_VC707_DDR3.runs/synth_1/.Xil/Vivado-8160-LAPTOP-7VHB4FBR/realtime/soc_ddr_clock_converter_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'soc_ddr_axi_converter' [D:/_codex_dma_mmu/build/vivado/vc707_ddr3/DMA_IOMMU_PicoRV32_VC707_DDR3.runs/synth_1/.Xil/Vivado-8160-LAPTOP-7VHB4FBR/realtime/soc_ddr_axi_converter_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'soc_ddr_axi_converter' (0#1) [D:/_codex_dma_mmu/build/vivado/vc707_ddr3/DMA_IOMMU_PicoRV32_VC707_DDR3.runs/synth_1/.Xil/Vivado-8160-LAPTOP-7VHB4FBR/realtime/soc_ddr_axi_converter_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'vc707_mig' [D:/_codex_dma_mmu/build/vivado/vc707_ddr3/DMA_IOMMU_PicoRV32_VC707_DDR3.runs/synth_1/.Xil/Vivado-8160-LAPTOP-7VHB4FBR/realtime/vc707_mig_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'vc707_mig' (0#1) [D:/_codex_dma_mmu/build/vivado/vc707_ddr3/DMA_IOMMU_PicoRV32_VC707_DDR3.runs/synth_1/.Xil/Vivado-8160-LAPTOP-7VHB4FBR/realtime/vc707_mig_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'soc_ddr_clock_converter' [D:/_codex_dma_mmu/build/vivado/vc707_ddr3/DMA_IOMMU_PicoRV32_VC707_DDR3.runs/synth_1/.Xil/Vivado-41352-LAPTOP-7VHB4FBR/realtime/soc_ddr_clock_converter_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'soc_ddr_clock_converter' (0#1) [D:/_codex_dma_mmu/build/vivado/vc707_ddr3/DMA_IOMMU_PicoRV32_VC707_DDR3.runs/synth_1/.Xil/Vivado-41352-LAPTOP-7VHB4FBR/realtime/soc_ddr_clock_converter_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'soc_ddr_axi_converter' [D:/_codex_dma_mmu/build/vivado/vc707_ddr3/DMA_IOMMU_PicoRV32_VC707_DDR3.runs/synth_1/.Xil/Vivado-41352-LAPTOP-7VHB4FBR/realtime/soc_ddr_axi_converter_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'soc_ddr_axi_converter' (0#1) [D:/_codex_dma_mmu/build/vivado/vc707_ddr3/DMA_IOMMU_PicoRV32_VC707_DDR3.runs/synth_1/.Xil/Vivado-41352-LAPTOP-7VHB4FBR/realtime/soc_ddr_axi_converter_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'vc707_mig' [D:/_codex_dma_mmu/build/vivado/vc707_ddr3/DMA_IOMMU_PicoRV32_VC707_DDR3.runs/synth_1/.Xil/Vivado-41352-LAPTOP-7VHB4FBR/realtime/vc707_mig_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'vc707_mig' (0#1) [D:/_codex_dma_mmu/build/vivado/vc707_ddr3/DMA_IOMMU_PicoRV32_VC707_DDR3.runs/synth_1/.Xil/Vivado-41352-LAPTOP-7VHB4FBR/realtime/vc707_mig_stub.v:6]
 WARNING: [Synth 8-7071] port 'device_temp' of module 'vc707_mig' is unconnected for instance 'mig_inst' [D:/_codex_dma_mmu/src/SoC/dma_mmu_picorv32_vc707_ddr3_top.sv:308]
 WARNING: [Synth 8-7023] instance 'mig_inst' of module 'vc707_mig' has 72 connections declared, but only 71 given [D:/_codex_dma_mmu/src/SoC/dma_mmu_picorv32_vc707_ddr3_top.sv:308]
 INFO: [Synth 8-6155] done synthesizing module 'dma_mmu_picorv32_vc707_ddr3_top' (0#1) [D:/_codex_dma_mmu/src/SoC/dma_mmu_picorv32_vc707_ddr3_top.sv:11]
@@ -1348,13 +1350,13 @@ WARNING: [Synth 8-7129] Port s_axi_aqos[3] in module axi_crossbar_addr__paramete
 WARNING: [Synth 8-7129] Port s_axi_aqos[2] in module axi_crossbar_addr__parameterized5 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port s_axi_aqos[1] in module axi_crossbar_addr__parameterized5 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port s_axi_aqos[0] in module axi_crossbar_addr__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port s_axil_awprot[2] in module uart_axil_axis is either unconnected or has no load
-WARNING: [Synth 8-7129] Port s_axil_awprot[1] in module uart_axil_axis is either unconnected or has no load
-WARNING: [Synth 8-7129] Port s_axil_awprot[0] in module uart_axil_axis is either unconnected or has no load
-WARNING: [Synth 8-7129] Port s_axil_arprot[2] in module uart_axil_axis is either unconnected or has no load
-WARNING: [Synth 8-7129] Port s_axil_arprot[1] in module uart_axil_axis is either unconnected or has no load
-WARNING: [Synth 8-7129] Port s_axil_arprot[0] in module uart_axil_axis is either unconnected or has no load
-WARNING: [Synth 8-7129] Port s_axis_tx_tlast in module uart_axil_axis is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_tx_tlast in module uart_apb_axis is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axil_awprot[2] in module axil_to_apb_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axil_awprot[1] in module axil_to_apb_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axil_awprot[0] in module axil_to_apb_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axil_arprot[2] in module axil_to_apb_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axil_arprot[1] in module axil_to_apb_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axil_arprot[0] in module axil_to_apb_bridge is either unconnected or has no load
 WARNING: [Synth 8-7129] Port s_axil_awprot[2] in module systolic_accel_axil_axis is either unconnected or has no load
 WARNING: [Synth 8-7129] Port s_axil_awprot[1] in module systolic_accel_axil_axis is either unconnected or has no load
 WARNING: [Synth 8-7129] Port s_axil_awprot[0] in module systolic_accel_axil_axis is either unconnected or has no load
@@ -1362,18 +1364,18 @@ WARNING: [Synth 8-7129] Port s_axil_araddr[1] in module systolic_accel_axil_axis
 WARNING: [Synth 8-7129] Port s_axil_araddr[0] in module systolic_accel_axil_axis is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 2000.082 ; gain = 967.461
+Finished RTL Elaboration : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1999.371 ; gain = 966.473
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 2000.082 ; gain = 967.461
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1999.371 ; gain = 966.473
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 2000.082 ; gain = 967.461
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1999.371 ; gain = 966.473
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.445 . Memory (MB): peak = 2000.082 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.455 . Memory (MB): peak = 1999.371 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -1393,26 +1395,40 @@ Resolution: To avoid this warning, move constraints listed in [.Xil/dma_mmu_pico
 INFO: [Timing 38-2] Deriving generated clocks
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 2149.156 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 2160.945 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 1 instances were transformed.
   MMCME2_BASE => MMCME2_ADV: 1 instance 
 
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 2149.156 ; gain = 1116.535
+Finished Constraint Validation : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 2160.945 ; gain = 1128.047
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7vx485tffg1761-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 2149.156 ; gain = 1116.535
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 2160.945 ; gain = 1128.047
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 2149.156 ; gain = 1116.535
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 2160.945 ; gain = 1128.047
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Preparing Guide Design
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Doing Graph Differ : Time (s): cpu = 00:00:34 ; elapsed = 00:00:36 . Memory (MB): peak = 2160.945 ; gain = 1128.047
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-6702] IncrSynth : Over 50% of reference run partitions are impacted by design changes. Reverting to default synthesis
+IncrSyn: Total reference run partitions are 10, Impacted partitions are 12.
+IncrSyn: List of changed modules: 
+	Changed Module : dma_mmu_picorv32_soc
+WARNING: [Synth 8-6702] IncrSynth : Reverting to default synthesis
+---------------------------------------------------------------------------------
+Finished Preparing Guide Design : Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 2160.945 ; gain = 1128.047
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg_reg' in module 'axi_crossbar_addr'
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg_reg' in module 'axi_crossbar_addr__parameterized0'
@@ -1427,6 +1443,7 @@ INFO: [Synth 8-802] inferred FSM for state register 'state_q_reg' in module 'dma
 INFO: [Synth 8-802] inferred FSM for state register 'read_state_reg_reg' in module 'axi_cdma'
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg_reg' in module 'axi_crossbar_addr__parameterized1'
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg_reg' in module 'axi_crossbar_addr__parameterized3'
+INFO: [Synth 8-802] inferred FSM for state register 'state_q_reg' in module 'axil_to_apb_bridge'
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg_reg' in module 'axi_crossbar_addr__parameterized5'
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg_reg' in module 'axi_crossbar_addr__parameterized7'
 ---------------------------------------------------------------------------------------------------
@@ -1560,6 +1577,15 @@ INFO: [Synth 8-3354] encoded FSM with state register 'state_reg_reg' using encod
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
+                    IDLE |                             0001 |                               00
+                   SETUP |                             0010 |                               01
+                  ACCESS |                             0100 |                               10
+                    RESP |                             1000 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_q_reg' using encoding 'one-hot' in module 'axil_to_apb_bridge'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
               STATE_IDLE |                               01 |                              000
             STATE_DECODE |                               10 |                              001
 ---------------------------------------------------------------------------------------------------
@@ -1572,8 +1598,18 @@ INFO: [Synth 8-3354] encoded FSM with state register 'state_reg_reg' using encod
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg_reg' using encoding 'one-hot' in module 'axi_crossbar_addr__parameterized7'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:43 ; elapsed = 00:00:46 . Memory (MB): peak = 2149.156 ; gain = 1116.535
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:47 ; elapsed = 00:00:52 . Memory (MB): peak = 2160.945 ; gain = 1128.047
 ---------------------------------------------------------------------------------
+
+
+Incremental Synthesis Report Summary:
+
+1. Incremental synthesis run: no
+
+   Reason for not running incremental synthesis : Change is too high
+
+
+INFO: [Synth 8-7130] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -1621,8 +1657,8 @@ Detailed RTL Component Info :
 	                5 Bit    Registers := 24    
 	                4 Bit    Registers := 86    
 	                3 Bit    Registers := 67    
-	                2 Bit    Registers := 132   
-	                1 Bit    Registers := 689   
+	                2 Bit    Registers := 134   
+	                1 Bit    Registers := 687   
 +---Multipliers : 
 	                8x8  Multipliers := 16    
 +---RAMs : 
@@ -1634,13 +1670,13 @@ Detailed RTL Component Info :
 	               32 Bit	(32 X 1 bit)          RAMs := 5     
 +---Muxes : 
 	   2 Input   64 Bit        Muxes := 5     
-	   2 Input   32 Bit        Muxes := 232   
-	   4 Input   32 Bit        Muxes := 19    
+	   2 Input   32 Bit        Muxes := 233   
+	   4 Input   32 Bit        Muxes := 20    
 	   3 Input   32 Bit        Muxes := 3     
 	  13 Input   32 Bit        Muxes := 6     
 	   7 Input   32 Bit        Muxes := 2     
-	   5 Input   32 Bit        Muxes := 5     
 	   8 Input   32 Bit        Muxes := 9     
+	   5 Input   32 Bit        Muxes := 4     
 	  10 Input   32 Bit        Muxes := 3     
 	   6 Input   32 Bit        Muxes := 1     
 	   4 Input   20 Bit        Muxes := 3     
@@ -1653,11 +1689,11 @@ Detailed RTL Component Info :
 	  13 Input   13 Bit        Muxes := 3     
 	   2 Input   11 Bit        Muxes := 12    
 	   2 Input   10 Bit        Muxes := 2     
-	   2 Input    8 Bit        Muxes := 89    
-	   3 Input    8 Bit        Muxes := 4     
+	   2 Input    8 Bit        Muxes := 91    
 	  13 Input    8 Bit        Muxes := 1     
-	   4 Input    8 Bit        Muxes := 2     
+	   3 Input    8 Bit        Muxes := 4     
 	   8 Input    8 Bit        Muxes := 2     
+	   4 Input    8 Bit        Muxes := 2     
 	  10 Input    8 Bit        Muxes := 1     
 	   2 Input    7 Bit        Muxes := 17    
 	   4 Input    7 Bit        Muxes := 3     
@@ -1673,22 +1709,22 @@ Detailed RTL Component Info :
 	   7 Input    4 Bit        Muxes := 2     
 	   5 Input    4 Bit        Muxes := 1     
 	   2 Input    3 Bit        Muxes := 70    
-	   3 Input    3 Bit        Muxes := 6     
 	   5 Input    3 Bit        Muxes := 1     
+	   3 Input    3 Bit        Muxes := 6     
 	   8 Input    3 Bit        Muxes := 2     
 	   2 Input    2 Bit        Muxes := 179   
 	   3 Input    2 Bit        Muxes := 5     
 	   8 Input    2 Bit        Muxes := 4     
 	   4 Input    2 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 1056  
+	   2 Input    1 Bit        Muxes := 1057  
+	   4 Input    1 Bit        Muxes := 58    
 	   3 Input    1 Bit        Muxes := 60    
-	   4 Input    1 Bit        Muxes := 40    
 	  13 Input    1 Bit        Muxes := 14    
 	   7 Input    1 Bit        Muxes := 75    
 	   6 Input    1 Bit        Muxes := 8     
-	   5 Input    1 Bit        Muxes := 7     
 	   8 Input    1 Bit        Muxes := 115   
 	  10 Input    1 Bit        Muxes := 11    
+	   5 Input    1 Bit        Muxes := 2     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -1710,101 +1746,6 @@ INFO: [Synth 8-3333] propagating constant 0 across sequential element (core_inst
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (core_inst/\cycle_q_reg[7] )
 INFO: [Synth 8-5546] ROM "pt_write_o" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "pt_write_o" won't be mapped to RAM because it is too sparse
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_status_i[3] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[31] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[30] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[29] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[28] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[27] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[26] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[25] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[24] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[23] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[22] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[21] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[20] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[19] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[18] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[17] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[16] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[15] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[14] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[13] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[12] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[11] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[10] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[9] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[8] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[7] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[6] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[5] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[4] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[3] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[2] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[1] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_refresh_count_o[0] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_cmd_valid_o driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_cmd_o[2] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_cmd_o[1] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_cmd_o[0] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_bank_o[2] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_bank_o[1] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_bank_o[0] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_addr_o[15] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_addr_o[14] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_addr_o[13] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_addr_o[12] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_addr_o[11] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_addr_o[10] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_addr_o[9] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_addr_o[8] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_addr_o[7] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_addr_o[6] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_addr_o[5] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_addr_o[4] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_addr_o[3] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_addr_o[2] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_addr_o[1] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_addr_o[0] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[31] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[30] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[29] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[28] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[27] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[26] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[25] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[24] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[23] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[22] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[21] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[20] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[19] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[18] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[17] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[16] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[15] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[14] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[13] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[12] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[11] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[10] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[9] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[8] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[7] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[6] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[5] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[4] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[3] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[2] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[1] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrdata_o[0] driven by constant 0
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrmask_o[3] driven by constant 1
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrmask_o[2] driven by constant 1
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrmask_o[1] driven by constant 1
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_dfi_wrmask_o[0] driven by constant 1
-WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB0 has port ddr_phy_calib_start_o driven by constant 0
-WARNING: [Synth 8-6841] Block RAM (g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg) originally specified as a Byte Wide Write Enable RAM cannot take advantage of ByteWide feature and is implemented with single write enable per RAM due to following reason.
-(address width (16) is more than optimal threshold of 12. Implementing using BWWE will require more logic and timing would be suboptimal. Please use attribute ram_decomp = power if BWWE is desired.)
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_rd_inst/s_ifaces[1].decerr_m_axi_rid_reg_reg[3] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_rd_inst/s_ifaces[1].decerr_m_axi_rid_reg_reg[0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_rd_inst/s_ifaces[1].decerr_m_axi_rid_reg_reg[1] )
@@ -1813,10 +1754,6 @@ INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_rd_inst/s_ifaces[0].decerr_m_axi_rid_reg_reg[0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_rd_inst/s_ifaces[0].decerr_m_axi_rid_reg_reg[1] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_rd_inst/s_ifaces[0].decerr_m_axi_rid_reg_reg[2] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/cdma_inst/\first_cycle_offset_reg_reg[1] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/cdma_inst/\first_cycle_offset_reg_reg[0] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/cdma_inst/\offset_reg_reg[1] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/cdma_inst/\offset_reg_reg[0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_wr_inst/s_ifaces[1].decerr_m_axi_bid_reg_reg[3] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_wr_inst/s_ifaces[1].decerr_m_axi_bid_reg_reg[0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_wr_inst/s_ifaces[1].decerr_m_axi_bid_reg_reg[1] )
@@ -1825,9 +1762,6 @@ INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_wr_inst/s_ifaces[0].decerr_m_axi_bid_reg_reg[0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_wr_inst/s_ifaces[0].decerr_m_axi_bid_reg_reg[1] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_wr_inst/s_ifaces[0].decerr_m_axi_bid_reg_reg[2] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/iommu_inst/\resp_fault_o_reg[2] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/dma_rd_inst/\offset_reg_reg[1] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/dma_rd_inst/\offset_reg_reg[0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_rd_inst/s_ifaces[1].addr_inst/genblk1[0].thread_id_reg_reg[0][3] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_rd_inst/s_ifaces[1].addr_inst/genblk1[0].thread_id_reg_reg[0][0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_rd_inst/s_ifaces[1].addr_inst/genblk1[0].thread_id_reg_reg[0][1] )
@@ -1836,9 +1770,10 @@ INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_rd_inst/s_ifaces[0].addr_inst/genblk1[0].thread_id_reg_reg[0][0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_rd_inst/s_ifaces[0].addr_inst/genblk1[0].thread_id_reg_reg[0][1] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_rd_inst/s_ifaces[0].addr_inst/genblk1[0].thread_id_reg_reg[0][2] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_rd_inst/m_ifaces[0].a_arb_inst/mask_reg_reg[0] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_wr_inst/s_ifaces[1].addr_inst/m_decerr_reg_reg )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_wr_inst/s_ifaces[0].addr_inst/m_decerr_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/cdma_inst/\first_cycle_offset_reg_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/cdma_inst/\first_cycle_offset_reg_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/cdma_inst/\offset_reg_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/cdma_inst/\offset_reg_reg[0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_wr_inst/s_ifaces[1].addr_inst/genblk1[0].thread_id_reg_reg[0][3] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_wr_inst/s_ifaces[1].addr_inst/genblk1[0].thread_id_reg_reg[0][0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_wr_inst/s_ifaces[1].addr_inst/genblk1[0].thread_id_reg_reg[0][1] )
@@ -1847,14 +1782,26 @@ INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_wr_inst/s_ifaces[0].addr_inst/genblk1[0].thread_id_reg_reg[0][0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_wr_inst/s_ifaces[0].addr_inst/genblk1[0].thread_id_reg_reg[0][1] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_wr_inst/s_ifaces[0].addr_inst/genblk1[0].thread_id_reg_reg[0][2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/iommu_inst/\resp_fault_o_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_rd_inst/m_ifaces[0].a_arb_inst/mask_reg_reg[0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_wr_inst/m_ifaces[0].a_arb_inst/mask_reg_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\system_axi_crossbar/axi_crossbar_rd_inst/s_ifaces[0].decerr_m_axi_rid_reg_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\system_axi_crossbar/axi_crossbar_rd_inst/s_ifaces[0].decerr_m_axi_rid_reg_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\system_axi_crossbar/axi_crossbar_rd_inst/s_ifaces[0].decerr_m_axi_rid_reg_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\system_axi_crossbar/axi_crossbar_rd_inst/s_ifaces[0].decerr_m_axi_rid_reg_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\system_axi_crossbar/axi_crossbar_rd_inst/s_ifaces[0].decerr_m_axi_rid_reg_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_wr_inst/s_ifaces[1].addr_inst/m_decerr_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_wr_inst/s_ifaces[0].addr_inst/m_decerr_reg_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\system_axi_crossbar/axi_crossbar_wr_inst/s_ifaces[0].decerr_m_axi_bid_reg_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\system_axi_crossbar/axi_crossbar_wr_inst/s_ifaces[0].decerr_m_axi_bid_reg_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\system_axi_crossbar/axi_crossbar_wr_inst/s_ifaces[0].decerr_m_axi_bid_reg_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\system_axi_crossbar/axi_crossbar_wr_inst/s_ifaces[0].decerr_m_axi_bid_reg_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\system_axi_crossbar/axi_crossbar_wr_inst/s_ifaces[0].decerr_m_axi_bid_reg_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/dma_rd_inst/\offset_reg_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/dma_rd_inst/\offset_reg_reg[0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/scheduler_inst/\fault_code_o_reg[3] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/scheduler_inst/\fault_code_o_reg[7] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/dma_rd_inst/\m_axis_read_desc_status_error_reg_reg[1] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\g_bram_ddr3.memory_subsystem_inst/memory_decode_inst/axi_crossbar_rd_inst/m_ifaces[1].a_arb_inst/mask_reg_reg[0] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\g_bram_ddr3.memory_subsystem_inst/memory_decode_inst/axi_crossbar_rd_inst/m_ifaces[0].a_arb_inst/mask_reg_reg[0] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\g_bram_ddr3.memory_subsystem_inst/memory_decode_inst/axi_crossbar_wr_inst/m_ifaces[1].a_arb_inst/mask_reg_reg[0] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\g_bram_ddr3.memory_subsystem_inst/memory_decode_inst/axi_crossbar_wr_inst/m_ifaces[0].a_arb_inst/mask_reg_reg[0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_rd_inst/s_ifaces[1].r_arb_inst/mask_reg_reg[0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_rd_inst/s_ifaces[0].r_arb_inst/mask_reg_reg[0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_rd_inst/m_ifaces[0].reg_inst/m_axi_arqos_reg_reg[0] )
@@ -1893,19 +1840,113 @@ INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_wr_inst/m_ifaces[0].reg_inst/m_axi_awid_reg_reg[1] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_wr_inst/m_ifaces[0].reg_inst/m_axi_awid_reg_reg[2] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (dma_iommu_inst/crossbar_inst/\axi_crossbar_wr_inst/m_ifaces[0].reg_inst/m_axi_awid_reg_reg[3] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\g_bram_ddr3.memory_subsystem_inst/memory_decode_inst/axi_crossbar_rd_inst/s_ifaces[0].addr_inst/m_axi_aregion_reg_reg[0] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\g_bram_ddr3.memory_subsystem_inst/memory_decode_inst/axi_crossbar_rd_inst/s_ifaces[0].addr_inst/m_axi_aregion_reg_reg[1] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\g_bram_ddr3.memory_subsystem_inst/memory_decode_inst/axi_crossbar_rd_inst/s_ifaces[0].addr_inst/m_axi_aregion_reg_reg[2] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\g_bram_ddr3.memory_subsystem_inst/memory_decode_inst/axi_crossbar_rd_inst/s_ifaces[0].addr_inst/m_axi_aregion_reg_reg[3] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\g_bram_ddr3.memory_subsystem_inst/memory_decode_inst/axi_crossbar_wr_inst/s_ifaces[0].addr_inst/m_axi_aregion_reg_reg[0] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\g_bram_ddr3.memory_subsystem_inst/memory_decode_inst/axi_crossbar_wr_inst/s_ifaces[0].addr_inst/m_axi_aregion_reg_reg[1] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\g_bram_ddr3.memory_subsystem_inst/memory_decode_inst/axi_crossbar_wr_inst/s_ifaces[0].addr_inst/m_axi_aregion_reg_reg[2] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\g_bram_ddr3.memory_subsystem_inst/memory_decode_inst/axi_crossbar_wr_inst/s_ifaces[0].addr_inst/m_axi_aregion_reg_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\system_axi_crossbar/axi_crossbar_rd_inst/m_ifaces[0].a_arb_inst/mask_reg_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\system_axi_crossbar/axi_crossbar_rd_inst/s_ifaces[0].addr_inst/genblk1[0].thread_id_reg_reg[0][3] )
 INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port mem_axi_awprot[2] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port mem_axi_awprot[1] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port mem_axi_awprot[0] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port mem_axi_arprot[1] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port mem_axi_arprot[0] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_status_i[3] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[31] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[30] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[29] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[28] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[27] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[26] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[25] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[24] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[23] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[22] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[21] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[20] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[19] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[18] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[17] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[16] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[15] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[14] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[13] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[12] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[11] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[10] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[9] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[8] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[7] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[6] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[5] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[4] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[3] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[2] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[1] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_refresh_count_o[0] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_cmd_valid_o driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_cmd_o[2] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_cmd_o[1] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_cmd_o[0] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_bank_o[2] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_bank_o[1] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_bank_o[0] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_addr_o[15] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_addr_o[14] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_addr_o[13] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_addr_o[12] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_addr_o[11] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_addr_o[10] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_addr_o[9] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_addr_o[8] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_addr_o[7] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_addr_o[6] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_addr_o[5] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_addr_o[4] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_addr_o[3] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_addr_o[2] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_addr_o[1] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_addr_o[0] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[31] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[30] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[29] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[28] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[27] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[26] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[25] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[24] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[23] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[22] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[21] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[20] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[19] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[18] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[17] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[16] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[15] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[14] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[13] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[12] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[11] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[10] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[9] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[8] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[7] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[6] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[5] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[4] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[3] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[2] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[1] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrdata_o[0] driven by constant 0
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrmask_o[3] driven by constant 1
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrmask_o[2] driven by constant 1
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrmask_o[1] driven by constant 1
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_dfi_wrmask_o[0] driven by constant 1
+WARNING: [Synth 8-3917] design dma_mmu_picorv32_soc__GCB2 has port ddr_phy_calib_start_o driven by constant 0
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+WARNING: [Synth 8-6841] Block RAM (g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg) originally specified as a Byte Wide Write Enable RAM cannot take advantage of ByteWide feature and is implemented with single write enable per RAM due to following reason.
+(address width (16) is more than optimal threshold of 12. Implementing using BWWE will require more logic and timing would be suboptimal. Please use attribute ram_decomp = power if BWWE is desired.)
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:19 ; elapsed = 00:01:25 . Memory (MB): peak = 2149.156 ; gain = 1116.535
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:25 ; elapsed = 00:01:34 . Memory (MB): peak = 2160.945 ; gain = 1128.047
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1915,7 +1956,7 @@ Block RAM: Preliminary Mapping Report (see note below)
 +---------------------------+---------------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 |Module Name                | RTL Object                                              | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
 +---------------------------+---------------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
-|dma_mmu_picorv32_soc__GCB0 | g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg | 64 K x 32(READ_FIRST)  | W |   | 64 K x 32(WRITE_FIRST) |   | R | Port A and B     | 0      | 64     | 
+|dma_mmu_picorv32_soc__GCB2 | g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg | 64 K x 32(READ_FIRST)  | W |   | 64 K x 32(WRITE_FIRST) |   | R | Port A and B     | 0      | 64     | 
 +---------------------------+---------------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 
 Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
@@ -1946,13 +1987,13 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:27 ; elapsed = 00:01:34 . Memory (MB): peak = 2158.688 ; gain = 1126.066
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:34 ; elapsed = 00:01:44 . Memory (MB): peak = 2271.867 ; gain = 1238.969
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:02:21 ; elapsed = 00:02:32 . Memory (MB): peak = 2543.863 ; gain = 1511.242
+Finished Timing Optimization : Time (s): cpu = 00:02:11 ; elapsed = 00:02:22 . Memory (MB): peak = 2570.098 ; gain = 1537.199
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1962,7 +2003,7 @@ Block RAM: Final Mapping Report
 +---------------------------+---------------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 |Module Name                | RTL Object                                              | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
 +---------------------------+---------------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
-|dma_mmu_picorv32_soc__GCB0 | g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg | 64 K x 32(READ_FIRST)  | W |   | 64 K x 32(WRITE_FIRST) |   | R | Port A and B     | 0      | 64     | 
+|dma_mmu_picorv32_soc__GCB2 | g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg | 64 K x 32(READ_FIRST)  | W |   | 64 K x 32(WRITE_FIRST) |   | R | Port A and B     | 0      | 64     | 
 +---------------------------+---------------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 
 
@@ -1990,72 +2031,72 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_0_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_0_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_0_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_0_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_0_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_0_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_0_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_0_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_1_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_1_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_1_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_1_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_1_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_1_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_1_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_1_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_0_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_0_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_0_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_0_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_0_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_0_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_0_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_0_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_1_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_1_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_1_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_1_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_1_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_1_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_1_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_1_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_0_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_0_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_0_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_0_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_0_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_0_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_0_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_0_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_1_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_1_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_1_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_1_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_1_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_1_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_1_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_1_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_0_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_0_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_0_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_0_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_0_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_0_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_0_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_0_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_1_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_1_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_1_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_1_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_1_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_1_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_1_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_insti_7/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_1_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_0_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_0_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_0_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_0_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_0_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_0_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_0_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_0_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_1_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_1_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_1_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_1_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_1_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_1_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_1_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_0_1_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_0_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_0_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_0_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_0_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_0_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_0_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_0_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_0_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_1_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_1_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_1_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_1_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_1_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_1_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_1_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_1_1_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_0_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_0_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_0_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_0_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_0_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_0_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_0_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_0_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_1_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_1_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_1_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_1_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_1_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_1_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_1_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_2_1_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_0_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_0_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_0_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_0_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_0_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_0_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_0_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_0_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_1_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_1_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_1_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_1_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_1_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_1_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_1_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_insti_6/soc_inst/g_bram_ddr3.memory_subsystem_inst/boot_ram_inst/mem_reg_3_1_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:02:29 ; elapsed = 00:02:51 . Memory (MB): peak = 2543.863 ; gain = 1511.242
+Finished Technology Mapping : Time (s): cpu = 00:02:20 ; elapsed = 00:02:42 . Memory (MB): peak = 2570.098 ; gain = 1537.199
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -2110,37 +2151,37 @@ INFO: [Common 17-14] Message 'Synth 8-7052' appears 100 times and further instan
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:02:37 ; elapsed = 00:02:59 . Memory (MB): peak = 2545.297 ; gain = 1512.676
+Finished IO Insertion : Time (s): cpu = 00:02:28 ; elapsed = 00:02:50 . Memory (MB): peak = 2573.184 ; gain = 1540.285
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:02:37 ; elapsed = 00:02:59 . Memory (MB): peak = 2545.297 ; gain = 1512.676
+Finished Renaming Generated Instances : Time (s): cpu = 00:02:28 ; elapsed = 00:02:50 . Memory (MB): peak = 2573.184 ; gain = 1540.285
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:39 ; elapsed = 00:03:01 . Memory (MB): peak = 2545.297 ; gain = 1512.676
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:30 ; elapsed = 00:02:52 . Memory (MB): peak = 2589.148 ; gain = 1556.250
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:02:39 ; elapsed = 00:03:01 . Memory (MB): peak = 2545.297 ; gain = 1512.676
+Finished Renaming Generated Ports : Time (s): cpu = 00:02:30 ; elapsed = 00:02:52 . Memory (MB): peak = 2589.148 ; gain = 1556.250
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:02:40 ; elapsed = 00:03:01 . Memory (MB): peak = 2545.297 ; gain = 1512.676
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:31 ; elapsed = 00:02:53 . Memory (MB): peak = 2604.734 ; gain = 1571.836
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:02:40 ; elapsed = 00:03:02 . Memory (MB): peak = 2545.297 ; gain = 1512.676
+Finished Renaming Generated Nets : Time (s): cpu = 00:02:31 ; elapsed = 00:02:53 . Memory (MB): peak = 2604.734 ; gain = 1571.836
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -2164,39 +2205,39 @@ Report Cell Usage:
 |3     |vc707_mig               |     1|
 |4     |BUFG                    |     2|
 |5     |CARRY4                  |   942|
-|6     |LUT1                    |    94|
-|7     |LUT2                    |  3166|
-|8     |LUT3                    |  1687|
-|9     |LUT4                    |  2308|
-|10    |LUT5                    |  2788|
-|11    |LUT6                    | 14494|
+|6     |LUT1                    |    93|
+|7     |LUT2                    |  3192|
+|8     |LUT3                    |  1646|
+|9     |LUT4                    |  2251|
+|10    |LUT5                    |  3021|
+|11    |LUT6                    | 14382|
 |12    |MMCME2_BASE             |     1|
-|13    |MUXF7                   |  4764|
-|14    |MUXF8                   |  2273|
+|13    |MUXF7                   |  4804|
+|14    |MUXF8                   |  2313|
 |15    |RAM32M                  |    18|
 |16    |RAM32X1D                |     6|
 |17    |RAM64M                  |    22|
 |18    |RAMB36E1                |    64|
-|51    |FDCE                    |  7021|
-|52    |FDPE                    |    33|
+|51    |FDCE                    |  7025|
+|52    |FDPE                    |    34|
 |53    |FDRE                    | 37155|
 |54    |FDSE                    |    96|
 |55    |IBUF                    |     2|
 |56    |OBUF                    |     5|
 +------+------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:02:40 ; elapsed = 00:03:02 . Memory (MB): peak = 2545.297 ; gain = 1512.676
+Finished Writing Synthesis Report : Time (s): cpu = 00:02:31 ; elapsed = 00:02:53 . Memory (MB): peak = 2604.734 ; gain = 1571.836
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 204 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:02:14 ; elapsed = 00:02:54 . Memory (MB): peak = 2545.297 ; gain = 1363.602
-Synthesis Optimization Complete : Time (s): cpu = 00:02:40 ; elapsed = 00:03:03 . Memory (MB): peak = 2545.297 ; gain = 1512.676
+Synthesis finished with 0 errors, 0 critical warnings and 209 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:02:05 ; elapsed = 00:02:45 . Memory (MB): peak = 2604.734 ; gain = 1410.262
+Synthesis Optimization Complete : Time (s): cpu = 00:02:31 ; elapsed = 00:02:54 . Memory (MB): peak = 2604.734 ; gain = 1571.836
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.550 . Memory (MB): peak = 2545.297 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 8090 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.534 . Memory (MB): peak = 2611.496 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 8170 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 2545.297 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.018 . Memory (MB): peak = 2636.559 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 47 instances were transformed.
   MMCME2_BASE => MMCME2_ADV: 1 instance 
@@ -2204,12 +2245,12 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   RAM32X1D => RAM32X1D (RAMD32(x2)): 6 instances
   RAM64M => RAM64M (RAMD64E(x4)): 22 instances
 
-Synth Design complete | Checksum: 259d66a3
+Synth Design complete | Checksum: aaa9c46b
 INFO: [Common 17-83] Releasing license: Synthesis
-433 Infos, 593 Warnings, 0 Critical Warnings and 0 Errors encountered.
+434 Infos, 600 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:02:53 ; elapsed = 00:03:19 . Memory (MB): peak = 2545.297 ; gain = 1997.957
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.057 . Memory (MB): peak = 2545.297 ; gain = 0.000
+synth_design: Time (s): cpu = 00:02:45 ; elapsed = 00:03:10 . Memory (MB): peak = 2636.559 ; gain = 2088.305
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.057 . Memory (MB): peak = 2636.559 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'D:/_codex_dma_mmu/build/vivado/vc707_ddr3/DMA_IOMMU_PicoRV32_VC707_DDR3.runs/synth_1/dma_mmu_picorv32_vc707_ddr3_top.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file dma_mmu_picorv32_vc707_ddr3_top_utilization_synth.rpt -pb dma_mmu_picorv32_vc707_ddr3_top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Aug 18 13:53:21 2026...
+INFO: [Common 17-206] Exiting Vivado at Tue Aug 18 15:14:00 2026...

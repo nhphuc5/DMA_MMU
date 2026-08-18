@@ -47,6 +47,14 @@ module axil_to_apb_bridge #(
     logic [ADDR_WIDTH-1:0] addr_q;
     logic [DATA_WIDTH-1:0] wdata_q;
     logic [3:0] wstrb_q;
+    logic aw_pending_q;
+    logic w_pending_q;
+
+    wire aw_fire = s_axil_awvalid && s_axil_awready;
+    wire w_fire  = s_axil_wvalid && s_axil_wready;
+    wire ar_fire = s_axil_arvalid && s_axil_arready;
+    wire write_complete = (aw_pending_q || aw_fire)
+                       && (w_pending_q || w_fire);
 
     always_comb begin
         s_axil_awready = 1'b0;
@@ -64,13 +72,14 @@ module axil_to_apb_bridge #(
 
         case (state_q)
             IDLE: begin
-                // Simple strict prioritization: AXI write takes precedence over read
-                if (s_axil_awvalid && s_axil_wvalid) begin
-                    s_axil_awready = 1'b1;
-                    s_axil_wready  = 1'b1;
-                end else if (s_axil_arvalid && !(s_axil_awvalid && s_axil_wvalid)) begin
-                    s_axil_arready = 1'b1;
-                end
+                // AXI4-Lite AW and W are independent channels. Capture either
+                // order and begin APB only after both halves are available.
+                s_axil_awready = !aw_pending_q;
+                s_axil_wready  = !w_pending_q;
+                // Preserve deterministic write priority once either write
+                // channel is pending or being presented by the master.
+                s_axil_arready = !aw_pending_q && !w_pending_q
+                                && !s_axil_awvalid && !s_axil_wvalid;
             end
             SETUP: begin
                 m_apb_psel = 1'b1;
@@ -96,6 +105,8 @@ module axil_to_apb_bridge #(
             addr_q <= '0;
             wdata_q <= '0;
             wstrb_q <= '0;
+            aw_pending_q <= 1'b0;
+            w_pending_q <= 1'b0;
             
             s_axil_bresp <= 2'b00;
             s_axil_rresp <= 2'b00;
@@ -103,13 +114,31 @@ module axil_to_apb_bridge #(
         end else begin
             case (state_q)
                 IDLE: begin
-                    if (s_axil_awvalid && s_axil_wvalid) begin
-                        is_read_q <= 1'b0;
+                    if (aw_fire) begin
                         addr_q <= s_axil_awaddr;
+                        aw_pending_q <= 1'b1;
+                    end
+                    if (w_fire) begin
                         wdata_q <= s_axil_wdata;
                         wstrb_q <= s_axil_wstrb;
+                        w_pending_q <= 1'b1;
+                    end
+
+                    if (write_complete) begin
+                        is_read_q <= 1'b0;
+                        // When the final half arrives this cycle, use it
+                        // directly because nonblocking assignments update the
+                        // pending registers after this decision.
+                        if (aw_fire)
+                            addr_q <= s_axil_awaddr;
+                        if (w_fire) begin
+                            wdata_q <= s_axil_wdata;
+                            wstrb_q <= s_axil_wstrb;
+                        end
+                        aw_pending_q <= 1'b0;
+                        w_pending_q <= 1'b0;
                         state_q <= SETUP;
-                    end else if (s_axil_arvalid) begin
+                    end else if (ar_fire) begin
                         is_read_q <= 1'b1;
                         addr_q <= s_axil_araddr;
                         state_q <= SETUP;
@@ -139,5 +168,8 @@ module axil_to_apb_bridge #(
             endcase
         end
     end
+
+    logic _unused;
+    assign _unused = &{1'b0, s_axil_awprot, s_axil_arprot};
 
 endmodule

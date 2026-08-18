@@ -2,7 +2,8 @@
 
 This is the recommended physical target. It integrates PicoRV32, CPU MMU,
 DMA with descriptor queue and all three scheduling modes, DMA IOMMU, retained
-256-KiB `axi_ram`, AXI interconnect, UART AXI-Lite/AXI-Stream, LUT-based 4x4
+256-KiB `axi_ram`, AXI interconnect, AXI4-Lite-to-APB bridge, APB UART with
+AXI4-Stream DMA data paths, LUT-based 4x4
 INT8 systolic accelerator, AXI clock/data-width conversion, and the official
 Xilinx MIG 7 Series x64 DDR3 controller/PHY.
 

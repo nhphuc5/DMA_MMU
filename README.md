@@ -13,7 +13,7 @@ Project_Vivado/
 |   |-- IOMMU/     DMA-side address translation, permissions, TLB, pseudo-LRU
 |   |-- PicoRV32/  PicoRV32 core, CPU-side MMU, and AXI4-Lite address router
 |   |-- AXI/       Shared AXI infrastructure, arbiters, crossbar, and AXI RAM
-|   |-- UART/      UART engine and AXI4-Lite/AXI-Stream wrapper
+|   |-- UART/      APB UART with AXI4-Stream DMA interface
 |   |-- Systolic/  4x4 signed INT8 matrix accelerator and AXI4-Lite wrapper
 |   `-- SoC/       DMA/IOMMU IP integration and complete SoC top
 |-- firmware/
@@ -59,7 +59,9 @@ The physical-board target retains a 256-KiB AXI boot/scratch RAM and connects th
 SoC's `0x8000_0000`--`0xBFFF_FFFF` aperture to the VC707 1-GiB x64 DDR3
 SODIMM.  It uses a reproducibly generated Xilinx MIG 7 Series PHY/controller,
 an AXI clock-domain converter, and a 32-to-512-bit AXI data-width converter.
-The integrated firmware waits for real MIG calibration and then implements a
+CPU control reaches the UART through the required AXI4-Lite-to-APB bridge;
+UART payloads use AXI4-Stream directly to/from DMA. The integrated firmware
+waits for real MIG calibration and then implements a
 run-time multi-image path through UART, all three DMA directions, DMA-side
 IOMMU, physical DDR3 and the 4x4 INT8 systolic accelerator.
 

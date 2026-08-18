@@ -3,12 +3,12 @@
 # SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
 # IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
 # SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
-# Start of session at: Tue Aug 18 13:43:55 2026
-# Process ID         : 38860
-# Current directory  : D:/_codex_dma_build/batch_sim/DMA_IOMMU_PicoRV32_Unified.sim/sim_1/behav/xsim
-# Command line       : xsim.exe -log batch_integrated_final.log -mode tcl -source {xsim.dir/batch_integrated_final/xsim_script.tcl}
-# Log file           : D:/_codex_dma_build/batch_sim/DMA_IOMMU_PicoRV32_Unified.sim/sim_1/behav/xsim/batch_integrated_final.log
-# Journal file       : D:/_codex_dma_build/batch_sim/DMA_IOMMU_PicoRV32_Unified.sim/sim_1/behav/xsim\xsim.jou
+# Start of session at: Tue Aug 18 15:09:08 2026
+# Process ID         : 42564
+# Current directory  : D:/_codex_dma_build/batch_apb/DMA_IOMMU_PicoRV32_Unified.sim/sim_1/behav/xsim
+# Command line       : xsim.exe -log batch_apb_regression.log -mode tcl -source {xsim.dir/tb_soc_uart_image_batch_behav/xsim_script.tcl}
+# Log file           : D:/_codex_dma_build/batch_apb/DMA_IOMMU_PicoRV32_Unified.sim/sim_1/behav/xsim/batch_apb_regression.log
+# Journal file       : D:/_codex_dma_build/batch_apb/DMA_IOMMU_PicoRV32_Unified.sim/sim_1/behav/xsim\xsim.jou
 # Running On         : LAPTOP-7VHB4FBR
 # Platform           : Windows Server 2016 or Windows 10
 # Operating System   : 26200
@@ -17,12 +17,12 @@
 # CPU Physical cores : 14
 # CPU Logical cores  : 20
 # Host memory        : 16786 MB
-# Swap memory        : 4431 MB
-# Total Virtual      : 21217 MB
-# Available Virtual  : 1580 MB
+# Swap memory        : 6416 MB
+# Total Virtual      : 23202 MB
+# Available Virtual  : 1791 MB
 #-----------------------------------------------------------
-source xsim.dir/batch_integrated_final/xsim_script.tcl
-# xsim {batch_integrated_final} -autoloadwcfg -runall
+source xsim.dir/tb_soc_uart_image_batch_behav/xsim_script.tcl
+# xsim {tb_soc_uart_image_batch_behav} -autoloadwcfg -runall -onfinish quit
 Time resolution is 1 ps
 run -all
 Addressing configuration for axi_crossbar_addr instance tb_soc_uart_image_batch.dut.dma_iommu_inst.crossbar_inst.axi_crossbar_wr_inst.s_ifaces[0].addr_inst
@@ -48,8 +48,7 @@ Addressing configuration for axi_crossbar_addr instance tb_soc_uart_image_batch.
  0 ( 0): 00000000 / 18 -- 00000000-0003ffff
  1 ( 0): 80000000 / 30 -- 80000000-bfffffff
 MULTI-IMAGE UART/DMA/SYSTOLIC SOC TEST PASSED
-$finish called at time : 15968383038 ps : File "D:/_codex_dma_mmu/testbench/tb_soc_uart_image_batch.sv" Line 554
-run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:28 . Memory (MB): peak = 179.777 ; gain = 0.012
-exit
-INFO: xsimkernel Simulation Memory Usage: 37936 KB (Peak: 37936 KB), Simulation CPU Usage: 26296 ms
-INFO: [Common 17-206] Exiting xsim at Tue Aug 18 13:44:25 2026...
+$finish called at time : 15971283618 ps : File "D:/DMA_MMU-main(1)/testbench/tb_soc_uart_image_batch.sv" Line 554
+exit 0
+INFO: xsimkernel Simulation Memory Usage: 36892 KB (Peak: 36892 KB), Simulation CPU Usage: 26390 ms
+INFO: [Common 17-206] Exiting xsim at Tue Aug 18 15:09:36 2026...

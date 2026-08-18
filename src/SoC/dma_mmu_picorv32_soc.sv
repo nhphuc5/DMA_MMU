@@ -286,6 +286,16 @@ module dma_mmu_picorv32_soc #(
     wire [1:0] uart_axil_rresp;
     wire uart_axil_rvalid, uart_axil_rready;
 
+    wire [7:0] uart_apb_paddr;
+    wire uart_apb_psel;
+    wire uart_apb_penable;
+    wire uart_apb_pwrite;
+    wire [31:0] uart_apb_pwdata;
+    wire [3:0] uart_apb_pstrb;
+    wire [31:0] uart_apb_prdata;
+    wire uart_apb_pready;
+    wire uart_apb_pslverr;
+
     wire [7:0] systolic_axil_awaddr, systolic_axil_araddr;
     wire [2:0] systolic_axil_awprot, systolic_axil_arprot;
     wire systolic_axil_awvalid, systolic_axil_awready;
@@ -509,10 +519,10 @@ module dma_mmu_picorv32_soc #(
         .irq_o(systolic_irq)
     );
 
-    uart_axil_axis #(
-        .AXIL_ADDR_WIDTH(8),
-        .DEFAULT_DIV(UART_DEFAULT_DIV)
-    ) uart_inst (
+    axil_to_apb_bridge #(
+        .ADDR_WIDTH(8),
+        .DATA_WIDTH(32)
+    ) uart_bridge_inst (
         .clk_i(clk_i), .rst_ni(rst_ni),
         .s_axil_awaddr(uart_axil_awaddr), .s_axil_awprot(uart_axil_awprot),
         .s_axil_awvalid(uart_axil_awvalid), .s_axil_awready(uart_axil_awready),
@@ -524,6 +534,23 @@ module dma_mmu_picorv32_soc #(
         .s_axil_arvalid(uart_axil_arvalid), .s_axil_arready(uart_axil_arready),
         .s_axil_rdata(uart_axil_rdata), .s_axil_rresp(uart_axil_rresp),
         .s_axil_rvalid(uart_axil_rvalid), .s_axil_rready(uart_axil_rready),
+        .m_apb_paddr(uart_apb_paddr), .m_apb_psel(uart_apb_psel),
+        .m_apb_penable(uart_apb_penable), .m_apb_pwrite(uart_apb_pwrite),
+        .m_apb_pwdata(uart_apb_pwdata), .m_apb_pstrb(uart_apb_pstrb),
+        .m_apb_prdata(uart_apb_prdata), .m_apb_pready(uart_apb_pready),
+        .m_apb_pslverr(uart_apb_pslverr)
+    );
+
+    uart_apb_axis #(
+        .APB_ADDR_WIDTH(8),
+        .DEFAULT_DIV(UART_DEFAULT_DIV)
+    ) uart_inst (
+        .clk_i(clk_i), .rst_ni(rst_ni),
+        .s_apb_paddr(uart_apb_paddr), .s_apb_psel(uart_apb_psel),
+        .s_apb_penable(uart_apb_penable), .s_apb_pwrite(uart_apb_pwrite),
+        .s_apb_pwdata(uart_apb_pwdata), .s_apb_pstrb(uart_apb_pstrb),
+        .s_apb_prdata(uart_apb_prdata), .s_apb_pready(uart_apb_pready),
+        .s_apb_pslverr(uart_apb_pslverr),
         .s_axis_tx_tdata(dma_to_uart_tdata),
         .s_axis_tx_tkeep(dma_to_uart_tkeep),
         .s_axis_tx_tvalid(dma_to_uart_tvalid),

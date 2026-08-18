@@ -23,10 +23,17 @@ if {![file exists $xpr_file]} {
 set top_name dma_mmu_picorv32_vc707_ddr3_top
 set_property top $top_name [get_filesets sources_1]
 set_property top_auto_set 0 [get_filesets sources_1]
-set uart_axil_source [file join $root_dir "src/UART/uart_axil_axis.sv"]
-if {[llength [get_files -quiet $uart_axil_source]] == 0} {
-    add_files -fileset sources_1 -norecurse $uart_axil_source
-    set_property file_type SystemVerilog [get_files $uart_axil_source]
+set obsolete_uart_files [get_files -quiet *uart_axil_axis.sv]
+if {[llength $obsolete_uart_files] != 0} {
+    remove_files $obsolete_uart_files
+}
+foreach uart_source [list \
+        [file join $root_dir "src/AXI/axil_to_apb_bridge.sv"] \
+        [file join $root_dir "src/UART/uart_apb_axis.sv"]] {
+    if {[llength [get_files -quiet $uart_source]] == 0} {
+        add_files -fileset sources_1 -norecurse $uart_source
+        set_property file_type SystemVerilog [get_files $uart_source]
+    }
 }
 
 # Selectable firmware/QoR policy lets the same timing-closed physical target
