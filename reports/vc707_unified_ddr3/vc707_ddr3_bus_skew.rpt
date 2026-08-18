@@ -1,0 +1,1479 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Tue Aug 18 14:17:07 2026
+| Host         : LAPTOP-7VHB4FBR running 64-bit major release  (build 9200)
+| Command      : report_bus_skew -file D:/_codex_dma_mmu/reports/vc707_unified_ddr3/vc707_ddr3_bus_skew.rpt
+| Design       : dma_mmu_picorv32_vc707_ddr3_top
+| Device       : 7vx485t-ffg1761
+| Speed File   : -2  PRODUCTION 1.12 2014-09-11
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Bus Skew Report
+
+Table of Contents
+-----------------
+1. Bus Skew Report Summary
+2. Bus Skew Report Per Constraint
+
+1. Bus Skew Report Summary
+--------------------------
+
+Id  Position  From                            To                              Corner  Requirement(ns)  Actual(ns)  Slack(ns)
+--  --------  ------------------------------  ------------------------------  ------  ---------------  ----------  ---------
+1   29        [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[3]}]]
+                                              [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][3]}]]
+                                                                              Slow              5.000       0.545      4.455
+2   31        [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[3]}]]
+                                              [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][3]}]]
+                                                                              Slow              5.000       0.581      4.419
+3   33        [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[3]}]]
+                                              [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][3]}]]
+                                                                              Slow              5.000       0.570      4.430
+4   35        [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[3]}]]
+                                              [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][3]}]]
+                                                                              Slow              5.000       0.524      4.476
+5   37        [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[3]}]]
+                                              [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][3]}]]
+                                                                              Slow              5.000       0.613      4.387
+6   39        [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[3]}]]
+                                              [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][3]}]]
+                                                                              Slow              5.000       0.475      4.525
+7   41        [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[3]}]]
+                                              [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][3]}]]
+                                                                              Slow              5.000       0.460      4.540
+8   43        [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[3]}]]
+                                              [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][3]}]]
+                                                                              Slow              5.000       0.472      4.528
+9   45        [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[3]}]]
+                                              [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][3]}]]
+                                                                              Slow              5.000       0.396      4.604
+10  47        [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[3]}]]
+                                              [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][3]}]]
+                                                                              Slow              5.000       0.436      4.564
+
+
+2. Bus Skew Report Per Constraint
+---------------------------------
+
+Id: 1
+set_bus_skew -from [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[3]}]] -to [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][3]}]] 5.000
+Requirement: 5.000ns
+Endpoints: 4
+
+From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
+--------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
+soc_mmcm_clk_unbuf    clk_pll_i             ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]/D
+                                                                            ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][2]/D
+                                                                                                            Slow         0.545      4.455
+
+
+Slack (MET) :             4.455ns  (requirement - actual skew)
+  Endpoint Source:        <hidden>
+                            (rising edge-triggered cell FDRE clocked by soc_mmcm_clk_unbuf)
+  Endpoint Destination:   <hidden>
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i)
+  Reference Source:       <hidden>
+                            (rising edge-triggered cell FDRE clocked by soc_mmcm_clk_unbuf)
+  Reference Destination:  <hidden>
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i)
+  Path Type:              Bus Skew (Max at Slow Process Corner)
+  Requirement:            5.000ns
+  Endpoint Relative Delay:    0.868ns
+  Reference Relative Delay:   0.017ns
+  Relative CRPR:              0.306ns
+  Actual Bus Skew:            0.545ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR)
+
+Endpoint path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock soc_mmcm_clk_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.880     0.880 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.098     1.978    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.077     2.055 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.163     3.218    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.103     3.321 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.804     4.125    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.373     0.752 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.697     2.449    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     2.542 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.952     4.494    ui_clk
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.520    -0.026 r  soc_clock_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           2.477     2.451    soc_mmcm_clk_unbuf
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.093     2.544 r  soc_clock_bufg_inst/O
+                         net (fo=45333, routed)       1.606     4.150    <hidden>
+    SLICE_X145Y310       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X145Y310       FDRE (Prop_fdre_C_Q)         0.223     4.373 r  <hidden>
+                         net (fo=1, routed)           0.466     4.839    <hidden>
+    SLICE_X144Y310       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_pll_i rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.783     0.783 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.001     1.784    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.073     1.857 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.051     2.908    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.066     2.974 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.735     3.709    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.040     0.669 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.566     2.235    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     2.318 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.403     3.721    <hidden>
+    SLICE_X144Y310       FDRE                                         r  <hidden>
+                         clock pessimism              0.224     3.945    
+    SLICE_X144Y310       FDRE (Setup_fdre_C_D)        0.026     3.971    <hidden>
+  -------------------------------------------------------------------
+                         data arrival                           4.839    
+                         clock arrival                          3.971    
+  -------------------------------------------------------------------
+                         relative delay                         0.868    
+
+Reference path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock soc_mmcm_clk_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.783     0.783 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.001     1.784    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.073     1.857 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.051     2.908    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.066     2.974 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.735     3.709    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.040     0.669 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.566     2.235    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     2.318 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.791     4.109    ui_clk
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.216    -0.107 r  soc_clock_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           2.344     2.237    soc_mmcm_clk_unbuf
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.083     2.320 r  soc_clock_bufg_inst/O
+                         net (fo=45333, routed)       1.405     3.725    <hidden>
+    SLICE_X140Y307       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X140Y307       FDRE (Prop_fdre_C_Q)         0.206     3.931 r  <hidden>
+                         net (fo=1, routed)           0.160     4.091    <hidden>
+    SLICE_X140Y306       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_pll_i rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.880     0.880 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.098     1.978    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.077     2.055 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.163     3.218    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.103     3.321 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.804     4.125    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.373     0.752 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.697     2.449    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     2.542 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.604     4.146    <hidden>
+    SLICE_X140Y306       FDRE                                         r  <hidden>
+                         clock pessimism             -0.224     3.922    
+    SLICE_X140Y306       FDRE (Hold_fdre_C_D)         0.152     4.074    <hidden>
+  -------------------------------------------------------------------
+                         data arrival                           4.091    
+                         clock arrival                          4.074    
+  -------------------------------------------------------------------
+                         relative delay                         0.017    
+
+
+
+Id: 2
+set_bus_skew -from [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[3]}]] -to [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][3]}]] 5.000
+Requirement: 5.000ns
+Endpoints: 4
+
+From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
+--------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
+soc_mmcm_clk_unbuf    clk_pll_i             ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]/D
+                                                                            ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][3]/D
+                                                                                                            Slow         0.581      4.419
+
+
+Slack (MET) :             4.419ns  (requirement - actual skew)
+  Endpoint Source:        <hidden>
+                            (rising edge-triggered cell FDRE clocked by soc_mmcm_clk_unbuf)
+  Endpoint Destination:   <hidden>
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i)
+  Reference Source:       <hidden>
+                            (rising edge-triggered cell FDRE clocked by soc_mmcm_clk_unbuf)
+  Reference Destination:  <hidden>
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i)
+  Path Type:              Bus Skew (Max at Slow Process Corner)
+  Requirement:            5.000ns
+  Endpoint Relative Delay:    0.972ns
+  Reference Relative Delay:   0.085ns
+  Relative CRPR:              0.306ns
+  Actual Bus Skew:            0.581ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR)
+
+Endpoint path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock soc_mmcm_clk_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.880     0.880 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.098     1.978    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.077     2.055 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.163     3.218    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.103     3.321 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.804     4.125    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.373     0.752 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.697     2.449    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     2.542 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.952     4.494    ui_clk
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.520    -0.026 r  soc_clock_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           2.477     2.451    soc_mmcm_clk_unbuf
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.093     2.544 r  soc_clock_bufg_inst/O
+                         net (fo=45333, routed)       1.743     4.287    <hidden>
+    SLICE_X186Y331       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X186Y331       FDRE (Prop_fdre_C_Q)         0.259     4.546 r  <hidden>
+                         net (fo=1, routed)           0.533     5.079    <hidden>
+    SLICE_X186Y329       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_pll_i rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.783     0.783 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.001     1.784    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.073     1.857 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.051     2.908    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.066     2.974 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.735     3.709    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.040     0.669 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.566     2.235    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     2.318 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.539     3.857    <hidden>
+    SLICE_X186Y329       FDRE                                         r  <hidden>
+                         clock pessimism              0.224     4.081    
+    SLICE_X186Y329       FDRE (Setup_fdre_C_D)        0.026     4.107    <hidden>
+  -------------------------------------------------------------------
+                         data arrival                           5.079    
+                         clock arrival                          4.107    
+  -------------------------------------------------------------------
+                         relative delay                         0.972    
+
+Reference path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock soc_mmcm_clk_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.783     0.783 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.001     1.784    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.073     1.857 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.051     2.908    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.066     2.974 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.735     3.709    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.040     0.669 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.566     2.235    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     2.318 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.791     4.109    ui_clk
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.216    -0.107 r  soc_clock_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           2.344     2.237    soc_mmcm_clk_unbuf
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.083     2.320 r  soc_clock_bufg_inst/O
+                         net (fo=45333, routed)       1.535     3.855    <hidden>
+    SLICE_X185Y328       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X185Y328       FDRE (Prop_fdre_C_Q)         0.178     4.033 r  <hidden>
+                         net (fo=1, routed)           0.221     4.254    <hidden>
+    SLICE_X183Y328       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_pll_i rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.880     0.880 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.098     1.978    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.077     2.055 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.163     3.218    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.103     3.321 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.804     4.125    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.373     0.752 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.697     2.449    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     2.542 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.733     4.275    <hidden>
+    SLICE_X183Y328       FDRE                                         r  <hidden>
+                         clock pessimism             -0.224     4.051    
+    SLICE_X183Y328       FDRE (Hold_fdre_C_D)         0.118     4.169    <hidden>
+  -------------------------------------------------------------------
+                         data arrival                           4.254    
+                         clock arrival                          4.169    
+  -------------------------------------------------------------------
+                         relative delay                         0.085    
+
+
+
+Id: 3
+set_bus_skew -from [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[3]}]] -to [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][3]}]] 5.000
+Requirement: 5.000ns
+Endpoints: 4
+
+From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
+--------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
+soc_mmcm_clk_unbuf    clk_pll_i             ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][1]/D
+                                                                            ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][2]/D
+                                                                                                            Slow         0.570      4.430
+
+
+Slack (MET) :             4.430ns  (requirement - actual skew)
+  Endpoint Source:        <hidden>
+                            (rising edge-triggered cell FDRE clocked by soc_mmcm_clk_unbuf)
+  Endpoint Destination:   <hidden>
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i)
+  Reference Source:       <hidden>
+                            (rising edge-triggered cell FDRE clocked by soc_mmcm_clk_unbuf)
+  Reference Destination:  <hidden>
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i)
+  Path Type:              Bus Skew (Max at Slow Process Corner)
+  Requirement:            5.000ns
+  Endpoint Relative Delay:    0.959ns
+  Reference Relative Delay:   0.015ns
+  Relative CRPR:              0.375ns
+  Actual Bus Skew:            0.570ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR)
+
+Endpoint path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock soc_mmcm_clk_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.880     0.880 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.098     1.978    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.077     2.055 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.163     3.218    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.103     3.321 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.804     4.125    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.373     0.752 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.697     2.449    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     2.542 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.952     4.494    ui_clk
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.520    -0.026 r  soc_clock_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           2.477     2.451    soc_mmcm_clk_unbuf
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.093     2.544 r  soc_clock_bufg_inst/O
+                         net (fo=45333, routed)       1.603     4.147    <hidden>
+    SLICE_X158Y328       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X158Y328       FDRE (Prop_fdre_C_Q)         0.236     4.383 r  <hidden>
+                         net (fo=1, routed)           0.436     4.819    <hidden>
+    SLICE_X157Y328       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_pll_i rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.783     0.783 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.001     1.784    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.073     1.857 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.051     2.908    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.066     2.974 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.735     3.709    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.040     0.669 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.566     2.235    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     2.318 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.403     3.721    <hidden>
+    SLICE_X157Y328       FDRE                                         r  <hidden>
+                         clock pessimism              0.224     3.945    
+    SLICE_X157Y328       FDRE (Setup_fdre_C_D)       -0.085     3.860    <hidden>
+  -------------------------------------------------------------------
+                         data arrival                           4.819    
+                         clock arrival                          3.860    
+  -------------------------------------------------------------------
+                         relative delay                         0.959    
+
+Reference path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock soc_mmcm_clk_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.783     0.783 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.001     1.784    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.073     1.857 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.051     2.908    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.066     2.974 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.735     3.709    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.040     0.669 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.566     2.235    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     2.318 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.791     4.109    ui_clk
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.216    -0.107 r  soc_clock_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           2.344     2.237    soc_mmcm_clk_unbuf
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.083     2.320 r  soc_clock_bufg_inst/O
+                         net (fo=45333, routed)       1.405     3.725    <hidden>
+    SLICE_X158Y328       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X158Y328       FDRE (Prop_fdre_C_Q)         0.206     3.931 r  <hidden>
+                         net (fo=1, routed)           0.156     4.087    <hidden>
+    SLICE_X156Y328       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_pll_i rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.880     0.880 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.098     1.978    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.077     2.055 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.163     3.218    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.103     3.321 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.804     4.125    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.373     0.752 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.697     2.449    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     2.542 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.601     4.143    <hidden>
+    SLICE_X156Y328       FDRE                                         r  <hidden>
+                         clock pessimism             -0.224     3.919    
+    SLICE_X156Y328       FDRE (Hold_fdre_C_D)         0.153     4.072    <hidden>
+  -------------------------------------------------------------------
+                         data arrival                           4.087    
+                         clock arrival                          4.072    
+  -------------------------------------------------------------------
+                         relative delay                         0.015    
+
+
+
+Id: 4
+set_bus_skew -from [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[3]}]] -to [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][3]}]] 5.000
+Requirement: 5.000ns
+Endpoints: 4
+
+From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
+--------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
+clk_pll_i             soc_mmcm_clk_unbuf    ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][1]/D
+                                                                            ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grach2.axi_rach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][2]/D
+                                                                                                            Slow         0.524      4.476
+
+
+Slack (MET) :             4.476ns  (requirement - actual skew)
+  Endpoint Source:        <hidden>
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i)
+  Endpoint Destination:   <hidden>
+                            (rising edge-triggered cell FDRE clocked by soc_mmcm_clk_unbuf)
+  Reference Source:       <hidden>
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i)
+  Reference Destination:  <hidden>
+                            (rising edge-triggered cell FDRE clocked by soc_mmcm_clk_unbuf)
+  Path Type:              Bus Skew (Max at Slow Process Corner)
+  Requirement:            5.000ns
+  Endpoint Relative Delay:    0.821ns
+  Reference Relative Delay:  -0.009ns
+  Relative CRPR:              0.306ns
+  Actual Bus Skew:            0.524ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR)
+
+Endpoint path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_pll_i rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.880     0.880 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.098     1.978    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.077     2.055 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.163     3.218    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.103     3.321 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.804     4.125    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.373     0.752 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.697     2.449    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     2.542 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.602     4.144    <hidden>
+    SLICE_X160Y328       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X160Y328       FDRE (Prop_fdre_C_Q)         0.236     4.380 r  <hidden>
+                         net (fo=1, routed)           0.300     4.680    <hidden>
+    SLICE_X159Y328       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock soc_mmcm_clk_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.783     0.783 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.001     1.784    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.073     1.857 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.051     2.908    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.066     2.974 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.735     3.709    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.040     0.669 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.566     2.235    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     2.318 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.791     4.109    ui_clk
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.216    -0.107 r  soc_clock_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           2.344     2.237    soc_mmcm_clk_unbuf
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.083     2.320 r  soc_clock_bufg_inst/O
+                         net (fo=45333, routed)       1.405     3.725    <hidden>
+    SLICE_X159Y328       FDRE                                         r  <hidden>
+                         clock pessimism              0.224     3.949    
+    SLICE_X159Y328       FDRE (Setup_fdre_C_D)       -0.090     3.859    <hidden>
+  -------------------------------------------------------------------
+                         data arrival                           4.680    
+                         clock arrival                          3.859    
+  -------------------------------------------------------------------
+                         relative delay                         0.821    
+
+Reference path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_pll_i rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.783     0.783 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.001     1.784    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.073     1.857 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.051     2.908    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.066     2.974 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.735     3.709    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.040     0.669 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.566     2.235    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     2.318 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.402     3.720    <hidden>
+    SLICE_X159Y327       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X159Y327       FDRE (Prop_fdre_C_Q)         0.178     3.898 r  <hidden>
+                         net (fo=1, routed)           0.168     4.066    <hidden>
+    SLICE_X160Y327       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock soc_mmcm_clk_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.880     0.880 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.098     1.978    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.077     2.055 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.163     3.218    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.103     3.321 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.804     4.125    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.373     0.752 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.697     2.449    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     2.542 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.952     4.494    ui_clk
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.520    -0.026 r  soc_clock_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           2.477     2.451    soc_mmcm_clk_unbuf
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.093     2.544 r  soc_clock_bufg_inst/O
+                         net (fo=45333, routed)       1.603     4.147    <hidden>
+    SLICE_X160Y327       FDRE                                         r  <hidden>
+                         clock pessimism             -0.224     3.923    
+    SLICE_X160Y327       FDRE (Hold_fdre_C_D)         0.152     4.075    <hidden>
+  -------------------------------------------------------------------
+                         data arrival                           4.066    
+                         clock arrival                          4.075    
+  -------------------------------------------------------------------
+                         relative delay                        -0.009    
+
+
+
+Id: 5
+set_bus_skew -from [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[3]}]] -to [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][3]}]] 5.000
+Requirement: 5.000ns
+Endpoints: 4
+
+From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
+--------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
+clk_pll_i             soc_mmcm_clk_unbuf    ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][0]/D
+                                                                            ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][2]/D
+                                                                                                            Slow         0.613      4.387
+
+
+Slack (MET) :             4.387ns  (requirement - actual skew)
+  Endpoint Source:        <hidden>
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i)
+  Endpoint Destination:   <hidden>
+                            (rising edge-triggered cell FDRE clocked by soc_mmcm_clk_unbuf)
+  Reference Source:       <hidden>
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i)
+  Reference Destination:  <hidden>
+                            (rising edge-triggered cell FDRE clocked by soc_mmcm_clk_unbuf)
+  Path Type:              Bus Skew (Max at Slow Process Corner)
+  Requirement:            5.000ns
+  Endpoint Relative Delay:    0.993ns
+  Reference Relative Delay:   0.004ns
+  Relative CRPR:              0.377ns
+  Actual Bus Skew:            0.613ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR)
+
+Endpoint path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_pll_i rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.880     0.880 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.098     1.978    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.077     2.055 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.163     3.218    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.103     3.321 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.804     4.125    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.373     0.752 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.697     2.449    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     2.542 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.604     4.146    <hidden>
+    SLICE_X140Y306       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X140Y306       FDRE (Prop_fdre_C_Q)         0.259     4.405 r  <hidden>
+                         net (fo=1, routed)           0.531     4.936    <hidden>
+    SLICE_X139Y308       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock soc_mmcm_clk_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.783     0.783 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.001     1.784    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.073     1.857 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.051     2.908    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.066     2.974 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.735     3.709    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.040     0.669 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.566     2.235    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     2.318 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.791     4.109    ui_clk
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.216    -0.107 r  soc_clock_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           2.344     2.237    soc_mmcm_clk_unbuf
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.083     2.320 r  soc_clock_bufg_inst/O
+                         net (fo=45333, routed)       1.404     3.724    <hidden>
+    SLICE_X139Y308       FDRE                                         r  <hidden>
+                         clock pessimism              0.224     3.948    
+    SLICE_X139Y308       FDRE (Setup_fdre_C_D)       -0.005     3.943    <hidden>
+  -------------------------------------------------------------------
+                         data arrival                           4.936    
+                         clock arrival                          3.943    
+  -------------------------------------------------------------------
+                         relative delay                         0.993    
+
+Reference path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_pll_i rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.783     0.783 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.001     1.784    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.073     1.857 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.051     2.908    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.066     2.974 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.735     3.709    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.040     0.669 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.566     2.235    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     2.318 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.403     3.721    <hidden>
+    SLICE_X140Y306       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X140Y306       FDRE (Prop_fdre_C_Q)         0.206     3.927 r  <hidden>
+                         net (fo=1, routed)           0.156     4.083    <hidden>
+    SLICE_X140Y307       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock soc_mmcm_clk_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.880     0.880 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.098     1.978    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.077     2.055 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.163     3.218    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.103     3.321 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.804     4.125    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.373     0.752 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.697     2.449    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     2.542 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.952     4.494    ui_clk
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.520    -0.026 r  soc_clock_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           2.477     2.451    soc_mmcm_clk_unbuf
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.093     2.544 r  soc_clock_bufg_inst/O
+                         net (fo=45333, routed)       1.606     4.150    <hidden>
+    SLICE_X140Y307       FDRE                                         r  <hidden>
+                         clock pessimism             -0.224     3.926    
+    SLICE_X140Y307       FDRE (Hold_fdre_C_D)         0.153     4.079    <hidden>
+  -------------------------------------------------------------------
+                         data arrival                           4.083    
+                         clock arrival                          4.079    
+  -------------------------------------------------------------------
+                         relative delay                         0.004    
+
+
+
+Id: 6
+set_bus_skew -from [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[3]}]] -to [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][3]}]] 5.000
+Requirement: 5.000ns
+Endpoints: 4
+
+From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
+--------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
+soc_mmcm_clk_unbuf    clk_pll_i             ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][3]/D
+                                                                            ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][0]/D
+                                                                                                            Slow         0.475      4.525
+
+
+Slack (MET) :             4.525ns  (requirement - actual skew)
+  Endpoint Source:        <hidden>
+                            (rising edge-triggered cell FDRE clocked by soc_mmcm_clk_unbuf)
+  Endpoint Destination:   <hidden>
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i)
+  Reference Source:       <hidden>
+                            (rising edge-triggered cell FDRE clocked by soc_mmcm_clk_unbuf)
+  Reference Destination:  <hidden>
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i)
+  Path Type:              Bus Skew (Max at Slow Process Corner)
+  Requirement:            5.000ns
+  Endpoint Relative Delay:    0.817ns
+  Reference Relative Delay:   0.011ns
+  Relative CRPR:              0.331ns
+  Actual Bus Skew:            0.475ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR)
+
+Endpoint path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock soc_mmcm_clk_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.880     0.880 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.098     1.978    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.077     2.055 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.163     3.218    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.103     3.321 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.804     4.125    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.373     0.752 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.697     2.449    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     2.542 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.952     4.494    ui_clk
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.520    -0.026 r  soc_clock_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           2.477     2.451    soc_mmcm_clk_unbuf
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.093     2.544 r  soc_clock_bufg_inst/O
+                         net (fo=45333, routed)       1.739     4.283    <hidden>
+    SLICE_X180Y333       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X180Y333       FDRE (Prop_fdre_C_Q)         0.236     4.519 r  <hidden>
+                         net (fo=1, routed)           0.284     4.803    <hidden>
+    SLICE_X179Y333       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_pll_i rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.783     0.783 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.001     1.784    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.073     1.857 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.051     2.908    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.066     2.974 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.735     3.709    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.040     0.669 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.566     2.235    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     2.318 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.534     3.852    <hidden>
+    SLICE_X179Y333       FDRE                                         r  <hidden>
+                         clock pessimism              0.224     4.076    
+    SLICE_X179Y333       FDRE (Setup_fdre_C_D)       -0.090     3.986    <hidden>
+  -------------------------------------------------------------------
+                         data arrival                           4.803    
+                         clock arrival                          3.986    
+  -------------------------------------------------------------------
+                         relative delay                         0.817    
+
+Reference path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock soc_mmcm_clk_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.783     0.783 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.001     1.784    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.073     1.857 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.051     2.908    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.066     2.974 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.735     3.709    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.040     0.669 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.566     2.235    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     2.318 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.791     4.109    ui_clk
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.216    -0.107 r  soc_clock_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           2.344     2.237    soc_mmcm_clk_unbuf
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.083     2.320 r  soc_clock_bufg_inst/O
+                         net (fo=45333, routed)       1.534     3.854    <hidden>
+    SLICE_X179Y331       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X179Y331       FDRE (Prop_fdre_C_Q)         0.178     4.032 r  <hidden>
+                         net (fo=1, routed)           0.182     4.214    <hidden>
+    SLICE_X178Y331       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_pll_i rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.880     0.880 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.098     1.978    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.077     2.055 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.163     3.218    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.103     3.321 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.804     4.125    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.373     0.752 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.697     2.449    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     2.542 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.733     4.275    <hidden>
+    SLICE_X178Y331       FDRE                                         r  <hidden>
+                         clock pessimism             -0.224     4.051    
+    SLICE_X178Y331       FDRE (Hold_fdre_C_D)         0.152     4.203    <hidden>
+  -------------------------------------------------------------------
+                         data arrival                           4.214    
+                         clock arrival                          4.203    
+  -------------------------------------------------------------------
+                         relative delay                         0.011    
+
+
+
+Id: 7
+set_bus_skew -from [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[3]}]] -to [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][3]}]] 5.000
+Requirement: 5.000ns
+Endpoints: 4
+
+From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
+--------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
+clk_pll_i             soc_mmcm_clk_unbuf    ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][2]/D
+                                                                            ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwach2.axi_wach/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][3]/D
+                                                                                                            Slow         0.460      4.540
+
+
+Slack (MET) :             4.540ns  (requirement - actual skew)
+  Endpoint Source:        <hidden>
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i)
+  Endpoint Destination:   <hidden>
+                            (rising edge-triggered cell FDRE clocked by soc_mmcm_clk_unbuf)
+  Reference Source:       <hidden>
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i)
+  Reference Destination:  <hidden>
+                            (rising edge-triggered cell FDRE clocked by soc_mmcm_clk_unbuf)
+  Path Type:              Bus Skew (Max at Slow Process Corner)
+  Requirement:            5.000ns
+  Endpoint Relative Delay:    0.800ns
+  Reference Relative Delay:   0.009ns
+  Relative CRPR:              0.331ns
+  Actual Bus Skew:            0.460ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR)
+
+Endpoint path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_pll_i rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.880     0.880 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.098     1.978    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.077     2.055 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.163     3.218    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.103     3.321 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.804     4.125    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.373     0.752 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.697     2.449    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     2.542 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.737     4.279    <hidden>
+    SLICE_X181Y333       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X181Y333       FDRE (Prop_fdre_C_Q)         0.223     4.502 r  <hidden>
+                         net (fo=1, routed)           0.372     4.874    <hidden>
+    SLICE_X183Y333       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock soc_mmcm_clk_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.783     0.783 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.001     1.784    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.073     1.857 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.051     2.908    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.066     2.974 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.735     3.709    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.040     0.669 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.566     2.235    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     2.318 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.791     4.109    ui_clk
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.216    -0.107 r  soc_clock_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           2.344     2.237    soc_mmcm_clk_unbuf
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.083     2.320 r  soc_clock_bufg_inst/O
+                         net (fo=45333, routed)       1.540     3.860    <hidden>
+    SLICE_X183Y333       FDRE                                         r  <hidden>
+                         clock pessimism              0.224     4.084    
+    SLICE_X183Y333       FDRE (Setup_fdre_C_D)       -0.010     4.074    <hidden>
+  -------------------------------------------------------------------
+                         data arrival                           4.874    
+                         clock arrival                          4.074    
+  -------------------------------------------------------------------
+                         relative delay                         0.800    
+
+Reference path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_pll_i rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.783     0.783 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.001     1.784    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.073     1.857 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.051     2.908    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.066     2.974 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.735     3.709    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.040     0.669 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.566     2.235    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     2.318 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.537     3.855    <hidden>
+    SLICE_X182Y332       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X182Y332       FDRE (Prop_fdre_C_Q)         0.206     4.061 r  <hidden>
+                         net (fo=1, routed)           0.160     4.221    <hidden>
+    SLICE_X184Y332       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock soc_mmcm_clk_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.880     0.880 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.098     1.978    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.077     2.055 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.163     3.218    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.103     3.321 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.804     4.125    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.373     0.752 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.697     2.449    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     2.542 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.952     4.494    ui_clk
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.520    -0.026 r  soc_clock_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           2.477     2.451    soc_mmcm_clk_unbuf
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.093     2.544 r  soc_clock_bufg_inst/O
+                         net (fo=45333, routed)       1.740     4.284    <hidden>
+    SLICE_X184Y332       FDRE                                         r  <hidden>
+                         clock pessimism             -0.224     4.060    
+    SLICE_X184Y332       FDRE (Hold_fdre_C_D)         0.152     4.212    <hidden>
+  -------------------------------------------------------------------
+                         data arrival                           4.221    
+                         clock arrival                          4.212    
+  -------------------------------------------------------------------
+                         relative delay                         0.009    
+
+
+
+Id: 8
+set_bus_skew -from [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[3]}]] -to [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][3]}]] 5.000
+Requirement: 5.000ns
+Endpoints: 4
+
+From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
+--------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
+soc_mmcm_clk_unbuf    clk_pll_i             ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][3]/D
+                                                                            ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][1]/D
+                                                                                                            Slow         0.472      4.528
+
+
+Slack (MET) :             4.528ns  (requirement - actual skew)
+  Endpoint Source:        <hidden>
+                            (rising edge-triggered cell FDRE clocked by soc_mmcm_clk_unbuf)
+  Endpoint Destination:   <hidden>
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i)
+  Reference Source:       <hidden>
+                            (rising edge-triggered cell FDRE clocked by soc_mmcm_clk_unbuf)
+  Reference Destination:  <hidden>
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i)
+  Path Type:              Bus Skew (Max at Slow Process Corner)
+  Requirement:            5.000ns
+  Endpoint Relative Delay:    0.824ns
+  Reference Relative Delay:   0.046ns
+  Relative CRPR:              0.306ns
+  Actual Bus Skew:            0.472ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR)
+
+Endpoint path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock soc_mmcm_clk_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.880     0.880 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.098     1.978    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.077     2.055 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.163     3.218    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.103     3.321 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.804     4.125    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.373     0.752 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.697     2.449    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     2.542 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.952     4.494    ui_clk
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.520    -0.026 r  soc_clock_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           2.477     2.451    soc_mmcm_clk_unbuf
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.093     2.544 r  soc_clock_bufg_inst/O
+                         net (fo=45333, routed)       1.749     4.293    <hidden>
+    SLICE_X199Y316       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X199Y316       FDRE (Prop_fdre_C_Q)         0.204     4.497 r  <hidden>
+                         net (fo=1, routed)           0.354     4.851    <hidden>
+    SLICE_X198Y316       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_pll_i rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.783     0.783 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.001     1.784    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.073     1.857 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.051     2.908    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.066     2.974 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.735     3.709    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.040     0.669 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.566     2.235    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     2.318 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.546     3.864    <hidden>
+    SLICE_X198Y316       FDRE                                         r  <hidden>
+                         clock pessimism              0.224     4.088    
+    SLICE_X198Y316       FDRE (Setup_fdre_C_D)       -0.061     4.027    <hidden>
+  -------------------------------------------------------------------
+                         data arrival                           4.851    
+                         clock arrival                          4.027    
+  -------------------------------------------------------------------
+                         relative delay                         0.824    
+
+Reference path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock soc_mmcm_clk_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.783     0.783 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.001     1.784    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.073     1.857 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.051     2.908    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.066     2.974 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.735     3.709    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.040     0.669 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.566     2.235    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     2.318 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.791     4.109    ui_clk
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.216    -0.107 r  soc_clock_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           2.344     2.237    soc_mmcm_clk_unbuf
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.083     2.320 r  soc_clock_bufg_inst/O
+                         net (fo=45333, routed)       1.547     3.867    <hidden>
+    SLICE_X195Y316       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X195Y316       FDRE (Prop_fdre_C_Q)         0.162     4.029 r  <hidden>
+                         net (fo=1, routed)           0.167     4.196    <hidden>
+    SLICE_X192Y316       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_pll_i rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.880     0.880 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.098     1.978    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.077     2.055 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.163     3.218    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.103     3.321 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.804     4.125    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.373     0.752 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.697     2.449    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     2.542 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.745     4.287    <hidden>
+    SLICE_X192Y316       FDRE                                         r  <hidden>
+                         clock pessimism             -0.224     4.063    
+    SLICE_X192Y316       FDRE (Hold_fdre_C_D)         0.087     4.150    <hidden>
+  -------------------------------------------------------------------
+                         data arrival                           4.196    
+                         clock arrival                          4.150    
+  -------------------------------------------------------------------
+                         relative delay                         0.046    
+
+
+
+Id: 9
+set_bus_skew -from [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[3]}]] -to [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][3]}]] 5.000
+Requirement: 5.000ns
+Endpoints: 4
+
+From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
+--------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
+clk_pll_i             soc_mmcm_clk_unbuf    ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][3]/D
+                                                                            ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]/D
+                                                                                                            Slow         0.396      4.604
+
+
+Slack (MET) :             4.604ns  (requirement - actual skew)
+  Endpoint Source:        <hidden>
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i)
+  Endpoint Destination:   <hidden>
+                            (rising edge-triggered cell FDRE clocked by soc_mmcm_clk_unbuf)
+  Reference Source:       <hidden>
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i)
+  Reference Destination:  <hidden>
+                            (rising edge-triggered cell FDRE clocked by soc_mmcm_clk_unbuf)
+  Path Type:              Bus Skew (Max at Slow Process Corner)
+  Requirement:            5.000ns
+  Endpoint Relative Delay:    0.712ns
+  Reference Relative Delay:   0.010ns
+  Relative CRPR:              0.306ns
+  Actual Bus Skew:            0.396ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR)
+
+Endpoint path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_pll_i rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.880     0.880 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.098     1.978    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.077     2.055 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.163     3.218    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.103     3.321 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.804     4.125    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.373     0.752 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.697     2.449    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     2.542 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.741     4.283    <hidden>
+    SLICE_X188Y319       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X188Y319       FDRE (Prop_fdre_C_Q)         0.259     4.542 r  <hidden>
+                         net (fo=1, routed)           0.279     4.820    <hidden>
+    SLICE_X190Y318       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock soc_mmcm_clk_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.783     0.783 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.001     1.784    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.073     1.857 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.051     2.908    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.066     2.974 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.735     3.709    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.040     0.669 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.566     2.235    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     2.318 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.791     4.109    ui_clk
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.216    -0.107 r  soc_clock_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           2.344     2.237    soc_mmcm_clk_unbuf
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.083     2.320 r  soc_clock_bufg_inst/O
+                         net (fo=45333, routed)       1.544     3.864    <hidden>
+    SLICE_X190Y318       FDRE                                         r  <hidden>
+                         clock pessimism              0.224     4.088    
+    SLICE_X190Y318       FDRE (Setup_fdre_C_D)        0.021     4.109    <hidden>
+  -------------------------------------------------------------------
+                         data arrival                           4.820    
+                         clock arrival                          4.109    
+  -------------------------------------------------------------------
+                         relative delay                         0.712    
+
+Reference path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_pll_i rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.783     0.783 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.001     1.784    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.073     1.857 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.051     2.908    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.066     2.974 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.735     3.709    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.040     0.669 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.566     2.235    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     2.318 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.545     3.863    <hidden>
+    SLICE_X194Y316       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X194Y316       FDRE (Prop_fdre_C_Q)         0.178     4.041 r  <hidden>
+                         net (fo=1, routed)           0.155     4.196    <hidden>
+    SLICE_X195Y316       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock soc_mmcm_clk_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.880     0.880 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.098     1.978    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.077     2.055 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.163     3.218    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.103     3.321 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.804     4.125    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.373     0.752 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.697     2.449    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     2.542 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.952     4.494    ui_clk
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.520    -0.026 r  soc_clock_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           2.477     2.451    soc_mmcm_clk_unbuf
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.093     2.544 r  soc_clock_bufg_inst/O
+                         net (fo=45333, routed)       1.748     4.292    <hidden>
+    SLICE_X195Y316       FDRE                                         r  <hidden>
+                         clock pessimism             -0.224     4.068    
+    SLICE_X195Y316       FDRE (Hold_fdre_C_D)         0.118     4.186    <hidden>
+  -------------------------------------------------------------------
+                         data arrival                           4.196    
+                         clock arrival                          4.186    
+  -------------------------------------------------------------------
+                         relative delay                         0.010    
+
+
+
+Id: 10
+set_bus_skew -from [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[3]}]] -to [get_cells [list {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][0]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][1]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][2]} {ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][3]}]] 5.000
+Requirement: 5.000ns
+Endpoints: 4
+
+From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
+--------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
+clk_pll_i             soc_mmcm_clk_unbuf    ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][0]/D
+                                                                            ddr_clock_converter_inst/inst/gen_clock_conv.gen_async_conv.asyncfifo_axi/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwrch2.axi_wrch/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][3]/D
+                                                                                                            Slow         0.436      4.564
+
+
+Slack (MET) :             4.564ns  (requirement - actual skew)
+  Endpoint Source:        <hidden>
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i)
+  Endpoint Destination:   <hidden>
+                            (rising edge-triggered cell FDRE clocked by soc_mmcm_clk_unbuf)
+  Reference Source:       <hidden>
+                            (rising edge-triggered cell FDRE clocked by clk_pll_i)
+  Reference Destination:  <hidden>
+                            (rising edge-triggered cell FDRE clocked by soc_mmcm_clk_unbuf)
+  Path Type:              Bus Skew (Max at Slow Process Corner)
+  Requirement:            5.000ns
+  Endpoint Relative Delay:    0.778ns
+  Reference Relative Delay:   0.037ns
+  Relative CRPR:              0.306ns
+  Actual Bus Skew:            0.436ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR)
+
+Endpoint path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_pll_i rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.880     0.880 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.098     1.978    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.077     2.055 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.163     3.218    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.103     3.321 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.804     4.125    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.373     0.752 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.697     2.449    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     2.542 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.739     4.281    <hidden>
+    SLICE_X187Y329       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X187Y329       FDRE (Prop_fdre_C_Q)         0.223     4.504 r  <hidden>
+                         net (fo=1, routed)           0.350     4.854    <hidden>
+    SLICE_X187Y330       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock soc_mmcm_clk_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.783     0.783 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.001     1.784    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.073     1.857 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.051     2.908    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.066     2.974 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.735     3.709    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.040     0.669 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.566     2.235    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     2.318 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.791     4.109    ui_clk
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.216    -0.107 r  soc_clock_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           2.344     2.237    soc_mmcm_clk_unbuf
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.083     2.320 r  soc_clock_bufg_inst/O
+                         net (fo=45333, routed)       1.542     3.862    <hidden>
+    SLICE_X187Y330       FDRE                                         r  <hidden>
+                         clock pessimism              0.224     4.086    
+    SLICE_X187Y330       FDRE (Setup_fdre_C_D)       -0.010     4.076    <hidden>
+  -------------------------------------------------------------------
+                         data arrival                           4.854    
+                         clock arrival                          4.076    
+  -------------------------------------------------------------------
+                         relative delay                         0.778    
+
+Reference path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_pll_i rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.783     0.783 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.001     1.784    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.073     1.857 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.051     2.908    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.066     2.974 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.735     3.709    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.040     0.669 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.566     2.235    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083     2.318 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.533     3.851    <hidden>
+    SLICE_X184Y328       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+    SLICE_X184Y328       FDRE (Prop_fdre_C_Q)         0.206     4.057 r  <hidden>
+                         net (fo=1, routed)           0.152     4.209    <hidden>
+    SLICE_X185Y327       FDRE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock soc_mmcm_clk_unbuf rise edge)
+                                                      0.000     0.000 r  
+    E19                                               0.000     0.000 r  sys_clk_p (IN)
+                         net (fo=0)                   0.000     0.000    mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/sys_clk_p
+    E19                  IBUFDS (Prop_ibufds_I_O)     0.880     0.880 r  mig_inst/u_vc707_mig_mig/u_ddr3_clk_ibuf/diff_input_clk.u_ibufg_sys_clk/O
+                         net (fo=3, routed)           1.098     1.978    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/out
+    PLLE2_ADV_X1Y5       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT3)
+                                                      0.077     2.055 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3
+                         net (fo=1, routed)           1.163     3.218    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3_out
+    BUFHCE_X1Y60         BUFH (Prop_bufh_I_O)         0.103     3.321 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufh_pll_clk3/O
+                         net (fo=1, routed)           0.804     4.125    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/pll_clk3
+    MMCME2_ADV_X1Y5      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKFBOUT)
+                                                     -3.373     0.752 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/gen_ui_extra_clocks.mmcm_i/CLKFBOUT
+                         net (fo=1, routed)           1.697     2.449    mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/clk_pll_i
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     2.542 r  mig_inst/u_vc707_mig_mig/u_ddr3_infrastructure/u_bufg_clkdiv0/O
+                         net (fo=19577, routed)       1.952     4.494    ui_clk
+    MMCME2_ADV_X1Y0      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT0)
+                                                     -4.520    -0.026 r  soc_clock_mmcm_inst/CLKOUT0
+                         net (fo=1, routed)           2.477     2.451    soc_mmcm_clk_unbuf
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.093     2.544 r  soc_clock_bufg_inst/O
+                         net (fo=45333, routed)       1.734     4.278    <hidden>
+    SLICE_X185Y327       FDRE                                         r  <hidden>
+                         clock pessimism             -0.224     4.054    
+    SLICE_X185Y327       FDRE (Hold_fdre_C_D)         0.118     4.172    <hidden>
+  -------------------------------------------------------------------
+                         data arrival                           4.209    
+                         clock arrival                          4.172    
+  -------------------------------------------------------------------
+                         relative delay                         0.037    
+
+
+

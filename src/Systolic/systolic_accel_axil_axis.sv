@@ -6,14 +6,17 @@
 //   0x84 STREAM_CTRL   W bit0: 0=UART endpoint, 1=Systolic endpoint
 //                      W bit1: clear partial stream input (when idle)
 //                      W bit2: clear stream protocol error
+//                      W bit3: page-batch image mode
 //   0x88 STREAM_STATUS R bit0: selected, bit1: accepting input,
 //                      bit2: computing, bit3: result pending,
 //                      bits[7:4]: input words, bits[12:8]: output words,
 //                      bit16: protocol error
 //
-// Stream input is eight 32-bit beats: four packed INT8 rows of A followed by
-// four packed INT8 rows of B. Stream output is sixteen signed INT32 results
-// in row-major order, with TLAST on result 15.  Backpressure is fully honored.
+// Normal stream input is eight 32-bit beats: four packed INT8 rows of A then
+// four packed INT8 rows of B.  Batch-image mode accepts a whole 4-KiB page of
+// tiled INT8 pixels (four beats per 4x4 tile), multiplies every tile by the
+// identity matrix, clamps C+128 to bytes, and emits one equal-sized page.  It
+// reduces firmware/DMA command overhead without changing the matrix core.
 module systolic_accel_axil_axis #(
     parameter int ADDR_WIDTH = 8
 ) (
@@ -77,9 +80,22 @@ module systolic_accel_axil_axis #(
     logic [3:0] stream_input_count_q;
     logic [4:0] stream_output_index_q;
     logic stream_start_pending_q;
+    // A streamed operation is complete only after the wrapper has observed
+    // the core enter BUSY.  This prevents the sticky DONE level from the
+    // previous tile being mistaken for completion of a newly issued tile.
+    logic stream_core_active_q;
     logic stream_operation_q;
     logic stream_output_active_q;
     logic stream_error_q;
+    logic stream_batch_image_q;
+    logic batch_last_tile_q;
+    logic batch_store_active_q;
+    logic [1:0] batch_store_row_q;
+    logic [10:0] batch_write_count_q;
+    logic [10:0] batch_output_count_q;
+    logic [10:0] batch_output_index_q;
+    logic [31:0] batch_output_data_q;
+    (* ram_style = "block" *) logic [31:0] batch_output_mem [0:1023];
 
     wire aw_fire = s_axil_awvalid && s_axil_awready;
     wire w_fire  = s_axil_wvalid && s_axil_wready;
@@ -110,6 +126,32 @@ module systolic_accel_axil_axis #(
         end
     endfunction
 
+    function automatic [7:0] clamp_pixel(input logic signed [31:0] value);
+        logic signed [32:0] biased;
+        begin
+            biased = value + 33'sd128;
+            if (biased < 0)
+                clamp_pixel = 8'd0;
+            else if (biased > 33'sd255)
+                clamp_pixel = 8'd255;
+            else
+                clamp_pixel = biased[7:0];
+        end
+    endfunction
+
+    function automatic [31:0] packed_result_row(input logic [1:0] row);
+        integer base;
+        begin
+            base = row * 128;
+            packed_result_row = {
+                clamp_pixel($signed(matrix_c_flat[base + 96 +: 32])),
+                clamp_pixel($signed(matrix_c_flat[base + 64 +: 32])),
+                clamp_pixel($signed(matrix_c_flat[base + 32 +: 32])),
+                clamp_pixel($signed(matrix_c_flat[base +  0 +: 32]))
+            };
+        end
+    endfunction
+
     assign s_axil_awready = !aw_hold_q && !s_axil_bvalid;
     assign s_axil_wready  = !w_hold_q && !s_axil_bvalid;
     assign s_axil_bresp   = 2'b00;
@@ -119,11 +161,15 @@ module systolic_accel_axil_axis #(
     assign stream_select_o = stream_select_q;
     assign s_axis_tready = stream_select_q && !core_busy
                          && !stream_start_pending_q
-                         && !stream_output_active_q;
+                         && !stream_output_active_q
+                         && !batch_store_active_q;
     assign m_axis_tvalid = stream_select_q && stream_output_active_q;
-    assign m_axis_tdata = matrix_c_flat[stream_output_index_q*32 +: 32];
+    assign m_axis_tdata = stream_batch_image_q ? batch_output_data_q
+                                               : matrix_c_flat[stream_output_index_q*32 +: 32];
     assign m_axis_tkeep = 4'hf;
-    assign m_axis_tlast = stream_output_index_q == 5'd15;
+    assign m_axis_tlast = stream_batch_image_q
+                        ? (batch_output_index_q + 1'b1 == batch_output_count_q)
+                        : (stream_output_index_q == 5'd15);
     assign irq_o = core_done;
 
     systolic_matmul_4x4 core_inst (
@@ -152,9 +198,18 @@ module systolic_accel_axil_axis #(
             stream_input_count_q <= '0;
             stream_output_index_q <= '0;
             stream_start_pending_q <= 1'b0;
+            stream_core_active_q <= 1'b0;
             stream_operation_q <= 1'b0;
             stream_output_active_q <= 1'b0;
             stream_error_q <= 1'b0;
+            stream_batch_image_q <= 1'b0;
+            batch_last_tile_q <= 1'b0;
+            batch_store_active_q <= 1'b0;
+            batch_store_row_q <= '0;
+            batch_write_count_q <= '0;
+            batch_output_count_q <= '0;
+            batch_output_index_q <= '0;
+            batch_output_data_q <= '0;
             for (index = 0; index < 4; index = index + 1) begin
                 a_row_q[index] <= '0;
                 b_row_q[index] <= '0;
@@ -193,12 +248,21 @@ module systolic_accel_axil_axis #(
                     6'h21: begin
                         if (write_strb[0]) begin
                             if (!core_busy && !stream_start_pending_q
-                                && !stream_output_active_q)
+                                && !stream_output_active_q
+                                && !batch_store_active_q) begin
                                 stream_select_q <= write_data[0];
+                                stream_batch_image_q <= write_data[3];
+                            end
                             if (write_data[1] && !core_busy
                                 && !stream_start_pending_q) begin
                                 stream_input_count_q <= '0;
                                 stream_operation_q <= 1'b0;
+                                stream_core_active_q <= 1'b0;
+                                batch_last_tile_q <= 1'b0;
+                                batch_store_active_q <= 1'b0;
+                                batch_write_count_q <= '0;
+                                batch_output_count_q <= '0;
+                                batch_output_index_q <= '0;
                             end
                             if (write_data[2])
                                 stream_error_q <= 1'b0;
@@ -214,7 +278,16 @@ module systolic_accel_axil_axis #(
             end
 
             if (stream_in_fire) begin
-                if (stream_input_count_q < 4)
+                if (stream_batch_image_q) begin
+                    a_row_q[stream_input_count_q[1:0]]
+                        <= apply_wstrb(a_row_q[stream_input_count_q[1:0]],
+                                      s_axis_tdata, s_axis_tkeep);
+                    // Identity matrix. Each packed word is one INT8 row.
+                    b_row_q[0] <= 32'h0000_0001;
+                    b_row_q[1] <= 32'h0000_0100;
+                    b_row_q[2] <= 32'h0001_0000;
+                    b_row_q[3] <= 32'h0100_0000;
+                end else if (stream_input_count_q < 4)
                     a_row_q[stream_input_count_q[1:0]]
                         <= apply_wstrb(a_row_q[stream_input_count_q[1:0]],
                                       s_axis_tdata, s_axis_tkeep);
@@ -232,10 +305,18 @@ module systolic_accel_axil_axis #(
                                  && (stream_input_count_q != 4'd7))
                     stream_error_q <= 1'b1;
 
-                if (stream_input_count_q == 4'd7) begin
+                if (stream_batch_image_q && stream_input_count_q == 4'd3) begin
                     stream_input_count_q <= '0;
                     stream_start_pending_q <= 1'b1;
                     stream_operation_q <= 1'b1;
+                    stream_core_active_q <= 1'b0;
+                    batch_last_tile_q <= s_axis_tlast;
+                end else if (!stream_batch_image_q
+                             && stream_input_count_q == 4'd7) begin
+                    stream_input_count_q <= '0;
+                    stream_start_pending_q <= 1'b1;
+                    stream_operation_q <= 1'b1;
+                    stream_core_active_q <= 1'b0;
                 end else begin
                     stream_input_count_q <= stream_input_count_q + 1'b1;
                 end
@@ -249,15 +330,72 @@ module systolic_accel_axil_axis #(
                 clear_done_pulse_q <= 1'b1;
             end
 
+            // Arm completion only after BUSY is visible back from the core.
+            // START and DONE cross the sequential module boundary one clock
+            // apart, so testing DONE alone can consume the previous result.
+            if (stream_operation_q && core_busy)
+                stream_core_active_q <= 1'b1;
+
+            // Ignore the stale DONE level while a new tile is waiting for
+            // its START/CLEAR_DONE pulse.  Without this guard, the first
+            // cycle of the next tile can store the previous tile's result a
+            // second time before the systolic core observes CLEAR_DONE.
             if (core_done && stream_operation_q
+                && stream_core_active_q
+                && !stream_start_pending_q
                 && !stream_output_active_q) begin
-                stream_output_active_q <= 1'b1;
-                stream_output_index_q <= '0;
-                stream_operation_q <= 1'b0;
+                if (stream_batch_image_q) begin
+                    batch_store_active_q <= 1'b1;
+                    batch_store_row_q <= '0;
+                    stream_operation_q <= 1'b0;
+                    stream_core_active_q <= 1'b0;
+                end else begin
+                    stream_output_active_q <= 1'b1;
+                    stream_output_index_q <= '0;
+                    stream_operation_q <= 1'b0;
+                    stream_core_active_q <= 1'b0;
+                end
+            end
+
+            // Store four result rows as packed bytes. One page contains at
+            // most 1024 words, matching the IOMMU 4-KiB transfer boundary.
+            if (batch_store_active_q) begin
+                if (batch_write_count_q < 11'd1024) begin
+                    batch_output_mem[batch_write_count_q[9:0]]
+                        <= packed_result_row(batch_store_row_q);
+                    batch_write_count_q <= batch_write_count_q + 1'b1;
+                end else begin
+                    stream_error_q <= 1'b1;
+                end
+
+                if (batch_store_row_q == 2'd3) begin
+                    batch_store_active_q <= 1'b0;
+                    batch_store_row_q <= '0;
+                    if (batch_last_tile_q) begin
+                        stream_output_active_q <= 1'b1;
+                        batch_output_count_q <= batch_write_count_q + 1'b1;
+                        batch_output_index_q <= '0;
+                        batch_output_data_q <= batch_output_mem[0];
+                        batch_last_tile_q <= 1'b0;
+                    end
+                end else begin
+                    batch_store_row_q <= batch_store_row_q + 1'b1;
+                end
             end
 
             if (stream_out_fire) begin
-                if (stream_output_index_q == 5'd15) begin
+                if (stream_batch_image_q) begin
+                    if (batch_output_index_q + 1'b1 == batch_output_count_q) begin
+                        stream_output_active_q <= 1'b0;
+                        batch_output_index_q <= '0;
+                        batch_output_count_q <= '0;
+                        batch_write_count_q <= '0;
+                    end else begin
+                        batch_output_index_q <= batch_output_index_q + 1'b1;
+                        batch_output_data_q
+                            <= batch_output_mem[batch_output_index_q[9:0] + 10'd1];
+                    end
+                end else if (stream_output_index_q == 5'd15) begin
                     stream_output_active_q <= 1'b0;
                     stream_output_index_q <= '0;
                 end else begin
@@ -296,7 +434,8 @@ module systolic_accel_axil_axis #(
                     6'h1e: s_axil_rdata <= matrix_c_flat[448 +: 32];
                     6'h1f: s_axil_rdata <= matrix_c_flat[480 +: 32];
                     6'h20: s_axil_rdata <= 32'h5359_5354;
-                    6'h21: s_axil_rdata <= {31'd0, stream_select_q};
+                    6'h21: s_axil_rdata <= {28'd0, stream_batch_image_q,
+                                             2'd0, stream_select_q};
                     6'h22: s_axil_rdata <= {15'd0, stream_error_q, 3'd0,
                                              stream_output_index_q,
                                              stream_input_count_q,

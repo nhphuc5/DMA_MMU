@@ -49,8 +49,7 @@ set design_files [list \
     [file join $root_dir "src/Memory/axi_ddr3_controller.sv"] \
     [file join $root_dir "src/Memory/axi_bram_ddr3_subsystem.sv"] \
     [file join $root_dir "src/UART/simpleuart_dma.sv"] \
-    [file join $root_dir "src/UART/uart_apb_axis.sv"] \
-    [file join $root_dir "src/AXI/axil_to_apb_bridge.sv"] \
+    [file join $root_dir "src/UART/uart_axil_axis.sv"] \
     [file join $root_dir "src/Systolic/systolic_matmul_4x4.sv"] \
     [file join $root_dir "src/Systolic/systolic_accel_axil_axis.sv"] \
     [file join $root_dir "src/SoC/dma_mmu_axi_top.sv"] \

@@ -9,7 +9,8 @@ set_property CONFIG_VOLTAGE 1.8 [current_design]
 set_property PACKAGE_PIN AV40 [get_ports cpu_reset]
 set_property IOSTANDARD LVCMOS18 [get_ports cpu_reset]
 
-# USB-UART bridge (115200 baud with the 150-MHz SoC clock).
+# USB-UART bridge. The standalone DDR test selects 115200 baud; the unified
+# image target selects 921600 baud through UART_DEFAULT_DIV.
 set_property PACKAGE_PIN AU33 [get_ports uart_rx_i]
 set_property IOSTANDARD LVCMOS18 [get_ports uart_rx_i]
 set_property PACKAGE_PIN AU36 [get_ports uart_tx_o]

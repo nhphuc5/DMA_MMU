@@ -1,0 +1,15 @@
+make[1]: Entering directory 'D:/DMA_MMU-main(1)/firmware'
+Cleaning generated firmware files
+make[1]: Leaving directory 'D:/DMA_MMU-main(1)/firmware'
+make[1]: Entering directory 'D:/DMA_MMU-main(1)/firmware'
+[1/4] C++ to ELF32 RV32I
+[2/4] ELF to raw binary
+[3/4] Binary to 64-KiB AXI-RAM HEX image
+[4/4] Verify ELF class, machine, and ISA
+  Class:                             ELF32
+  Machine:                           RISC-V
+  Tag_RISCV_arch: "rv32i2p1"
+SUCCESS: src/soc_uart_image_batch.cpp -> build/vc707_uart_image_batch/soc_uart_image_batch.elf -> build/vc707_uart_image_batch/soc_uart_image_batch.bin -> build/vc707_uart_image_batch/soc_uart_image_batch.hex
+make[1]: Leaving directory 'D:/DMA_MMU-main(1)/firmware'
+Unified VC707 firmware is ready:
+firmware\prebuilt\vc707_unified\soc_uart_image_batch.hex

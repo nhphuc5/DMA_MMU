@@ -53,15 +53,24 @@ real self-checking PASS/FAIL result over UART.
 - Architecture and register map: `docs/SYSTOLIC_ARRAY_GUIDE.md`
 - End-to-end result: `reports/systolic_soc_test.log`
 
-## Complete VC707 physical DDR3 target
+## Complete zero-DSP VC707 physical DDR3 SoC
 
-The physical-board target retains the 64-KiB AXI boot RAM and connects the
+The physical-board target retains a 256-KiB AXI boot/scratch RAM and connects the
 SoC's `0x8000_0000`--`0xBFFF_FFFF` aperture to the VC707 1-GiB x64 DDR3
 SODIMM.  It uses a reproducibly generated Xilinx MIG 7 Series PHY/controller,
 an AXI clock-domain converter, and a 32-to-512-bit AXI data-width converter.
-The tracked firmware image waits for real MIG calibration and then tests DDR3
-data/address lines, narrow writes, deterministic memory patterns, and
-DMA/IOMMU transfers in both directions.
+The integrated firmware waits for real MIG calibration and then implements a
+run-time multi-image path through UART, all three DMA directions, DMA-side
+IOMMU, physical DDR3 and the 4x4 INT8 systolic accelerator.
+
+- Recommended full-SoC build: `BUILD_VC707_UNIFIED_DDR3_BITSTREAM.cmd`
+- Generated bitstream: `bitstream/DMA_IOMMU_PicoRV32_VC707_Unified_DDR3.bit`
+- Integrated RV32I firmware: `firmware/prebuilt/vc707_unified/soc_uart_image_batch.hex`
+- End-to-end deployment guide: `docs/VC707_UNIFIED_SOC_DEPLOYMENT.md`
+- UART image protocol/host tool: `docs/UART_MULTI_IMAGE_BATCH.md`
+- Verified reports and logs: `reports/vc707_unified_ddr3/`
+
+The standalone DDR acceptance image remains available for board bring-up:
 
 - One-command Windows build: `BUILD_VC707_DDR3_BITSTREAM.cmd`
 - Physical top: `src/SoC/dma_mmu_picorv32_vc707_ddr3_top.sv`
@@ -70,8 +79,11 @@ DMA/IOMMU transfers in both directions.
 - Clone/build/program/UART procedure: `docs/VC707_DDR3_DEPLOYMENT.md`
 - Implementation evidence: `reports/vc707_ddr3/`
 
-The MIG/DDR path uses zero DSP blocks.  The complete SoC still uses 16 DSP48E1
-blocks in the independent, pre-existing systolic accelerator.
+The clean Vivado 2025.1 route for `xc7vx485tffg1761-2` closes the 150-MHz SoC
+clock at WNS `+0.059 ns` and WHS `+0.054 ns`, with 0 DRC errors. The complete
+SoC, including the LUT-based systolic accelerator and MIG/DDR path, uses
+**zero DSP48E1 blocks**. See the raw timing/utilization reports rather than
+assuming these values for a different Vivado version or implementation seed.
 
 ## Two independent address-translation domains
 

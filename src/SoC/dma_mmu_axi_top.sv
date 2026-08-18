@@ -246,6 +246,25 @@ module dma_mmu_axi_top #(
     logic [31:0] tlb_hit_count;
     logic [31:0] tlb_miss_count;
 
+    // Last-command performance snapshot.  Working counters are sampled from
+    // real AXI/AXI-Stream handshakes; the read-only snapshot remains stable
+    // until the next DMA command completes.
+    logic [31:0] perf_seq;
+    logic perf_valid;
+    logic perf_fault;
+    logic [1:0] perf_transfer_type;
+    logic [1:0] perf_dma_mode;
+    logic [31:0] perf_length;
+    logic [31:0] perf_total_cycles;
+    logic [31:0] perf_src_bytes;
+    logic [31:0] perf_src_span;
+    logic [31:0] perf_dst_bytes;
+    logic [31:0] perf_dst_span;
+    logic [31:0] perf_axi_r_bytes;
+    logic [31:0] perf_axi_r_cycles;
+    logic [31:0] perf_axi_w_bytes;
+    logic [31:0] perf_axi_w_cycles;
+
     dma_axil_regs #(
         .AXIL_ADDR_WIDTH(AXIL_ADDR_WIDTH),
         .DMA_ADDR_WIDTH(AXI_ADDR_WIDTH),
@@ -342,7 +361,22 @@ module dma_mmu_axi_top #(
         .pt_write_perm_o(pt_write_perm),
         .tlb_invalidate_o(tlb_invalidate),
         .tlb_hit_count_i(tlb_hit_count),
-        .tlb_miss_count_i(tlb_miss_count)
+        .tlb_miss_count_i(tlb_miss_count),
+        .perf_seq_i(perf_seq),
+        .perf_valid_i(perf_valid),
+        .perf_fault_i(perf_fault),
+        .perf_transfer_type_i(perf_transfer_type),
+        .perf_dma_mode_i(perf_dma_mode),
+        .perf_length_i(perf_length),
+        .perf_total_cycles_i(perf_total_cycles),
+        .perf_src_bytes_i(perf_src_bytes),
+        .perf_src_span_i(perf_src_span),
+        .perf_dst_bytes_i(perf_dst_bytes),
+        .perf_dst_span_i(perf_dst_span),
+        .perf_axi_r_bytes_i(perf_axi_r_bytes),
+        .perf_axi_r_cycles_i(perf_axi_r_cycles),
+        .perf_axi_w_bytes_i(perf_axi_w_bytes),
+        .perf_axi_w_cycles_i(perf_axi_w_cycles)
     );
 
     // ---------------------------------------------------------------------
@@ -959,6 +993,228 @@ module dma_mmu_axi_top #(
     assign rd_tready = m_axis_periph_tready;
     assign m_axis_periph_tlast = rd_tvalid
                                && m2s_bytes_remaining_q == AXI_STRB_WIDTH;
+
+    // ---------------------------------------------------------------------
+    // On-board throughput monitor
+    // ---------------------------------------------------------------------
+    // One command is active at a time.  Consequently the merged top-level
+    // AXI handshakes can be attributed unambiguously to that command.  The
+    // source/destination counters describe the DMA endpoints; AXI counters
+    // describe complete memory transactions (AR..RLAST and AW..BRESP).
+    function automatic logic [31:0] perf_keep_bytes(
+        input logic [AXI_STRB_WIDTH-1:0] keep
+    );
+        integer k;
+        begin
+            perf_keep_bytes = 32'd0;
+            for (k = 0; k < AXI_STRB_WIDTH; k = k + 1)
+                perf_keep_bytes = perf_keep_bytes + keep[k];
+        end
+    endfunction
+
+    logic perf_active_q;
+    logic perf_done_pending_q;
+    logic [31:0] perf_cycle_q;
+    logic [1:0] perf_type_q;
+    logic [1:0] perf_mode_q;
+    logic [31:0] perf_length_q;
+
+    logic perf_src_seen_q;
+    logic [31:0] perf_src_first_q, perf_src_last_q;
+    logic [31:0] perf_src_bytes_q;
+    logic perf_dst_seen_q;
+    logic [31:0] perf_dst_first_q, perf_dst_last_q;
+    logic [31:0] perf_dst_bytes_q;
+    logic perf_ar_seen_q;
+    logic [31:0] perf_ar_first_q;
+    logic perf_r_done_seen_q;
+    logic [31:0] perf_r_done_q;
+    logic [31:0] perf_axi_r_bytes_q;
+    logic perf_aw_seen_q;
+    logic [31:0] perf_aw_first_q;
+    logic perf_b_done_seen_q;
+    logic [31:0] perf_b_done_q;
+    logic [31:0] perf_axi_w_bytes_q;
+
+    wire perf_axi_r_hs = m_axi_rvalid && m_axi_rready;
+    wire perf_axi_w_hs = m_axi_wvalid && m_axi_wready;
+    wire perf_ar_hs = m_axi_arvalid && m_axi_arready;
+    wire perf_aw_hs = m_axi_awvalid && m_axi_awready;
+    wire perf_b_hs = m_axi_bvalid && m_axi_bready;
+    wire perf_axis_in_hs = s_axis_periph_tvalid
+                              && s_axis_periph_tready;
+    wire perf_axis_out_hs = m_axis_periph_tvalid
+                               && m_axis_periph_tready;
+    wire perf_src_hs = (perf_type_q == 2'd1) ? perf_axis_in_hs
+                                                : perf_axi_r_hs;
+    wire perf_dst_hs = (perf_type_q == 2'd2) ? perf_axis_out_hs
+                                                : perf_axi_w_hs;
+    wire [31:0] perf_src_hs_bytes =
+        (perf_type_q == 2'd1) ? perf_keep_bytes(s_axis_periph_tkeep)
+                              : AXI_STRB_WIDTH;
+    wire [31:0] perf_dst_hs_bytes =
+        (perf_type_q == 2'd2) ? perf_keep_bytes(m_axis_periph_tkeep)
+                              : perf_keep_bytes(m_axi_wstrb);
+
+    always_ff @(posedge aclk or negedge aresetn) begin
+        if (!aresetn) begin
+            perf_active_q <= 1'b0;
+            perf_done_pending_q <= 1'b0;
+            perf_cycle_q <= 32'd0;
+            perf_type_q <= 2'd0;
+            perf_mode_q <= 2'd0;
+            perf_length_q <= 32'd0;
+            perf_src_seen_q <= 1'b0;
+            perf_src_first_q <= 32'd0;
+            perf_src_last_q <= 32'd0;
+            perf_src_bytes_q <= 32'd0;
+            perf_dst_seen_q <= 1'b0;
+            perf_dst_first_q <= 32'd0;
+            perf_dst_last_q <= 32'd0;
+            perf_dst_bytes_q <= 32'd0;
+            perf_ar_seen_q <= 1'b0;
+            perf_ar_first_q <= 32'd0;
+            perf_r_done_seen_q <= 1'b0;
+            perf_r_done_q <= 32'd0;
+            perf_axi_r_bytes_q <= 32'd0;
+            perf_aw_seen_q <= 1'b0;
+            perf_aw_first_q <= 32'd0;
+            perf_b_done_seen_q <= 1'b0;
+            perf_b_done_q <= 32'd0;
+            perf_axi_w_bytes_q <= 32'd0;
+            perf_seq <= 32'd0;
+            perf_valid <= 1'b0;
+            perf_fault <= 1'b0;
+            perf_transfer_type <= 2'd0;
+            perf_dma_mode <= 2'd0;
+            perf_length <= 32'd0;
+            perf_total_cycles <= 32'd0;
+            perf_src_bytes <= 32'd0;
+            perf_src_span <= 32'd0;
+            perf_dst_bytes <= 32'd0;
+            perf_dst_span <= 32'd0;
+            perf_axi_r_bytes <= 32'd0;
+            perf_axi_r_cycles <= 32'd0;
+            perf_axi_w_bytes <= 32'd0;
+            perf_axi_w_cycles <= 32'd0;
+        end else if (scheduler_cfg_start) begin
+            perf_active_q <= 1'b1;
+            perf_done_pending_q <= 1'b0;
+            perf_cycle_q <= 32'd0;
+            perf_type_q <= scheduler_cfg_transfer_type;
+            perf_mode_q <= scheduler_cfg_dma_mode;
+            perf_length_q <= {{(32-LEN_WIDTH){1'b0}},
+                              scheduler_cfg_length_bytes};
+            perf_src_seen_q <= 1'b0;
+            perf_src_first_q <= 32'd0;
+            perf_src_last_q <= 32'd0;
+            perf_src_bytes_q <= 32'd0;
+            perf_dst_seen_q <= 1'b0;
+            perf_dst_first_q <= 32'd0;
+            perf_dst_last_q <= 32'd0;
+            perf_dst_bytes_q <= 32'd0;
+            perf_ar_seen_q <= 1'b0;
+            perf_ar_first_q <= 32'd0;
+            perf_r_done_seen_q <= 1'b0;
+            perf_r_done_q <= 32'd0;
+            perf_axi_r_bytes_q <= 32'd0;
+            perf_aw_seen_q <= 1'b0;
+            perf_aw_first_q <= 32'd0;
+            perf_b_done_seen_q <= 1'b0;
+            perf_b_done_q <= 32'd0;
+            perf_axi_w_bytes_q <= 32'd0;
+        end else if (perf_active_q) begin
+            perf_cycle_q <= perf_cycle_q + 1'b1;
+
+            // The read engine reports descriptor completion before every
+            // buffered AXI-Stream beat is necessarily accepted downstream.
+            // Remember that early DONE and keep measuring until the complete
+            // M2S payload has crossed the DMA output handshake.
+            if (dma_done && perf_type_q == 2'd2)
+                perf_done_pending_q <= 1'b1;
+
+            if (perf_src_hs) begin
+                if (!perf_src_seen_q) perf_src_first_q <= perf_cycle_q;
+                perf_src_seen_q <= 1'b1;
+                perf_src_last_q <= perf_cycle_q;
+                perf_src_bytes_q <= perf_src_bytes_q + perf_src_hs_bytes;
+            end
+            if (perf_dst_hs) begin
+                if (!perf_dst_seen_q) perf_dst_first_q <= perf_cycle_q;
+                perf_dst_seen_q <= 1'b1;
+                perf_dst_last_q <= perf_cycle_q;
+                perf_dst_bytes_q <= perf_dst_bytes_q + perf_dst_hs_bytes;
+            end
+            if (perf_ar_hs && !perf_ar_seen_q) begin
+                perf_ar_seen_q <= 1'b1;
+                perf_ar_first_q <= perf_cycle_q;
+            end
+            if (perf_axi_r_hs) begin
+                perf_axi_r_bytes_q <= perf_axi_r_bytes_q + AXI_STRB_WIDTH;
+                if (m_axi_rlast) begin
+                    perf_r_done_seen_q <= 1'b1;
+                    perf_r_done_q <= perf_cycle_q;
+                end
+            end
+            if (perf_aw_hs && !perf_aw_seen_q) begin
+                perf_aw_seen_q <= 1'b1;
+                perf_aw_first_q <= perf_cycle_q;
+            end
+            if (perf_axi_w_hs)
+                perf_axi_w_bytes_q <= perf_axi_w_bytes_q
+                                      + perf_keep_bytes(m_axi_wstrb);
+            if (perf_b_hs) begin
+                perf_b_done_seen_q <= 1'b1;
+                perf_b_done_q <= perf_cycle_q;
+            end
+
+            if (dma_fault
+                    || (perf_type_q != 2'd2 && dma_done)
+                    || ((perf_done_pending_q || dma_done)
+                        && perf_type_q == 2'd2
+                        && perf_dst_bytes_q
+                           + (perf_dst_hs ? perf_dst_hs_bytes : 0)
+                           >= perf_length_q)) begin
+                perf_active_q <= 1'b0;
+                perf_done_pending_q <= 1'b0;
+                perf_seq <= perf_seq + 1'b1;
+                perf_valid <= 1'b1;
+                perf_fault <= dma_fault;
+                perf_transfer_type <= perf_type_q;
+                perf_dma_mode <= perf_mode_q;
+                perf_length <= perf_length_q;
+                perf_total_cycles <= perf_cycle_q + 1'b1;
+                perf_src_bytes <= perf_src_bytes_q
+                                  + (perf_src_hs ? perf_src_hs_bytes : 0);
+                perf_src_span <= perf_src_hs
+                    ? (perf_src_seen_q
+                       ? perf_cycle_q - perf_src_first_q + 1'b1 : 32'd1)
+                    : (perf_src_seen_q
+                       ? perf_src_last_q - perf_src_first_q + 1'b1 : 32'd0);
+                perf_dst_bytes <= perf_dst_bytes_q
+                                  + (perf_dst_hs ? perf_dst_hs_bytes : 0);
+                perf_dst_span <= perf_dst_hs
+                    ? (perf_dst_seen_q
+                       ? perf_cycle_q - perf_dst_first_q + 1'b1 : 32'd1)
+                    : (perf_dst_seen_q
+                       ? perf_dst_last_q - perf_dst_first_q + 1'b1 : 32'd0);
+                perf_axi_r_bytes <= perf_axi_r_bytes_q
+                    + (perf_axi_r_hs ? AXI_STRB_WIDTH : 0);
+                perf_axi_r_cycles <= (perf_axi_r_hs && m_axi_rlast)
+                    ? (perf_ar_seen_q
+                       ? perf_cycle_q - perf_ar_first_q + 1'b1 : 32'd1)
+                    : ((perf_ar_seen_q && perf_r_done_seen_q)
+                       ? perf_r_done_q - perf_ar_first_q + 1'b1 : 32'd0);
+                perf_axi_w_bytes <= perf_axi_w_bytes_q
+                    + (perf_axi_w_hs ? perf_keep_bytes(m_axi_wstrb) : 0);
+                perf_axi_w_cycles <= perf_b_hs
+                    ? (perf_aw_seen_q
+                       ? perf_cycle_q - perf_aw_first_q + 1'b1 : 32'd1)
+                    : ((perf_aw_seen_q && perf_b_done_seen_q)
+                       ? perf_b_done_q - perf_aw_first_q + 1'b1 : 32'd0);
+            end
+        end
+    end
 
     // ---------------------------------------------------------------------
     // Fair AXI4 arbitration.  Port 0 is CDMA; port 1 combines stream read and

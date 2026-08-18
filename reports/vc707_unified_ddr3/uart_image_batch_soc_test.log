@@ -1,0 +1,17 @@
+UPLOAD PASS frame=101 original=7x5 padded=8x8 bytes=64 crc=e8c056ee
+UPLOAD PASS frame=202 original=8x8 padded=8x8 bytes=64 crc=977abb44
+OUTPUT PASS frame=101 original=7x5 bytes=64 crc=7dc247c8
+OUTPUT PASS frame=202 original=8x8 bytes=64 crc=0278aa62
+PERF type=0 commands=2 payload=128 command_cycles=128 src=128/32 dst=128/32 axi_r=128/54 axi_w=128/80
+PERF type=1 commands=4 payload=256 command_cycles=207756 src=256/195752 dst=256/195750 axi_r=0/0 axi_w=256/195782
+PERF type=2 commands=4 payload=256 command_cycles=192714 src=256/64 dst=256/192598 axi_r=256/108 axi_w=0/0
+UPLOAD PASS frame=303 original=7x5 padded=8x8 bytes=64 crc=e8c056ee
+OUTPUT PASS frame=303 original=7x5 bytes=64 crc=7dc247c8
+PERF type=0 commands=1 payload=64 command_cycles=64 src=64/16 dst=64/16 axi_r=64/27 axi_w=64/40
+PERF type=1 commands=2 payload=128 command_cycles=103878 src=128/97876 dst=128/97875 axi_r=0/0 axi_w=128/97891
+PERF type=2 commands=2 payload=128 command_cycles=96357 src=128/32 dst=128/96299 axi_r=128/54 axi_w=0/0
+SECOND BATCH RESYNC PASS: ignored injected byte 00 before UPL2
+MULTI-IMAGE UART/DMA/SYSTOLIC SOC TEST PASSED
+Frames=2; UART RX -> DMA S2M -> RAM -> DMA M2M -> RAM
+RAM -> DMA M2S -> Systolic -> DMA S2M -> RAM -> DMA M2S -> UART TX
+DMA directions exercised: S2M, M2M, M2S; image mode: BURST

@@ -9,7 +9,9 @@
 //   * axi_clock_converter crosses 32-bit AXI from 150 MHz to 200 MHz.
 //   * axi_dwidth_converter upsizes 32-bit AXI to MIG's 512-bit AXI interface.
 module dma_mmu_picorv32_vc707_ddr3_top #(
-    parameter MEM_INIT_FILE = ""
+    parameter MEM_INIT_FILE = "",
+    parameter integer BRAM_ADDR_WIDTH = 18,
+    parameter integer UART_DEFAULT_DIV = 161
 ) (
     input  wire        sys_clk_p,
     input  wire        sys_clk_n,
@@ -136,8 +138,8 @@ module dma_mmu_picorv32_vc707_ddr3_top #(
 
     dma_mmu_picorv32_soc #(
         .AXI_ADDR_WIDTH(32),
-        .BRAM_ADDR_WIDTH(16),
-        .UART_DEFAULT_DIV(1300),
+        .BRAM_ADDR_WIDTH(BRAM_ADDR_WIDTH),
+        .UART_DEFAULT_DIV(UART_DEFAULT_DIV),
         .MEM_INIT_FILE(MEM_INIT_FILE),
         .ENABLE_DDR3(1'b1),
         .USE_EXTERNAL_DDR_AXI(1'b1),

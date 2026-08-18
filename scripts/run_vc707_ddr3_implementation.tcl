@@ -23,6 +23,53 @@ if {![file exists $xpr_file]} {
 set top_name dma_mmu_picorv32_vc707_ddr3_top
 set_property top $top_name [get_filesets sources_1]
 set_property top_auto_set 0 [get_filesets sources_1]
+set uart_axil_source [file join $root_dir "src/UART/uart_axil_axis.sv"]
+if {[llength [get_files -quiet $uart_axil_source]] == 0} {
+    add_files -fileset sources_1 -norecurse $uart_axil_source
+    set_property file_type SystemVerilog [get_files $uart_axil_source]
+}
+
+# Selectable firmware/QoR policy lets the same timing-closed physical target
+# build either the standalone DDR acceptance image or the complete UART image
+# DMA SoC. All paths remain reproducible from tracked source and prebuilt HEX.
+set firmware_rel "firmware/prebuilt/vc707_ddr3/soc_ddr3_test.hex"
+set report_subdir "vc707_ddr3"
+set bit_name "DMA_IOMMU_PicoRV32_VC707_DDR3.bit"
+set bram_addr_width 18
+set uart_default_div 1300
+set require_zero_dsp 0
+if {[info exists ::env(VC707_FIRMWARE_HEX)] && $::env(VC707_FIRMWARE_HEX) ne ""} {
+    set firmware_rel $::env(VC707_FIRMWARE_HEX)
+}
+if {[info exists ::env(VC707_REPORT_SUBDIR)] && $::env(VC707_REPORT_SUBDIR) ne ""} {
+    set report_subdir $::env(VC707_REPORT_SUBDIR)
+}
+if {[info exists ::env(VC707_BIT_NAME)] && $::env(VC707_BIT_NAME) ne ""} {
+    set bit_name $::env(VC707_BIT_NAME)
+}
+if {[info exists ::env(VC707_BRAM_ADDR_WIDTH)] && $::env(VC707_BRAM_ADDR_WIDTH) ne ""} {
+    set bram_addr_width $::env(VC707_BRAM_ADDR_WIDTH)
+}
+if {[info exists ::env(VC707_UART_DIVIDER)] && $::env(VC707_UART_DIVIDER) ne ""} {
+    set uart_default_div $::env(VC707_UART_DIVIDER)
+}
+if {[info exists ::env(VC707_REQUIRE_ZERO_DSP)] && $::env(VC707_REQUIRE_ZERO_DSP) eq "1"} {
+    set require_zero_dsp 1
+}
+# Keep an explicitly supplied junction path intact. Vivado 2025.1 cannot pass
+# a MEM_INIT_FILE path containing parentheses through the synthesis launcher,
+# while file normalize would resolve D:/_codex_dma_mmu back to that path.
+set firmware_file [string map {\\ /} [file join $root_dir $firmware_rel]]
+if {![file exists $firmware_file]} {
+    error "Firmware image not found: $firmware_file"
+}
+if {[llength [get_files -quiet $firmware_file]] == 0} {
+    add_files -norecurse $firmware_file
+    set_property file_type {Memory Initialization Files} [get_files $firmware_file]
+}
+set_property generic "MEM_INIT_FILE=$firmware_file BRAM_ADDR_WIDTH=$bram_addr_width UART_DEFAULT_DIV=$uart_default_div" \
+    [get_filesets sources_1]
+update_compile_order -fileset sources_1
 set_property strategy Flow_PerfOptimized_high [get_runs synth_1]
 set_property strategy Performance_Explore [get_runs impl_1]
 set_property STEPS.PHYS_OPT_DESIGN.IS_ENABLED true [get_runs impl_1]
@@ -50,7 +97,7 @@ if {![string match "*Complete*" $impl_status]} {
 }
 
 open_run impl_1
-set report_dir [file join $root_dir "reports/vc707_ddr3"]
+set report_dir [file join $root_dir "reports/$report_subdir"]
 set bit_dir [file join $root_dir "bitstream"]
 file mkdir $report_dir
 file mkdir $bit_dir
@@ -90,6 +137,11 @@ set setup_paths [get_timing_paths -delay_type max -max_paths 1]
 set setup_wns [get_property SLACK $setup_paths]
 set hold_paths [get_timing_paths -delay_type min -max_paths 1]
 set hold_wns [get_property SLACK $hold_paths]
+# The board top fixes the SoC clock at 150 MHz (6.667 ns rounded in reports).
+# This is a slack-equivalent estimate, not a replacement for a new routed run
+# when changing the MMCM frequency.
+set soc_period_ns 6.667
+set estimated_fmax [expr {1000.0 / ($soc_period_ns - $setup_wns)}]
 set drc_errors [llength [get_drc_violations -quiet -filter {SEVERITY == Error}]]
 set drc_critical [llength [get_drc_violations -quiet -filter {SEVERITY == {Critical Warning}}]]
 set fd [open [file join $report_dir "vc707_ddr3_build_summary.txt"] w]
@@ -99,20 +151,33 @@ puts $fd "Synthesis status  : $synth_status"
 puts $fd "Implementation    : $impl_status"
 puts $fd "Post-route WNS    : $setup_wns ns"
 puts $fd "Post-route WHS    : $hold_wns ns"
+puts $fd [format "SoC target clock  : 150.000 MHz"]
+puts $fd [format "Estimated Fmax    : %.3f MHz (slack-equivalent)" $estimated_fmax]
 puts $fd "DRC errors        : $drc_errors"
 puts $fd "DRC critical warn : $drc_critical"
 puts $fd "DSP total SoC     : $all_dsp (systolic accelerator: [expr {$all_dsp - $memory_dsp}])"
 puts $fd "DSP MIG/DDR path  : $memory_dsp"
-puts $fd "Firmware          : firmware/prebuilt/vc707_ddr3/soc_ddr3_test.hex"
+puts $fd "Firmware          : $firmware_rel"
 puts $fd "Board validation  : run firmware and capture UART after programming"
 close $fd
+
+set fmax_fd [open [file join $report_dir "vc707_unified_fmax.txt"] w]
+puts $fmax_fd "VC707 UNIFIED SOC POST-ROUTE FMAX ESTIMATE"
+puts $fmax_fd "Target clock      : 150.000 MHz"
+puts $fmax_fd [format "Constraint period : %.3f ns" $soc_period_ns]
+puts $fmax_fd [format "Post-route WNS    : %.3f ns" $setup_wns]
+puts $fmax_fd [format "Critical period   : %.3f ns" [expr {$soc_period_ns - $setup_wns}]]
+puts $fmax_fd [format "Estimated Fmax    : %.3f MHz" $estimated_fmax]
+puts $fmax_fd "Formula           : 1000 / (constraint period - WNS)"
+puts $fmax_fd "Boundary          : reroute is required to certify a changed clock target"
+close $fmax_fd
 
 set generated_bit [file join [get_property DIRECTORY [get_runs impl_1]] \
     "$top_name.bit"]
 if {![file exists $generated_bit]} {
     error "Vivado reports success but bitstream was not found: $generated_bit"
 }
-set final_bit [file join $bit_dir "DMA_IOMMU_PicoRV32_VC707_DDR3.bit"]
+set final_bit [file join $bit_dir $bit_name]
 file copy -force $generated_bit $final_bit
 
 if {$setup_wns < 0.0} {
@@ -123,6 +188,9 @@ if {$hold_wns < 0.0} {
 }
 if {$drc_errors != 0} {
     error "VC707 DDR3 routed but has $drc_errors DRC errors"
+}
+if {$require_zero_dsp && $all_dsp != 0} {
+    error "VC707 unified SoC violates zero-DSP requirement: DSP total=$all_dsp"
 }
 puts "VC707 DDR3 BITSTREAM PASSED: WNS=$setup_wns ns; DSP total=$all_dsp; MIG/DDR DSP=$memory_dsp"
 puts "Bitstream: $final_bit"

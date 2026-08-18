@@ -1,168 +1,168 @@
-[3377000] UART TX observed byte: 0x53
-[3377000] FIRMWARE START: PicoRV32 is executing the D01-D09 matrix
-[12533000] UART TX observed byte: 0x4d
-[12533000] PASS CPU MMU: VA 0x00008000 -> PA 0x00003000, RAM=0xc0dec0de, TLB hits=20 misses=2
-[42105000] UART TX observed byte: 0x31
-[42105000]   D01 CONTROL: scheduler latched direction=0 mode=0
-[42105000]   D01 WORD[0]: RAM input[0x4000]=0x11111111 -> RAM output[0x5000]=0x11111111
-[42105000]   D01 WORD[1]: RAM input[0x4004]=0x22222222 -> RAM output[0x5004]=0x22222222
-[42105000]   D01 WORD[2]: RAM input[0x4008]=0x33333333 -> RAM output[0x5008]=0x33333333
-[42105000]   D01 WORD[3]: RAM input[0x400c]=0x44444444 -> RAM output[0x500c]=0x44444444
-[42105000] PASS D01: Memory -> Memory /             BURST; actual RAM data matches
-[47693000] UART TX observed byte: 0x32
-[47693000]   D02 CONTROL: scheduler latched direction=0 mode=1
-[47693000]   D02 WORD[0]: RAM input[0x4020]=0x12121212 -> RAM output[0x5020]=0x12121212
-[47693000]   D02 WORD[1]: RAM input[0x4024]=0x23232323 -> RAM output[0x5024]=0x23232323
-[47693000] PASS D02: Memory -> Memory /    CYCLE-STEALING; actual RAM data matches
-[52967000] UART TX observed byte: 0x33
-[52967000]   D03 CONTROL: scheduler latched direction=0 mode=2
-[52967000]   D03 WORD[0]: RAM input[0x4040]=0x34343434 -> RAM output[0x5040]=0x34343434
-[52967000]   D03 WORD[1]: RAM input[0x4044]=0x45454545 -> RAM output[0x5044]=0x45454545
-[52967000] PASS D03: Memory -> Memory /       TRANSPARENT; actual RAM data matches
-[54414000] UART TX observed byte: 0x41
-[54414000] D04 ACTIVE: Peripheral -> Memory / Burst
-[54414000] D04 INPUT: sending eight physical 8N1 UART bytes 0xa0..0xa7
-[54818000]   D04 UART RX input byte[0]=0xa0
-[55224000]   D04 UART RX input byte[1]=0xa1
-[55631000]   D04 UART RX input byte[2]=0xa2
-[56038000]   D04 UART RX input byte[3]=0xa3
-[56445000]   D04 UART RX input byte[4]=0xa4
-[56851000]   D04 UART RX input byte[5]=0xa5
-[57258000]   D04 UART RX input byte[6]=0xa6
-[57665000]   D04 UART RX input byte[7]=0xa7
-[57665000] D04 INPUT COMPLETE: all eight UART frames reached uart_rx_i
-[60969000] UART TX observed byte: 0x34
-[60969000]   D04 CONTROL: scheduler latched direction=1 mode=0
-[60969000]   D04 WORD[0]: UART input bytes -> RAM output[0x6000]=0xa3a2a1a0 (expected 0xa3a2a1a0)
-[60969000]   D04 WORD[1]: UART input bytes -> RAM output[0x6004]=0xa7a6a5a4 (expected 0xa7a6a5a4)
-[60969000] PASS D04: Peripheral -> Memory /             BURST; physical UART input matches RAM
-[62516000] UART TX observed byte: 0x42
-[62516000] D05 ACTIVE: Peripheral -> Memory / Cycle-Stealing
-[62516000] D05 INPUT: sending eight physical 8N1 UART bytes 0xb0..0xb7
-[62919000]   D05 UART RX input byte[0]=0xb0
-[63326000]   D05 UART RX input byte[1]=0xb1
-[63733000]   D05 UART RX input byte[2]=0xb2
-[64139000]   D05 UART RX input byte[3]=0xb3
-[64546000]   D05 UART RX input byte[4]=0xb4
-[64953000]   D05 UART RX input byte[5]=0xb5
-[65360000]   D05 UART RX input byte[6]=0xb6
-[65766000]   D05 UART RX input byte[7]=0xb7
-[65766000] D05 INPUT COMPLETE: all eight UART frames reached uart_rx_i
-[69157000] UART TX observed byte: 0x35
-[69157000]   D05 CONTROL: scheduler latched direction=1 mode=1
-[69157000]   D05 WORD[0]: UART input bytes -> RAM output[0x6020]=0xb3b2b1b0 (expected 0xb3b2b1b0)
-[69157000]   D05 WORD[1]: UART input bytes -> RAM output[0x6024]=0xb7b6b5b4 (expected 0xb7b6b5b4)
-[69157000] PASS D05: Peripheral -> Memory /    CYCLE-STEALING; physical UART input matches RAM
-[70497000] UART TX observed byte: 0x43
-[70497000] D06 ACTIVE: Peripheral -> Memory / Transparent
-[70497000] D06 INPUT: sending eight physical 8N1 UART bytes 0xc0..0xc7
-[70901000]   D06 UART RX input byte[0]=0xc0
-[71308000]   D06 UART RX input byte[1]=0xc1
-[71714000]   D06 UART RX input byte[2]=0xc2
-[72121000]   D06 UART RX input byte[3]=0xc3
-[72528000]   D06 UART RX input byte[4]=0xc4
-[72935000]   D06 UART RX input byte[5]=0xc5
-[73341000]   D06 UART RX input byte[6]=0xc6
-[73748000]   D06 UART RX input byte[7]=0xc7
-[73748000] D06 INPUT COMPLETE: all eight UART frames reached uart_rx_i
-[77039000] UART TX observed byte: 0x36
-[77039000]   D06 CONTROL: scheduler latched direction=1 mode=2
-[77039000]   D06 WORD[0]: UART input bytes -> RAM output[0x6040]=0xc3c2c1c0 (expected 0xc3c2c1c0)
-[77039000]   D06 WORD[1]: UART input bytes -> RAM output[0x6044]=0xc7c6c5c4 (expected 0xc7c6c5c4)
-[77039000] PASS D06: Peripheral -> Memory /       TRANSPARENT; physical UART input matches RAM
-[78326000] UART TX observed byte: 0x58
-[78326000] D07 ACTIVE: Memory -> Peripheral / Burst; capturing UART output
-[78732000] UART TX observed byte: 0x10
-[78732000]   D07 BYTE[0]: RAM input=0x10 -> physical UART output=0x10 MATCH
-[79139000] UART TX observed byte: 0x11
-[79139000]   D07 BYTE[1]: RAM input=0x11 -> physical UART output=0x11 MATCH
-[79546000] UART TX observed byte: 0x12
-[79546000]   D07 BYTE[2]: RAM input=0x12 -> physical UART output=0x12 MATCH
-[79953000] UART TX observed byte: 0x13
-[79953000]   D07 BYTE[3]: RAM input=0x13 -> physical UART output=0x13 MATCH
-[80359000] UART TX observed byte: 0x14
-[80359000]   D07 BYTE[4]: RAM input=0x14 -> physical UART output=0x14 MATCH
-[80766000] UART TX observed byte: 0x15
-[80766000]   D07 BYTE[5]: RAM input=0x15 -> physical UART output=0x15 MATCH
-[81173000] UART TX observed byte: 0x16
-[81173000]   D07 BYTE[6]: RAM input=0x16 -> physical UART output=0x16 MATCH
-[81580000] UART TX observed byte: 0x17
-[81580000]   D07 BYTE[7]: RAM input=0x17 -> physical UART output=0x17 MATCH
-[81580000] PASS D07 DATA: all eight RAM bytes emerged from the actual UART path
-[82920000] UART TX observed byte: 0x37
-[82920000]   D07 CONTROL: scheduler latched direction=2 mode=0
-[82920000] PASS D07: Memory -> Peripheral / Burst; DMA completed without fault
-[84100000] UART TX observed byte: 0x59
-[84100000] D08 ACTIVE: Memory -> Peripheral / Cycle-Stealing; capturing UART output
-[84507000] UART TX observed byte: 0x20
-[84507000]   D08 BYTE[0]: RAM input=0x20 -> physical UART output=0x20 MATCH
-[84914000] UART TX observed byte: 0x21
-[84914000]   D08 BYTE[1]: RAM input=0x21 -> physical UART output=0x21 MATCH
-[85320000] UART TX observed byte: 0x22
-[85320000]   D08 BYTE[2]: RAM input=0x22 -> physical UART output=0x22 MATCH
-[85727000] UART TX observed byte: 0x23
-[85727000]   D08 BYTE[3]: RAM input=0x23 -> physical UART output=0x23 MATCH
-[86134000] UART TX observed byte: 0x24
-[86134000]   D08 BYTE[4]: RAM input=0x24 -> physical UART output=0x24 MATCH
-[86541000] UART TX observed byte: 0x25
-[86541000]   D08 BYTE[5]: RAM input=0x25 -> physical UART output=0x25 MATCH
-[86947000] UART TX observed byte: 0x26
-[86947000]   D08 BYTE[6]: RAM input=0x26 -> physical UART output=0x26 MATCH
-[87354000] UART TX observed byte: 0x27
-[87354000]   D08 BYTE[7]: RAM input=0x27 -> physical UART output=0x27 MATCH
-[87354000] PASS D08 DATA: all eight RAM bytes emerged from the actual UART path
-[88694000] UART TX observed byte: 0x38
-[88694000]   D08 CONTROL: scheduler latched direction=2 mode=1
-[88694000] PASS D08: Memory -> Peripheral / Cycle-Stealing; DMA completed without fault
-[89875000] UART TX observed byte: 0x5a
-[89875000] D09 ACTIVE: Memory -> Peripheral / Transparent; capturing UART output
-[90281000] UART TX observed byte: 0x30
-[90281000]   D09 BYTE[0]: RAM input=0x30 -> physical UART output=0x30 MATCH
-[90688000] UART TX observed byte: 0x31
-[90688000]   D09 BYTE[1]: RAM input=0x31 -> physical UART output=0x31 MATCH
-[91095000] UART TX observed byte: 0x32
-[91095000]   D09 BYTE[2]: RAM input=0x32 -> physical UART output=0x32 MATCH
-[91502000] UART TX observed byte: 0x33
-[91502000]   D09 BYTE[3]: RAM input=0x33 -> physical UART output=0x33 MATCH
-[91908000] UART TX observed byte: 0x34
-[91908000]   D09 BYTE[4]: RAM input=0x34 -> physical UART output=0x34 MATCH
-[92315000] UART TX observed byte: 0x35
-[92315000]   D09 BYTE[5]: RAM input=0x35 -> physical UART output=0x35 MATCH
-[92722000] UART TX observed byte: 0x36
-[92722000]   D09 BYTE[6]: RAM input=0x36 -> physical UART output=0x36 MATCH
-[93129000] UART TX observed byte: 0x37
-[93129000]   D09 BYTE[7]: RAM input=0x37 -> physical UART output=0x37 MATCH
-[93129000] PASS D09 DATA: all eight RAM bytes emerged from the actual UART path
-[94262000] UART TX observed byte: 0x39
-[94262000]   D09 CONTROL: scheduler latched direction=2 mode=2
-[94262000] PASS D09: Memory -> Peripheral / Transparent; DMA completed without fault
-[140992000] UART TX observed byte: 0x51
-[140992000]   QUEUE[0] RAM[0x4100]=0x51000000 -> RAM[0x5200]=0x51000000    MATCH
-[140992000]   QUEUE[1] RAM[0x4120]=0x51000001 -> RAM[0x5220]=0x51000001    MATCH
-[140992000]   QUEUE[2] RAM[0x4140]=0x51000002 -> RAM[0x5240]=0x51000002    MATCH
-[140992000]   QUEUE[3] RAM[0x4160]=0x51000003 -> RAM[0x5260]=0x51000003    MATCH
-[140992000]   QUEUE[4] RAM[0x4180]=0x51000004 -> RAM[0x5280]=0x51000004    MATCH
-[140992000]   QUEUE[5] RAM[0x41a0]=0x51000005 -> RAM[0x52a0]=0x51000005    MATCH
-[140992000]   QUEUE[6] RAM[0x41c0]=0x51000006 -> RAM[0x52c0]=0x51000006    MATCH
-[140992000]   QUEUE[7] RAM[0x41e0]=0x51000007 -> RAM[0x52e0]=0x51000007    MATCH
-[140992000] PASS Q01: PicoRV32 submitted eight scattered descriptors; FIFO order, data, and completions matched
-[143712000] UART TX observed byte: 0x52
-[143712000] P01 ACTIVE: no CPU START; waiting for UART RX to request DMA and CPU grant
-[143712000] P01 INPUT: UART autonomously sends eight bytes 0xE0..0xE7 before any CPU START
-[144115000]   P01 UART RX autonomous byte[0]=0xe0
-[144522000]   P01 UART RX autonomous byte[1]=0xe1
-[144929000]   P01 UART RX autonomous byte[2]=0xe2
-[145336000]   P01 UART RX autonomous byte[3]=0xe3
-[145359000] ACCESS REQUEST[1]: peripheral=1 id=0xff queued=0 type=1 mode=0 src=0x0000 dst=0x6060 length=8
-[145742000]   P01 UART RX autonomous byte[4]=0xe4
-[146149000]   P01 UART RX autonomous byte[5]=0xe5
-[146556000]   P01 UART RX autonomous byte[6]=0xe6
-[146963000]   P01 UART RX autonomous byte[7]=0xe7
-[146963000] P01 INPUT COMPLETE: UART supplied two AXI-Stream words
-[148780000] CPU GRANT[1]: request accepted; DMA may now reach IOMMU/AXI/UART
-[152714000] UART TX observed byte: 0x56
-[152714000] PASS P01: UART generated the only access request; CPU granted it; RAM contains E0..E7
-[153121000] UART TX observed byte: 0x50
-[153121000] PASS HYBRID ACCESS: CPU START/PUSH needed no duplicate grants; one UART request received one CPU grant
-[153121000] PASS: PicoRV32 executed all 3 directions x 3 modes, eight queued descriptors, and autonomous UART DMA
-[153121000] SOC TEST PASSED: D01-D09 + Q01 + autonomous peripheral P01
+[3364000] UART TX observed byte: 0x53
+[3364000] FIRMWARE START: PicoRV32 is executing the D01-D09 matrix
+[12513000] UART TX observed byte: 0x4d
+[12513000] PASS CPU MMU: VA 0x00008000 -> PA 0x00003000, RAM=0xc0dec0de, TLB hits=20 misses=2
+[42078000] UART TX observed byte: 0x31
+[42078000]   D01 CONTROL: scheduler latched direction=0 mode=0
+[42078000]   D01 WORD[0]: RAM input[0x4000]=0x11111111 -> RAM output[0x5000]=0x11111111
+[42078000]   D01 WORD[1]: RAM input[0x4004]=0x22222222 -> RAM output[0x5004]=0x22222222
+[42078000]   D01 WORD[2]: RAM input[0x4008]=0x33333333 -> RAM output[0x5008]=0x33333333
+[42078000]   D01 WORD[3]: RAM input[0x400c]=0x44444444 -> RAM output[0x500c]=0x44444444
+[42078000] PASS D01: Memory -> Memory /             BURST; actual RAM data matches
+[47660000] UART TX observed byte: 0x32
+[47660000]   D02 CONTROL: scheduler latched direction=0 mode=1
+[47660000]   D02 WORD[0]: RAM input[0x4020]=0x12121212 -> RAM output[0x5020]=0x12121212
+[47660000]   D02 WORD[1]: RAM input[0x4024]=0x23232323 -> RAM output[0x5024]=0x23232323
+[47660000] PASS D02: Memory -> Memory /    CYCLE-STEALING; actual RAM data matches
+[52927000] UART TX observed byte: 0x33
+[52927000]   D03 CONTROL: scheduler latched direction=0 mode=2
+[52927000]   D03 WORD[0]: RAM input[0x4040]=0x34343434 -> RAM output[0x5040]=0x34343434
+[52927000]   D03 WORD[1]: RAM input[0x4044]=0x45454545 -> RAM output[0x5044]=0x45454545
+[52927000] PASS D03: Memory -> Memory /       TRANSPARENT; actual RAM data matches
+[54368000] UART TX observed byte: 0x41
+[54368000] D04 ACTIVE: Peripheral -> Memory / Burst
+[54368000] D04 INPUT: sending eight physical 8N1 UART bytes 0xa0..0xa7
+[54771000]   D04 UART RX input byte[0]=0xa0
+[55178000]   D04 UART RX input byte[1]=0xa1
+[55584000]   D04 UART RX input byte[2]=0xa2
+[55991000]   D04 UART RX input byte[3]=0xa3
+[56398000]   D04 UART RX input byte[4]=0xa4
+[56805000]   D04 UART RX input byte[5]=0xa5
+[57211000]   D04 UART RX input byte[6]=0xa6
+[57618000]   D04 UART RX input byte[7]=0xa7
+[57618000] D04 INPUT COMPLETE: all eight UART frames reached uart_rx_i
+[60916000] UART TX observed byte: 0x34
+[60916000]   D04 CONTROL: scheduler latched direction=1 mode=0
+[60916000]   D04 WORD[0]: UART input bytes -> RAM output[0x6000]=0xa3a2a1a0 (expected 0xa3a2a1a0)
+[60916000]   D04 WORD[1]: UART input bytes -> RAM output[0x6004]=0xa7a6a5a4 (expected 0xa7a6a5a4)
+[60916000] PASS D04: Peripheral -> Memory /             BURST; physical UART input matches RAM
+[62456000] UART TX observed byte: 0x42
+[62456000] D05 ACTIVE: Peripheral -> Memory / Cycle-Stealing
+[62456000] D05 INPUT: sending eight physical 8N1 UART bytes 0xb0..0xb7
+[62859000]   D05 UART RX input byte[0]=0xb0
+[63266000]   D05 UART RX input byte[1]=0xb1
+[63673000]   D05 UART RX input byte[2]=0xb2
+[64079000]   D05 UART RX input byte[3]=0xb3
+[64486000]   D05 UART RX input byte[4]=0xb4
+[64893000]   D05 UART RX input byte[5]=0xb5
+[65300000]   D05 UART RX input byte[6]=0xb6
+[65706000]   D05 UART RX input byte[7]=0xb7
+[65706000] D05 INPUT COMPLETE: all eight UART frames reached uart_rx_i
+[69090000] UART TX observed byte: 0x35
+[69090000]   D05 CONTROL: scheduler latched direction=1 mode=1
+[69090000]   D05 WORD[0]: UART input bytes -> RAM output[0x6020]=0xb3b2b1b0 (expected 0xb3b2b1b0)
+[69090000]   D05 WORD[1]: UART input bytes -> RAM output[0x6024]=0xb7b6b5b4 (expected 0xb7b6b5b4)
+[69090000] PASS D05: Peripheral -> Memory /    CYCLE-STEALING; physical UART input matches RAM
+[70424000] UART TX observed byte: 0x43
+[70424000] D06 ACTIVE: Peripheral -> Memory / Transparent
+[70424000] D06 INPUT: sending eight physical 8N1 UART bytes 0xc0..0xc7
+[70827000]   D06 UART RX input byte[0]=0xc0
+[71234000]   D06 UART RX input byte[1]=0xc1
+[71641000]   D06 UART RX input byte[2]=0xc2
+[72048000]   D06 UART RX input byte[3]=0xc3
+[72454000]   D06 UART RX input byte[4]=0xc4
+[72861000]   D06 UART RX input byte[5]=0xc5
+[73268000]   D06 UART RX input byte[6]=0xc6
+[73675000]   D06 UART RX input byte[7]=0xc7
+[73675000] D06 INPUT COMPLETE: all eight UART frames reached uart_rx_i
+[76959000] UART TX observed byte: 0x36
+[76959000]   D06 CONTROL: scheduler latched direction=1 mode=2
+[76959000]   D06 WORD[0]: UART input bytes -> RAM output[0x6040]=0xc3c2c1c0 (expected 0xc3c2c1c0)
+[76959000]   D06 WORD[1]: UART input bytes -> RAM output[0x6044]=0xc7c6c5c4 (expected 0xc7c6c5c4)
+[76959000] PASS D06: Peripheral -> Memory /       TRANSPARENT; physical UART input matches RAM
+[78239000] UART TX observed byte: 0x58
+[78239000] D07 ACTIVE: Memory -> Peripheral / Burst; capturing UART output
+[78646000] UART TX observed byte: 0x10
+[78646000]   D07 BYTE[0]: RAM input=0x10 -> physical UART output=0x10 MATCH
+[79052000] UART TX observed byte: 0x11
+[79052000]   D07 BYTE[1]: RAM input=0x11 -> physical UART output=0x11 MATCH
+[79459000] UART TX observed byte: 0x12
+[79459000]   D07 BYTE[2]: RAM input=0x12 -> physical UART output=0x12 MATCH
+[79866000] UART TX observed byte: 0x13
+[79866000]   D07 BYTE[3]: RAM input=0x13 -> physical UART output=0x13 MATCH
+[80273000] UART TX observed byte: 0x14
+[80273000]   D07 BYTE[4]: RAM input=0x14 -> physical UART output=0x14 MATCH
+[80679000] UART TX observed byte: 0x15
+[80679000]   D07 BYTE[5]: RAM input=0x15 -> physical UART output=0x15 MATCH
+[81086000] UART TX observed byte: 0x16
+[81086000]   D07 BYTE[6]: RAM input=0x16 -> physical UART output=0x16 MATCH
+[81493000] UART TX observed byte: 0x17
+[81493000]   D07 BYTE[7]: RAM input=0x17 -> physical UART output=0x17 MATCH
+[81493000] PASS D07 DATA: all eight RAM bytes emerged from the actual UART path
+[82760000] UART TX observed byte: 0x37
+[82760000]   D07 CONTROL: scheduler latched direction=2 mode=0
+[82760000] PASS D07: Memory -> Peripheral / Burst; DMA completed without fault
+[83933000] UART TX observed byte: 0x59
+[83933000] D08 ACTIVE: Memory -> Peripheral / Cycle-Stealing; capturing UART output
+[84340000] UART TX observed byte: 0x20
+[84340000]   D08 BYTE[0]: RAM input=0x20 -> physical UART output=0x20 MATCH
+[84747000] UART TX observed byte: 0x21
+[84747000]   D08 BYTE[1]: RAM input=0x21 -> physical UART output=0x21 MATCH
+[85154000] UART TX observed byte: 0x22
+[85154000]   D08 BYTE[2]: RAM input=0x22 -> physical UART output=0x22 MATCH
+[85560000] UART TX observed byte: 0x23
+[85560000]   D08 BYTE[3]: RAM input=0x23 -> physical UART output=0x23 MATCH
+[85967000] UART TX observed byte: 0x24
+[85967000]   D08 BYTE[4]: RAM input=0x24 -> physical UART output=0x24 MATCH
+[86374000] UART TX observed byte: 0x25
+[86374000]   D08 BYTE[5]: RAM input=0x25 -> physical UART output=0x25 MATCH
+[86781000] UART TX observed byte: 0x26
+[86781000]   D08 BYTE[6]: RAM input=0x26 -> physical UART output=0x26 MATCH
+[87187000] UART TX observed byte: 0x27
+[87187000]   D08 BYTE[7]: RAM input=0x27 -> physical UART output=0x27 MATCH
+[87187000] PASS D08 DATA: all eight RAM bytes emerged from the actual UART path
+[88454000] UART TX observed byte: 0x38
+[88454000]   D08 CONTROL: scheduler latched direction=2 mode=1
+[88454000] PASS D08: Memory -> Peripheral / Cycle-Stealing; DMA completed without fault
+[89628000] UART TX observed byte: 0x5a
+[89628000] D09 ACTIVE: Memory -> Peripheral / Transparent; capturing UART output
+[90035000] UART TX observed byte: 0x30
+[90035000]   D09 BYTE[0]: RAM input=0x30 -> physical UART output=0x30 MATCH
+[90441000] UART TX observed byte: 0x31
+[90441000]   D09 BYTE[1]: RAM input=0x31 -> physical UART output=0x31 MATCH
+[90848000] UART TX observed byte: 0x32
+[90848000]   D09 BYTE[2]: RAM input=0x32 -> physical UART output=0x32 MATCH
+[91255000] UART TX observed byte: 0x33
+[91255000]   D09 BYTE[3]: RAM input=0x33 -> physical UART output=0x33 MATCH
+[91662000] UART TX observed byte: 0x34
+[91662000]   D09 BYTE[4]: RAM input=0x34 -> physical UART output=0x34 MATCH
+[92068000] UART TX observed byte: 0x35
+[92068000]   D09 BYTE[5]: RAM input=0x35 -> physical UART output=0x35 MATCH
+[92475000] UART TX observed byte: 0x36
+[92475000]   D09 BYTE[6]: RAM input=0x36 -> physical UART output=0x36 MATCH
+[92882000] UART TX observed byte: 0x37
+[92882000]   D09 BYTE[7]: RAM input=0x37 -> physical UART output=0x37 MATCH
+[92882000] PASS D09 DATA: all eight RAM bytes emerged from the actual UART path
+[93942000] UART TX observed byte: 0x39
+[93942000]   D09 CONTROL: scheduler latched direction=2 mode=2
+[93942000] PASS D09: Memory -> Peripheral / Transparent; DMA completed without fault
+[140665000] UART TX observed byte: 0x51
+[140665000]   QUEUE[0] RAM[0x4100]=0x51000000 -> RAM[0x5200]=0x51000000    MATCH
+[140665000]   QUEUE[1] RAM[0x4120]=0x51000001 -> RAM[0x5220]=0x51000001    MATCH
+[140665000]   QUEUE[2] RAM[0x4140]=0x51000002 -> RAM[0x5240]=0x51000002    MATCH
+[140665000]   QUEUE[3] RAM[0x4160]=0x51000003 -> RAM[0x5260]=0x51000003    MATCH
+[140665000]   QUEUE[4] RAM[0x4180]=0x51000004 -> RAM[0x5280]=0x51000004    MATCH
+[140665000]   QUEUE[5] RAM[0x41a0]=0x51000005 -> RAM[0x52a0]=0x51000005    MATCH
+[140665000]   QUEUE[6] RAM[0x41c0]=0x51000006 -> RAM[0x52c0]=0x51000006    MATCH
+[140665000]   QUEUE[7] RAM[0x41e0]=0x51000007 -> RAM[0x52e0]=0x51000007    MATCH
+[140665000] PASS Q01: PicoRV32 submitted eight scattered descriptors; FIFO order, data, and completions matched
+[143379000] UART TX observed byte: 0x52
+[143379000] P01 ACTIVE: no CPU START; waiting for UART RX to request DMA and CPU grant
+[143379000] P01 INPUT: UART autonomously sends eight bytes 0xE0..0xE7 before any CPU START
+[143782000]   P01 UART RX autonomous byte[0]=0xe0
+[144189000]   P01 UART RX autonomous byte[1]=0xe1
+[144596000]   P01 UART RX autonomous byte[2]=0xe2
+[145002000]   P01 UART RX autonomous byte[3]=0xe3
+[145026000] ACCESS REQUEST[1]: peripheral=1 id=0xff queued=0 type=1 mode=0 src=0x0000 dst=0x6060 length=8
+[145409000]   P01 UART RX autonomous byte[4]=0xe4
+[145816000]   P01 UART RX autonomous byte[5]=0xe5
+[146223000]   P01 UART RX autonomous byte[6]=0xe6
+[146629000]   P01 UART RX autonomous byte[7]=0xe7
+[146629000] P01 INPUT COMPLETE: UART supplied two AXI-Stream words
+[148446000] CPU GRANT[1]: request accepted; DMA may now reach IOMMU/AXI/UART
+[152374000] UART TX observed byte: 0x56
+[152374000] PASS P01: UART generated the only access request; CPU granted it; RAM contains E0..E7
+[152781000] UART TX observed byte: 0x50
+[152781000] PASS HYBRID ACCESS: CPU START/PUSH needed no duplicate grants; one UART request received one CPU grant
+[152781000] PASS: PicoRV32 executed all 3 directions x 3 modes, eight queued descriptors, and autonomous UART DMA
+[152781000] SOC TEST PASSED: D01-D09 + Q01 + autonomous peripheral P01

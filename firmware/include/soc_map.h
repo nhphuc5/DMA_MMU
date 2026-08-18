@@ -39,6 +39,7 @@
 #define SYSTOLIC_STREAM_SELECT      (1u << 0)
 #define SYSTOLIC_STREAM_RESET_INPUT (1u << 1)
 #define SYSTOLIC_STREAM_CLEAR_ERROR (1u << 2)
+#define SYSTOLIC_STREAM_BATCH_IMAGE (1u << 3)
 #define SYSTOLIC_STREAM_INPUT_READY (1u << 1)
 #define SYSTOLIC_STREAM_COMPUTING   (1u << 2)
 #define SYSTOLIC_STREAM_RESULT      (1u << 3)
@@ -113,6 +114,26 @@
 #define DMA_ACCESS_DST      (*(volatile unsigned *)(SOC_DMA_BASE + 0x80u))
 #define DMA_ACCESS_LENGTH   (*(volatile unsigned *)(SOC_DMA_BASE + 0x84u))
 #define DMA_ACCESS_INFO     (*(volatile unsigned *)(SOC_DMA_BASE + 0x88u))
+
+/* Read-only performance snapshot for the most recently completed DMA
+ * command. These counters come from real AXI/AXI-Stream handshakes. */
+#define DMA_PERF_SEQ          (*(volatile unsigned *)(SOC_DMA_BASE + 0x90u))
+#define DMA_PERF_META         (*(volatile unsigned *)(SOC_DMA_BASE + 0x94u))
+#define DMA_PERF_LENGTH       (*(volatile unsigned *)(SOC_DMA_BASE + 0x98u))
+#define DMA_PERF_TOTAL_CYCLES (*(volatile unsigned *)(SOC_DMA_BASE + 0x9cu))
+#define DMA_PERF_SRC_BYTES    (*(volatile unsigned *)(SOC_DMA_BASE + 0xa0u))
+#define DMA_PERF_SRC_SPAN     (*(volatile unsigned *)(SOC_DMA_BASE + 0xa4u))
+#define DMA_PERF_DST_BYTES    (*(volatile unsigned *)(SOC_DMA_BASE + 0xa8u))
+#define DMA_PERF_DST_SPAN     (*(volatile unsigned *)(SOC_DMA_BASE + 0xacu))
+#define DMA_PERF_AXI_R_BYTES  (*(volatile unsigned *)(SOC_DMA_BASE + 0xb0u))
+#define DMA_PERF_AXI_R_CYCLES (*(volatile unsigned *)(SOC_DMA_BASE + 0xb4u))
+#define DMA_PERF_AXI_W_BYTES  (*(volatile unsigned *)(SOC_DMA_BASE + 0xb8u))
+#define DMA_PERF_AXI_W_CYCLES (*(volatile unsigned *)(SOC_DMA_BASE + 0xbcu))
+
+#define DMA_PERF_VALID        (1u << 0)
+#define DMA_PERF_FAULT        (1u << 1)
+#define DMA_PERF_TYPE(v)      (((v) >> 2) & 0x3u)
+#define DMA_PERF_MODE(v)      (((v) >> 4) & 0x3u)
 
 #define DMA_ACCESS_PERIPH_GRANT_ENABLE   (1u << 0)
 #define DMA_ACCESS_PERIPH_REQUEST_ENABLE (1u << 1)

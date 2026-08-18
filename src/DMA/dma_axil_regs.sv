@@ -111,7 +111,26 @@ module dma_axil_regs #(
     output logic                         pt_write_perm_o,
     output logic                         tlb_invalidate_o,
     input  logic [31:0]                  tlb_hit_count_i,
-    input  logic [31:0]                  tlb_miss_count_i
+    input  logic [31:0]                  tlb_miss_count_i,
+
+    // Performance snapshot for the most recently completed DMA command.
+    // These counters are measured in the DMA clock domain and are exposed as
+    // read-only registers so firmware can report real on-board throughput.
+    input  logic [31:0]                  perf_seq_i,
+    input  logic                         perf_valid_i,
+    input  logic                         perf_fault_i,
+    input  logic [1:0]                   perf_transfer_type_i,
+    input  logic [1:0]                   perf_dma_mode_i,
+    input  logic [31:0]                  perf_length_i,
+    input  logic [31:0]                  perf_total_cycles_i,
+    input  logic [31:0]                  perf_src_bytes_i,
+    input  logic [31:0]                  perf_src_span_i,
+    input  logic [31:0]                  perf_dst_bytes_i,
+    input  logic [31:0]                  perf_dst_span_i,
+    input  logic [31:0]                  perf_axi_r_bytes_i,
+    input  logic [31:0]                  perf_axi_r_cycles_i,
+    input  logic [31:0]                  perf_axi_w_bytes_i,
+    input  logic [31:0]                  perf_axi_w_cycles_i
 );
 
     localparam int VPN_WIDTH = DMA_ADDR_WIDTH-PAGE_SHIFT;
@@ -149,6 +168,18 @@ module dma_axil_regs #(
     localparam logic [7:0] REG_ACCESS_DST = 8'h80;
     localparam logic [7:0] REG_ACCESS_LEN = 8'h84;
     localparam logic [7:0] REG_ACCESS_INFO = 8'h88;
+    localparam logic [7:0] REG_PERF_SEQ = 8'h90;
+    localparam logic [7:0] REG_PERF_META = 8'h94;
+    localparam logic [7:0] REG_PERF_LENGTH = 8'h98;
+    localparam logic [7:0] REG_PERF_TOTAL_CYCLES = 8'h9c;
+    localparam logic [7:0] REG_PERF_SRC_BYTES = 8'ha0;
+    localparam logic [7:0] REG_PERF_SRC_SPAN = 8'ha4;
+    localparam logic [7:0] REG_PERF_DST_BYTES = 8'ha8;
+    localparam logic [7:0] REG_PERF_DST_SPAN = 8'hac;
+    localparam logic [7:0] REG_PERF_AXI_R_BYTES = 8'hb0;
+    localparam logic [7:0] REG_PERF_AXI_R_CYCLES = 8'hb4;
+    localparam logic [7:0] REG_PERF_AXI_W_BYTES = 8'hb8;
+    localparam logic [7:0] REG_PERF_AXI_W_CYCLES = 8'hbc;
 
     logic [AXIL_ADDR_WIDTH-1:0] awaddr_q;
     logic [31:0] wdata_q;
@@ -492,6 +523,26 @@ module dma_axil_regs #(
                                          access_request_len_i};
                     REG_ACCESS_INFO:
                         s_axil_rdata <= {24'd0, access_request_burst_i};
+                    REG_PERF_SEQ: s_axil_rdata <= perf_seq_i;
+                    REG_PERF_META:
+                        s_axil_rdata <= {26'd0, perf_dma_mode_i,
+                                         perf_transfer_type_i,
+                                         perf_fault_i, perf_valid_i};
+                    REG_PERF_LENGTH: s_axil_rdata <= perf_length_i;
+                    REG_PERF_TOTAL_CYCLES:
+                        s_axil_rdata <= perf_total_cycles_i;
+                    REG_PERF_SRC_BYTES: s_axil_rdata <= perf_src_bytes_i;
+                    REG_PERF_SRC_SPAN: s_axil_rdata <= perf_src_span_i;
+                    REG_PERF_DST_BYTES: s_axil_rdata <= perf_dst_bytes_i;
+                    REG_PERF_DST_SPAN: s_axil_rdata <= perf_dst_span_i;
+                    REG_PERF_AXI_R_BYTES:
+                        s_axil_rdata <= perf_axi_r_bytes_i;
+                    REG_PERF_AXI_R_CYCLES:
+                        s_axil_rdata <= perf_axi_r_cycles_i;
+                    REG_PERF_AXI_W_BYTES:
+                        s_axil_rdata <= perf_axi_w_bytes_i;
+                    REG_PERF_AXI_W_CYCLES:
+                        s_axil_rdata <= perf_axi_w_cycles_i;
                     default: s_axil_rdata <= 32'd0;
                 endcase
                 s_axil_rvalid <= 1'b1;

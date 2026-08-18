@@ -58,3 +58,8 @@ firmware/build/*.bin
 firmware/build/**/*.elf
 firmware/build/**/*.bin
 firmware/build/vc707_ddr3/
+firmware/build/vc707_uart_image_batch/
+firmware/build/uart_image_batch/
+
+# Read-only upstream checkout used only while preparing the integration.
+_external/

@@ -33,9 +33,11 @@ module systolic_matmul_4x4 #(
     logic                          b_valid_q[0:3][0:3];
     // Register the 16 products before accumulation.  This preserves the
     // systolic wavefront while breaking the long selector -> multiply -> add
-    // path.  The focused attribute maps only the multipliers to DSP48E1; the
-    // cycle counter and control logic remain in fabric.
-    (* use_dsp = "yes" *) logic signed [PROD_WIDTH-1:0] product_q [0:3][0:3];
+    // path.  Keep all 16 signed INT8 multipliers in LUT fabric so the complete
+    // SoC reserves every DSP48E1 for applications that may be added later.
+    // The product register preserves the original cycle-accurate interface
+    // and keeps the LUT multiplier off the accumulator's critical path.
+    (* use_dsp = "no" *) logic signed [PROD_WIDTH-1:0] product_q [0:3][0:3];
     logic product_valid_q [0:3][0:3];
     logic signed [ACC_WIDTH-1:0] accum_q [0:3][0:3];
 

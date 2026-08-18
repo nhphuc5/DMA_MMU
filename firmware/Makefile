@@ -42,6 +42,9 @@ LDFLAGS := -T "$(LINKER)" -Wl,--gc-sections -Wl,--build-id=none
 
 .PHONY: all vc707 vc707-ddr3-test image-demo vc707-image-demo systolic-demo \
         systolic-image-dma vc707-systolic-image-dma \
+        uart-image-batch uart-image-batch-cycle uart-image-batch-transparent \
+        vc707-uart-image-batch \
+        vc707-uart-image-batch-cycle vc707-uart-image-batch-transparent \
         vc707-systolic-demo verify clean clean-vc707 clean-vc707-ddr3-test clean-image-demo \
         clean-vc707-image-demo clean-systolic-demo \
         clean-vc707-systolic-demo clean-systolic-image-dma \
@@ -49,7 +52,8 @@ LDFLAGS := -T "$(LINKER)" -Wl,--gc-sections -Wl,--build-id=none
 
 all: check-tools $(HEX) verify
 
-# VC707 hardware image: 150 MHz system clock, approximately 115200 baud.
+# VC707 general hardware image: 150 MHz system clock, approximately 115200 baud.
+# The high-volume UART image targets below use ~921600 baud (divider 161).
 # It is kept in a separate directory so the fast RTL-simulation image remains
 # unchanged and both targets can coexist.
 vc707:
@@ -83,6 +87,35 @@ systolic-image-dma:
 vc707-systolic-image-dma:
 	@"$(MAKE)" PROGRAM=soc_systolic_image_dma BUILD_DIR=build/vc707_systolic_image_dma FW_DEFINES=-DSOC_UART_DIVIDER=1300u RAM_WORDS=65536 all
 	@$(PYTHON) "$(SYSTOLIC_IMAGE_PACKER)" --firmware "build/vc707_systolic_image_dma/soc_systolic_image_dma.bin" --image "$(SYSTOLIC_IMAGE_SOURCE)" --output "build/vc707_systolic_image_dma/soc_systolic_image_dma_with_image.hex" --asset-dir "build/vc707_systolic_image_dma/assets" --ram-bytes 262144
+
+# Dynamic multi-image UART target.  Only firmware is initialized in BRAM;
+# image pixels arrive at run time through UART RX and DMA S2M.
+uart-image-batch:
+	@"$(MAKE)" PROGRAM=soc_uart_image_batch BUILD_DIR=build/uart_image_batch clean
+	@"$(MAKE)" PROGRAM=soc_uart_image_batch BUILD_DIR=build/uart_image_batch LINKER=linker_uart_batch.ld FW_DEFINES=-DSOC_UART_DIVIDER=32u RAM_WORDS=65536 all
+
+uart-image-batch-cycle:
+	@"$(MAKE)" PROGRAM=soc_uart_image_batch BUILD_DIR=build/uart_image_batch_cycle clean
+	@"$(MAKE)" PROGRAM=soc_uart_image_batch BUILD_DIR=build/uart_image_batch_cycle LINKER=linker_uart_batch.ld FW_DEFINES="-DSOC_UART_DIVIDER=32u -DSOC_DMA_MODE=1u" RAM_WORDS=65536 all
+
+uart-image-batch-transparent:
+	@"$(MAKE)" PROGRAM=soc_uart_image_batch BUILD_DIR=build/uart_image_batch_transparent clean
+	@"$(MAKE)" PROGRAM=soc_uart_image_batch BUILD_DIR=build/uart_image_batch_transparent LINKER=linker_uart_batch.ld FW_DEFINES="-DSOC_UART_DIVIDER=32u -DSOC_DMA_MODE=2u" RAM_WORDS=65536 all
+
+vc707-uart-image-batch:
+	@"$(MAKE)" PROGRAM=soc_uart_image_batch BUILD_DIR=build/vc707_uart_image_batch clean
+	@"$(MAKE)" PROGRAM=soc_uart_image_batch BUILD_DIR=build/vc707_uart_image_batch LINKER=linker_uart_batch.ld FW_DEFINES="-DSOC_UART_DIVIDER=161u -DSOC_DMA_MODE=0u" RAM_WORDS=65536 all
+
+# The two targets below keep separate HEX files so a board test can select the
+# DMA mode by selecting a correspondingly named bitstream.  No source image or
+# UART packet is synthesized into the result; images still arrive at run time.
+vc707-uart-image-batch-cycle:
+	@"$(MAKE)" PROGRAM=soc_uart_image_batch BUILD_DIR=build/vc707_uart_image_batch_cycle clean
+	@"$(MAKE)" PROGRAM=soc_uart_image_batch BUILD_DIR=build/vc707_uart_image_batch_cycle LINKER=linker_uart_batch.ld FW_DEFINES="-DSOC_UART_DIVIDER=161u -DSOC_DMA_MODE=1u" RAM_WORDS=65536 all
+
+vc707-uart-image-batch-transparent:
+	@"$(MAKE)" PROGRAM=soc_uart_image_batch BUILD_DIR=build/vc707_uart_image_batch_transparent clean
+	@"$(MAKE)" PROGRAM=soc_uart_image_batch BUILD_DIR=build/vc707_uart_image_batch_transparent LINKER=linker_uart_batch.ld FW_DEFINES="-DSOC_UART_DIVIDER=161u -DSOC_DMA_MODE=2u" RAM_WORDS=65536 all
 
 check-tools:
 	@"$(CXX)" --version >nul
@@ -157,3 +190,9 @@ help:
 	@echo make vc707-systolic-demo - Build 150-MHz VC707 4x4 matrix demo
 	@echo make systolic-image-dma       - Build 256-KiB image/DMA/systolic simulation image
 	@echo make vc707-systolic-image-dma - Build 256-KiB VC707 image/DMA/systolic image
+	@echo make uart-image-batch       - Build dynamic multi-image simulation firmware
+	@echo make uart-image-batch-cycle - Build Cycle-Stealing simulation firmware
+	@echo make uart-image-batch-transparent - Build Transparent simulation firmware
+	@echo make vc707-uart-image-batch - Build dynamic multi-image VC707 firmware
+	@echo make vc707-uart-image-batch-cycle      - Build VC707 Cycle-Stealing firmware
+	@echo make vc707-uart-image-batch-transparent - Build VC707 Transparent firmware

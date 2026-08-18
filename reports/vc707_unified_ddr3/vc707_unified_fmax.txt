@@ -1,0 +1,8 @@
+VC707 UNIFIED SOC POST-ROUTE FMAX ESTIMATE
+Target clock      : 150.000 MHz
+Constraint period : 6.667 ns
+Post-route WNS    : 0.059 ns
+Critical period   : 6.608 ns
+Estimated Fmax    : 151.332 MHz
+Formula           : 1000 / (constraint period - WNS)
+Boundary          : reroute is required to certify a changed clock target

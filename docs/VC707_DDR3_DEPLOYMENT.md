@@ -4,7 +4,7 @@
 
 This target is complete at the RTL/IP/constraint/firmware level for the
 standard VC707 board and its 1-GiB x64 Micron DDR3 SODIMM.  `axi_ram` remains
-the 64-KiB boot memory at `0x0000_0000`; DDR3 occupies
+the 256-KiB boot/scratch memory at `0x0000_0000`; DDR3 occupies
 `0x8000_0000`--`0xBFFF_FFFF`.
 
 The physical path is:
@@ -142,14 +142,13 @@ transcript from an actual VC707 can prove board-specific signal integrity and
 successful runtime calibration.  A PC without a connected VC707 cannot
 truthfully produce that final physical-memory PASS result.
 
-The committed Vivado 2025.1 clean build for `xc7vx485tffg1761-2` completed
-with setup WNS `+0.070 ns`, hold WHS `+0.045 ns`, zero timing failures, zero
-DRC errors/critical warnings, and all AXI CDC bus-skew constraints met.  See
-`reports/vc707_ddr3/vc707_ddr3_build_summary.txt` and the adjacent raw reports.
+The current recommended unified Vivado 2025.1 clean build for
+`xc7vx485tffg1761-2` completed with setup WNS `+0.059 ns`, hold WHS
+`+0.054 ns`, zero timing failures, zero DRC errors/critical warnings and all
+AXI CDC bus-skew constraints met. See `reports/vc707_unified_ddr3/`.
 
-The hierarchical utilization report separates the DDR path from the rest of
-the SoC: MIG and both AXI converters use **0 DSP**.  The independent systolic
-accelerator uses the complete design's 16 DSP48E1 blocks.
+The complete current SoC uses **0 DSP**: the systolic INT8 multipliers are
+implemented in LUT fabric, and MIG plus both AXI converters also use 0 DSP.
 
 ## Rebuild the firmware after editing it
 
