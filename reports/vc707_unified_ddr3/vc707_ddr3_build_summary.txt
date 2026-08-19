@@ -2,10 +2,10 @@ VC707 complete PicoRV32 + DMA/IOMMU + AXI RAM + MIG DDR3 implementation
 Part              : xc7vx485tffg1761-2
 Synthesis status  : synth_design Complete!
 Implementation    : write_bitstream Complete!
-Post-route WNS    : 0.082 ns
-Post-route WHS    : 0.053 ns
+Post-route WNS    : 0.041 ns
+Post-route WHS    : 0.052 ns
 SoC target clock  : 150.000 MHz
-Estimated Fmax    : 151.860 MHz (slack-equivalent)
+Estimated Fmax    : 150.921 MHz (slack-equivalent)
 DRC errors        : 0
 DRC critical warn : 0
 DSP total SoC     : 0 (systolic accelerator: 0)
